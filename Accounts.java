@@ -3,8 +3,12 @@ public class Accounts {
     private HashMap<String, String> accounts;
 
     public void idandpass(){
-        accounts.put();
-
+        accounts.put("William", "Guo");
+        accounts.put("Sophia", "Tong");
+        accounts.put("Jennifer", "Cao");
+        accounts.put("Geoffrey", "Kong");
+        accounts.put("Ryanna", "Luo");
+        accounts.put("","");
     }
 
     public Accounts(){

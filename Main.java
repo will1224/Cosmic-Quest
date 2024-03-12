@@ -3,6 +3,7 @@
 public class Main {
     public static void main(String[] args) {
         Accounts accounts = new Accounts();
+        accounts.idandpass();
         loginForm loginForm = new loginForm(accounts.getLoginInfo());
     }
 }

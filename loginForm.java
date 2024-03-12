@@ -4,14 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 public class loginForm implements ActionListener {
-    JFrame loginPage = new JFrame();
-    JButton signUpButton = new JButton("Sign Up");
-    JButton loginButton = new JButton("Log In");
-    JTextField usernameField = new JTextField();
-    JTextField passwordField = new JPasswordField();
-    JLabel usernameLabel = new JLabel("Username: ");
-    JLabel passwordLabel = new JLabel("Password: ");
-    JLabel msg = new JLabel("Error: password incorrect");
+    private JFrame loginPage = new JFrame();
+    private JButton signUpButton = new JButton("Sign Up");
+    private JButton loginButton = new JButton("Log In");
+    private JTextField usernameField = new JTextField();
+    private JTextField passwordField = new JPasswordField();
+    private JLabel usernameLabel = new JLabel("Username: ");
+    private JLabel passwordLabel = new JLabel("Password: ");
+    private JLabel msg = new JLabel("");
 
     HashMap accountDatabase;
     public loginForm(HashMap<String, String> acc){
@@ -55,15 +55,21 @@ public class loginForm implements ActionListener {
             String password = String.valueOf(passwordField.getText());
             if (accountDatabase.get(username) == null){
                 msg.setForeground(Color.red);
-                msg.setText("Error");
+                msg.setFont(new Font(null, Font.BOLD,15));
+                msg.setText("Username or Password Incorrect");
                 loginPage.add(msg);
             }
             else if(accountDatabase.get(username).equals(password)){
                 msg.setForeground(Color.green);
                 msg.setText("Log In Successful");
                 loginPage.add(msg);
-                //launch next page
+                loginPage.dispose();
+                mainMenu mainMenu = new mainMenu();
             }
+        }
+        else if (e.getSource() == signUpButton){
+            loginPage.dispose();
+            signupForm signup = new signupForm(accountDatabase);
         }
     }
 }
