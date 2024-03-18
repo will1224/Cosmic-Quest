@@ -5,16 +5,17 @@ import java.awt.event.ActionListener;
 
 public class levelMenu {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Solar System Game");
+        JFrame frame = new JFrame("Cosmic Quest: Stellar Treasure");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
-        frame.setLayout(new BorderLayout()); // Use BorderLayout for main frame layout
 
-        // Main panel for spherical buttons
-        JPanel panel = new JPanel(new GridLayout(3, 4, 10, 10));
-        panel.setBackground(Color.BLACK); // Set the background color for contrast
-        String[] levels = { "Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune",
-                "Nebulas", "Black Holes" };
+        // Adjust the GridLayout for 4 components per row, with sufficient rows for all
+        // buttons
+        JPanel panel = new JPanel(new GridLayout(0, 4, 10, 10)); // Automatically determine rows, 4 cols
+        panel.setBackground(Color.BLACK); // Optional: Set the background color for contrast
+
+        String[] levels = { "The Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus",
+                "Return to Main Menu", "Neptune", "Nebulas", "Black Holes" };
 
         for (String level : levels) {
             JButton button = new JButton(level) {
@@ -25,24 +26,33 @@ public class levelMenu {
                     } else {
                         g.setColor(getBackground());
                     }
-                    g.fillOval(0, 0, getSize().width - 1, getSize().height - 1);
+                    // Adjust the fillOval size for smaller buttons
+                    g.fillOval(1, 1, getSize().width - 5, getSize().height - 5);
                     super.paintComponent(g);
                 }
 
                 @Override
                 protected void paintBorder(Graphics g) {
                     g.setColor(getForeground());
-                    g.drawOval(0, 0, getSize().width - 1, getSize().height - 1);
+                    // Adjust the drawOval size for smaller buttons
+                    g.drawOval(1, 1, getSize().width - 5, getSize().height - 5);
+                }
+
+                @Override
+                public Dimension getPreferredSize() {
+                    // Return a smaller size for the buttons
+                    return new Dimension(50, 50); // Adjust width and height for your needs
                 }
 
                 @Override
                 public void setContentAreaFilled(boolean b) {
                 }
             };
+            button.setActionCommand(level);
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println(level + " button pressed");
+                    System.out.println(e.getActionCommand() + " button pressed");
                 }
             });
             button.setFocusPainted(false);
@@ -52,21 +62,8 @@ public class levelMenu {
             panel.add(button);
         }
 
-        // Separate panel for the Back button to position it at the bottom left
-        JPanel backPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JButton backButton = new JButton("Back");
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Back button pressed");
-            }
-        });
-        backPanel.add(backButton);
-
-        // Add the main panel and back button panel to the frame
-        frame.add(panel, BorderLayout.CENTER);
-        frame.add(backPanel, BorderLayout.SOUTH);
-
+        frame.add(panel);
         frame.setVisible(true);
     }
 }
+
