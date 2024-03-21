@@ -68,7 +68,7 @@ public class mainMenu implements ActionListener {
         menu.add(buttonPanel, gbc);
 
         menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //menu.setSize(menuBackground.getIconWidth(), menuBackground.getIconHeight());
+        // menu.setSize(menuBackground.getIconWidth(), menuBackground.getIconHeight());
         menu.setVisible(true);
         menu.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
@@ -77,20 +77,26 @@ public class mainMenu implements ActionListener {
         JButton button = new JButton(text);
         button.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the button
         button.setPreferredSize(new Dimension(200, 60)); // Slightly adjust if needed
-        button.setMaximumSize(new Dimension(200, 60)); // Keep them uniform and adjust size here
-        button.setFont(new Font("Arial", Font.BOLD, 18)); // Set a larger font size for the button text
+        button.setMaximumSize(new Dimension(200, 60)); // Keep them uniform
+        button.setFont(new Font("Arial", Font.BOLD, 18)); // Set a larger font size for button text
+        button.addActionListener(this); // Register the ActionListener
         return button;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Implementation remains the same as your provided code
+        if (e.getSource() == selectLevel) {
+            menu.dispose(); // Close the main menu
+            new levelMenu(); // Open the level menu
+        } else if (e.getSource() == exitGame) {
+            menu.dispose(); // Close the application
+        } else if (e.getSource() == newGame) {
+            menu.dispose(); // Example: Close the main menu and start a new game
+            // new GameLogic().startNewGame(); // Hypothetical method to start a new game
+        }
+        // Handle other button actions...
     }
 
-    public static void main(String[] args) {
-        new mainMenu();
-    }
 
-    
 }
 
