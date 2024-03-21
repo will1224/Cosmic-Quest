@@ -58,27 +58,26 @@ public class Question {
     }
 
     public static void main(String[] args) {
-        // Define the path to the questions.json file
         String FILE = "question.json";
 
         try {
-            // Read all lines from the file into a single String
+            // make json string from file
             String jsonText = new String(Files.readAllBytes(Paths.get(FILE)));
 
-            // Parse the JSON text into Question objects
+            // parse json text and make question objects
             List<Question> questions = parseQuestions(jsonText);
 
-            // Iterate over the questions and print them
+            // print every question
             for (Question question : questions) {
                 System.out.println("Question: " + question.getQuestionText());
                 System.out.println("Answers: " + question.getAnswers());
                 System.out.println("Correct answer: " + question.getAnswers().get(question.getCorrectAnsIndex()));
             }
         } catch (IOException e) {
-            System.out.println("An error occurred while reading the file.");
+            System.out.println("File reading error");
             e.printStackTrace();
         } catch (ParseException e) {
-            System.out.println("An error occurred while parsing the JSON.");
+            System.out.println("JSON parsing error");
             e.printStackTrace();
         }
     }
