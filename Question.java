@@ -1,34 +1,85 @@
 import java.util.*;
 import org.json.simple.*;
-
+import org.json.simple.parser.ParseException;
+import org.json.simple.parser.JSONParser;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.io.IOException;
 
 public class Question {
-
-    /* instance variables */
     private String questionText;
     private List<String> answers;
-    private int correctAnswerIndex;
+    private int correctAnsIndex;
 
-    /* makes a question */
-    public Question(String questionText, List<String> answers) {
+    public Question(String questionText, List<String> answers, int correctAnswerIndex) {
         this.questionText = questionText;
         this.answers = answers;
+        this.correctAnsIndex = correctAnswerIndex;
     }
 
-    /* checks validity of answer */
     public boolean isCorrectAnswer(int answerIndex) {
-        return false;
+        return answerIndex == correctAnsIndex;
     }
 
-    /* parses json file for question */
+    public int getCorrectAnsIndex() {
+        return correctAnsIndex;
+    }
     public String getQuestionText() {
-        return "bruh";
+        return questionText;
     }
 
-    /* returns answer */
     public List<String> getAnswers() {
-        
+        return answers;
     }
 
+    private static List<Question> parseQuestions(String jsonText) throws ParseException {
+        List<Question> questions = new ArrayList<>();
+        JSONParser parser = new JSONParser();
 
+        try {
+            Object obj = parser.parse(jsonText);
+            JSONArray jsonArray = (JSONArray) obj;
+            for (Object questionObj : jsonArray) {
+                JSONObject questionJson = (JSONObject) questionObj;
+                String questionStr = (String) questionJson.get("questionStr");
+                long answer = (long) questionJson.get("answer");
+                JSONArray answersJson = (JSONArray) questionJson.get("answerList");
+                List<String> answers = new ArrayList<>();
+                for (Object answerObj : answersJson) {
+                    answers.add((String) answerObj);
+                }
+                questions.add(new Question(questionStr, answers, (int) answer));
+            }
+        } catch (ParseException e) {
+            throw new ParseException(ParseException.ERROR_UNEXPECTED_EXCEPTION, e);
+        }
+
+        return questions;
+    }
+
+    public static void main(String[] args) {
+        // Define the path to the questions.json file
+        String FILE = "question.json";
+
+        try {
+            // Read all lines from the file into a single String
+            String jsonText = new String(Files.readAllBytes(Paths.get(FILE)));
+
+            // Parse the JSON text into Question objects
+            List<Question> questions = parseQuestions(jsonText);
+
+            // Iterate over the questions and print them
+            for (Question question : questions) {
+                System.out.println("Question: " + question.getQuestionText());
+                System.out.println("Answers: " + question.getAnswers());
+                System.out.println("Correct answer: " + question.getAnswers().get(question.getCorrectAnsIndex()));
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the file.");
+            e.printStackTrace();
+        } catch (ParseException e) {
+            System.out.println("An error occurred while parsing the JSON.");
+            e.printStackTrace();
+        }
+    }
 }
