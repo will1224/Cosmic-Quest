@@ -24,10 +24,11 @@ public class pauseMenu extends JFrame implements ActionListener {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 
-        resumeButton = createButton("Resume Game");
-        optionsButton = createButton("Options");
-        returnButton = createButton("Return to main menu");
-        exitButton = createButton("Exit to Desktop");
+        // Create buttons with images
+        resumeButton = createImageButton("images/button.png");
+        optionsButton = createImageButton("images/button.png");
+        returnButton = createImageButton("images/button.png");
+        exitButton = createImageButton("images/button.png");
 
         // Adding buttons to the panel
         buttonPanel.add(resumeButton);
@@ -41,23 +42,24 @@ public class pauseMenu extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    private JButton createButton(String text) {
-        JButton button = new JButton(text);
+    private JButton createImageButton(String imagePath) {
+        ImageIcon icon = new ImageIcon(imagePath); // Load the image icon
+        JButton button = new JButton(icon);
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.setMaximumSize(new Dimension(Integer.MAX_VALUE, button.getMinimumSize().height));
+        // Set maximum button size to be reasonable, consider the image size
+        button.setMaximumSize(new Dimension(icon.getIconWidth() + 20, icon.getIconHeight() + 20));
         button.addActionListener(this);
         return button;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == exitButton) {
-            dispose(); // Dispose the frame and close the popup
+        if (e.getSource() == returnButton) {
+            dispose(); // Close the pause menu
+            new mainMenu(); // Open the main menu
+        } else if (e.getSource() == exitButton) {
+            dispose(); // Close the application
         }
-        // Other actions based on the button clicks can be defined here
-    }
-
-    public static void main(String[] args) {
-        new pauseMenu(); // Run the pause menu
     }
 }
+
