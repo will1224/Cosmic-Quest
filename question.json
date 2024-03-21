@@ -1,0 +1,23 @@
+[
+{
+    "questionID": 0,
+    "questionStr": "would you rather a,b, or,c",
+    "answer": 2,
+    "answerList": ["hi", "bye", "bruh"]
+},
+
+{
+    "questionID": 1,
+    "questionStr": "to be or not to be",
+    "answer": 1,
+    "answerList": ["a", "b", "c"]
+},
+
+{
+
+    "questionID": 2,
+    "questionStr": "which is biggest",
+    "answer": 2,
+    "answerList": ["earth", "mars", "jupiter"]
+}
+]
