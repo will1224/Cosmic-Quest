@@ -15,9 +15,47 @@ public class Level {
     // constructor
     public Level(int levelID) {
         this.levelID = levelID;
-        this.name = "temp";
-        this.description ="temp";
         this.questionList = readQuestions();
+
+        // set name and description based on levelID
+        switch (levelID) {
+            case 0:
+                this.name = "Sun";
+                this.description ="temp";
+                break;
+            case 1:
+                this.name = "Mercury";
+                this.description ="temp";
+                break;
+            case 2:
+                this.name = "Venus";
+                this.description ="temp";
+                break;
+            case 3:
+                this.name = "Earth";
+                this.description ="temp";
+                break;
+            case 4:
+                this.name = "Mars";
+                this.description ="temp";
+                break;
+            case 5:
+                this.name = "Jupiter";
+                this.description ="temp";
+                break;
+            case 6:
+                this.name = "Saturn";
+                this.description ="temp";
+                break;
+            case 7:
+                this.name = "Uranus";
+                this.description ="temp";
+                break;
+            case 8:
+                this.name = "Neptune";
+                this.description ="temp";
+                break;
+        }
     }
 
     private List<Question> readQuestions() {
@@ -100,8 +138,30 @@ public class Level {
         return questions;
     }
 
-    public Question getQTest() {
-        return questionList.getFirst();
+    // return randomized list of 5 questions from the question list
+    public List<Question> getQuestions() {
+        // First, ensure the questionList is not null and has questions
+        if (questionList == null || questionList.isEmpty()) {
+            System.out.println("The question list is empty or not initialized.");
+            return Collections.emptyList(); // Return an empty list to avoid null pointer exceptions
+        }
+
+        // Shuffle the list to randomize the questions
+        Collections.shuffle(questionList);
+
+        // Check if the list contains at least 5 questions
+        if (questionList.size() < 5) {
+            // If not, handle accordingly. For now, we're just printing a message and returning the shuffled list as is.
+            System.out.println("Warning: Less than 5 questions available. Returning all available questions.");
+            return questionList;
+        }
+
+        // If there are at least 5 questions, return the first 5 from the shuffled list
+        return questionList.subList(0, 5);
+    }
+
+    public String getName() {
+        return name;
     }
 
 

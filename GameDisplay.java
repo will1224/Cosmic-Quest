@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+import java.util.List;
 
 public class GameDisplay extends JFrame {
 
@@ -19,31 +19,48 @@ public class GameDisplay extends JFrame {
         setVisible(true);
     }
 
-    public void displayLevel(int level) {
+    public void displayLevel(Level currLevel, List<Question> questionSet) {
         // create JPanel with grid
-        JPanel panel = new JPanel(new GridLayout(5, 3, 10, 10)); // 3x3 grid with 10px padding
-
-        // make level
-        Level currLevel = new Level(level);
+        JPanel panel = new JPanel(new GridLayout(7, 3, 10, 10)); // 3x3 grid with 10px padding
 
         // fill grid
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 21; i++) {
             switch(i) {
                 case 1:
-                    JLabel title = new JLabel("Level " + level);
+                    JLabel title = new JLabel(currLevel.getName());
                     title.setFont(new Font("Space Mono", Font.BOLD, 30));
                     title.setHorizontalAlignment(JLabel.CENTER);
                     panel.add(title);
                     break;
                 case 4:
-                    JLabel questionText = new JLabel(currLevel.getQTest().getQuestionText());
+                    JLabel questionText = new JLabel(questionSet.get(0).getQuestionText());
                     questionText.setFont(new Font("Space Mono", Font.PLAIN, 30));
                     questionText.setHorizontalAlignment(JLabel.CENTER);
                     questionText.setVerticalAlignment(JLabel.NORTH);
                     panel.add(questionText);
                     break;
+                case 7:
+                    JButton optionA = new JButton(questionSet.get(0).getAnswers().get(0));
+                    optionA.setFont(new Font("Space Mono", Font.PLAIN, 25));
+                    panel.add(optionA);
+                    break;
+                case 10:
+                    JButton optionB = new JButton(questionSet.get(0).getAnswers().get(1));
+                    optionB.setFont(new Font("Space Mono", Font.PLAIN, 25));
+                    panel.add(optionB);
+                    break;
+                case 13:
+                    JButton optionC = new JButton(questionSet.get(0).getAnswers().get(2));
+                    optionC.setFont(new Font("Space Mono", Font.PLAIN, 25));
+                    panel.add(optionC);
+                    break;
+                case 16:
+                    JButton optionD = new JButton(questionSet.get(0).getAnswers().get(3));
+                    optionD.setFont(new Font("Space Mono", Font.PLAIN, 25));
+                    panel.add(optionD);
+                    break;
                 default:
-                    panel.add(new JButton()); // fill w jbuttons so I can see grid clearly lol
+                    panel.add(new JPanel()); // fill w JButtons so I can see grid clearly lol
             }
         }
 
@@ -54,15 +71,5 @@ public class GameDisplay extends JFrame {
 
     }
 
-    // tester main
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                GameDisplay d = new GameDisplay();
-                d.displayLevel(0);
-            }
-        });
-    }
 
 }
