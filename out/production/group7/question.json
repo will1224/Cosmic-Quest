@@ -1,23 +1,64 @@
 [
-{
-    "questionID": 0,
-    "questionStr": "would you rather a,b, or,c",
-    "answer": 2,
-    "answerList": ["hi", "bye", "bruh"]
-},
+    {
+        "questionID": 0,
+        "questionStr": "would you rather a,b, or,c",
+        "answer": 2,
+        "answerList": ["hi", "bye", "bruh"]
+    },
 
-{
-    "questionID": 1,
-    "questionStr": "to be or not to be",
-    "answer": 1,
-    "answerList": ["a", "b", "c"]
-},
+    {
+        "questionID": 1,
+        "questionStr": "to be or not to be",
+        "answer": 1,
+        "answerList": ["a", "b", "c"]
+    },
 
-{
+    {
 
-    "questionID": 2,
-    "questionStr": "which is biggest",
-    "answer": 2,
-    "answerList": ["earth", "mars", "jupiter"]
-}
+        "questionID": 2,
+        "questionStr": "which is biggest",
+        "answer": 2,
+        "answerList": ["earth", "mars", "jupiter"]
+    },
+
+    {
+
+        "questionID": 3,
+        "questionStr": "which is smallest",
+        "answer": 1,
+        "answerList": ["earth", "mars", "jupiter"]
+    },
+
+    {
+
+        "questionID": 4,
+        "questionStr": "dawg",
+        "answer": 1,
+        "answerList": ["bruh", "dawg", "hbdjashj"]
+    },
+
+    {
+
+        "questionID": 5,
+        "questionStr": "dawg",
+        "answer": 1,
+        "answerList": ["bruh", "dawg", "hbdjashj"]
+    },
+
+    {
+
+        "questionID": 6,
+        "questionStr": "dawg",
+        "answer": 1,
+        "answerList": ["bruh", "dawg", "hbdjashj"]
+    },
+
+    {
+
+        "questionID": 7,
+        "questionStr": "bounds",
+        "answer": 0,
+        "answerList": ["bruh", "dawg", "hbdjashj"]
+    }
+
 ]
