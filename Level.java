@@ -36,12 +36,12 @@ public class Level {
             List<Question> questionList = parseQuestions(jsonText);
 
             // print every question FOR TESTING
-            /*
+
             for (int i = 0; i < questionList.size(); i++) {
                 System.out.println("Question: " + questionList.get(i).getQuestionText());
                 System.out.println("Answers: " + questionList.get(i).getAnswers());
                 System.out.println("Correct: " + questionList.get(i).getCorrectAnsText());
-            }*/
+            }
 
             return questionList;
 
