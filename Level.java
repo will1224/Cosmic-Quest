@@ -13,10 +13,10 @@ public class Level {
 
 
     // constructor
-    public Level(int levelID, String name, String description) {
+    public Level(int levelID) {
         this.levelID = levelID;
-        this.name = name;
-        this.description = description;
+        this.name = "temp";
+        this.description ="temp";
         this.questionList = readQuestions();
     }
 
@@ -100,10 +100,14 @@ public class Level {
         return questions;
     }
 
+    public Question getQTest() {
+        return questionList.getFirst();
+    }
+
 
     /* TESTER */
     public static void main(String[] args) {
-        Level testLvl = new Level(0, "test", "bruhhh");
+        Level testLvl = new Level(0);
     }
 
 }
