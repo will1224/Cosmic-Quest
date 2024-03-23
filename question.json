@@ -183,8 +183,548 @@
         "Nitrogen", 
         "Oxygen", 
         "Methane"]
+    },
+
+    {
+        "questionID": 21,
+        "questionStr": "What is Earth's largest ocean?",
+        "answer": 1,
+        "answerList": 
+        ["Oxygen", 
+        "Nitrogen", 
+        "Carbon dioxide", 
+        "Helium"]
+    },
+
+    {
+        "questionID": 22,
+        "questionStr": "How many continents are there on Earth?",
+        "answer": 2,
+        "answerList": 
+        ["5", 
+        "6", 
+        "7", 
+        "8"]
+    },
+
+    {
+        "questionID": 23,
+        "questionStr": "What is the deepest point in Earth's oceans?",
+        "answer": 1,
+        "answerList": 
+        ["Puerto Rico Trench", 
+        "Mariana Trench", 
+        "Tonga Trench", 
+        "Philippine Trench"]
+    },
+
+    {
+        "questionID": 24,
+        "questionStr": "How much of Earth's surface is covered by water?",
+        "answer": 3,
+        "answerList": 
+        ["About 50%", 
+        "About 60%", 
+        "About 80%", 
+        "About 70%"]
+    },
+
+    {
+        "questionID": 25,
+        "questionStr": "What phenomenon allows Earth to have life?",
+        "answer": 0,
+        "answerList": 
+        ["Its atmosphere and distance from the Sun", 
+        "Its magnetic field", 
+        "Its size", 
+        "Its geological activity"]
+    },
+
+    {
+        "questionID": 26,
+        "questionStr": "What is the layer of gases surrounding Earth called?",
+        "answer": 2,
+        "answerList": 
+        ["Stratosphere", 
+        "Exosphere", 
+        "Atmosphere", 
+        "Ionosphere"]
+    },
+
+    {
+        "questionID": 27,
+        "questionStr": "What is the approximate diameter of Earth at the equator?",
+        "answer": 2,
+        "answerList": 
+        ["10,070 kilometers", 
+        "11,020 kilometers", 
+        "12,742 kilometers", 
+        "20,100 kilometers"]
+    },
+
+    {
+        "questionID": 28,
+        "questionStr": "What causes Mars' red color?",
+        "answer": 1,
+        "answerList": 
+        ["Sulfur compounds", 
+        "Iron oxide, or rust, on its surface", 
+        "Volcanic activity", 
+        "Algae blooms"]
+    },
+
+    {
+        "questionID": 29,
+        "questionStr": "How many moons does Mars have?",
+        "answer": 0,
+        "answerList": 
+        ["Two, Phobos and Deimos", 
+        "Two, Bob and Joe", 
+        "One, Titan", 
+        "None"]
+    },
+
+    {
+        "questionID": 30,
+        "questionStr": "How many moons does Mars have?",
+        "answer": 0,
+        "answerList": 
+        ["Two, Phobos and Deimos", 
+        "Two, Bob and Joe", 
+        "One, Titan", 
+        "None"]
+    },
+
+    {
+        "questionID": 31,
+        "questionStr": "What is the name of the largest volcano on Mars?",
+        "answer": 3,
+        "answerList": 
+        ["Mount Everest", 
+        "Kilimanjaro", 
+        "Mauna Kea", 
+        "Olympus Mons"]
+    },
+
+    {
+        "questionID": 32,
+        "questionStr": "How long is a day on Mars compared to an Earth day?",
+        "answer": 2,
+        "answerList": 
+        ["Slightly shorter", 
+        "The same", 
+        "Slightly longer", 
+        "Twice as long"]
+    },
+
+    {
+        "questionID": 33,
+        "questionStr": "What mission first successfully landed on Mars?",
+        "answer": 1,
+        "answerList": 
+        ["Curiosity Rover", 
+        "Viking 1 in 1976", 
+        "Perseverance Rover", 
+        "Opportunity Rover"]
+    },
+
+    {
+        "questionID": 34,
+        "questionStr": "What are Mars' polar caps made of?",
+        "answer": 1,
+        "answerList": 
+        ["Sand and rocks", 
+        "Ice and frozen carbon dioxide", 
+        "Lava", 
+        "Iron ore"]
+    },
+
+    {
+        "questionID": 35,
+        "questionStr": "What is the Great Red Spot on Jupiter?",
+        "answer": 1,
+        "answerList": 
+        ["A giant volcano", 
+        "A giant storm", 
+        "A vast desert", 
+        "A mountain range"]
+    },
+
+    {
+        "questionID": 36,
+        "questionStr": "How many moons does Jupiter have?",
+        "answer": 2,
+        "answerList": 
+        ["Less than 50", 
+        "61", 
+        "95", 
+        "Over 100"]
+    },
+
+    {
+        "questionID": 37,
+        "questionStr": "What is Jupiter mostly made of?",
+        "answer": 3,
+        "answerList": 
+        ["Oxygen and nitrogen", 
+        "Carbon dioxide", 
+        "Methane", 
+        "Hydrogen and helium"]
+    },
+
+    {
+        "questionID": 38,
+        "questionStr": "What is Jupiter mostly made of?",
+        "answer": 0,
+        "answerList": 
+        ["Oxygen and nitrogen", 
+        "Carbon dioxide", 
+        "Methane", 
+        "Hydrogen and helium"]
+    },
+
+    {
+        "questionID": 39,
+        "questionStr": "How many Earths could fit inside Jupiter?",
+        "answer": 3,
+        "answerList": 
+        ["About 300", 
+        "About 800", 
+        "About 1,000", 
+        "About 1,300"]
+    },
+
+    {
+        "questionID": 40,
+        "questionStr": "What is unique about Jupiter's magnetic field?",
+        "answer": 2,
+        "answerList": 
+        ["It's the weakest of any planet in the solar system", 
+        "It's the smallest of any planet in the solar system", 
+        "It's the strongest of any planet in the solar system", 
+        "It's irregular and constantly changing"]
+    },
+
+    {
+        "questionID": 41,
+        "questionStr": "What spacecraft is currently orbiting Jupiter",
+        "answer": 0,
+        "answerList": 
+        ["Juno", 
+        "Voyager", 
+        "Cassini", 
+        "Galileo"]
+    },
+
+    {
+        "questionID": 42,
+        "questionStr": "What are Saturn's rings made of?",
+        "answer": 1,
+        "answerList": 
+        ["Gold and platinum", 
+        "Ice, rock, and dust", 
+        "Diamonds", 
+        "Silver and copper"]
+    },
+
+    {
+        "questionID": 43,
+        "questionStr": "What is Saturn's largest moon called?",
+        "answer": 2,
+        "answerList": 
+        ["Europa", 
+        "Ganymede", 
+        "Titan", 
+        "Triton"]
+    },
+
+
+    {
+        "questionID": 44,
+        "questionStr": "Could Saturn float in water?",
+        "answer": 1,
+        "answerList": 
+        ["No, it's too dense", 
+        "Yes, its density is less than that of water", 
+        "No, it's too large", 
+        "Yes, but only in liquid form"]
+    },
+
+    {
+        "questionID": 45,
+        "questionStr": "What is the Cassini Division?",
+        "answer": 1,
+        "answerList": 
+        ["A region of intense magnetic activity on Saturn", 
+        "A prominent crater on Saturn's surface", 
+        "A large storm system on Saturn", 
+        "A gap between Saturn's rings"]
+    },
+
+    {
+        "questionID": 46,
+        "questionStr": "How long is a day on Saturn?",
+        "answer": 0,
+        "answerList": 
+        ["About 10.7 Earth hours", 
+        "About 24 Earth hours", 
+        "About 16 Earth hours", 
+        "About 48 Earth hours"]
+    },
+
+    {
+        "questionID": 47,
+        "questionStr": "Is Titan similar to Earth? In what way?",
+        "answer": 3,
+        "answerList": 
+        ["No, it's completely different", 
+        "Yes, it has liquid water oceans", 
+        "Yes, it has a similar atmosphere", 
+        "Yes, it has liquid lakes and rivers, but of methane and ethane, not water"]
+    },
+
+    {
+        "questionID": 48,
+        "questionStr": "How long does it take Saturn to orbit the Sun?",
+        "answer": 2,
+        "answerList": 
+        ["About 12 Earth years", 
+        "About 20 Earth years", 
+        "About 29.5 Earth years", 
+        "About 40 Earth years"]
+    },
+
+    {
+        "questionID": 49,
+        "questionStr": "Why does Uranus have a blue color?",
+        "answer": 0,
+        "answerList": 
+        ["Methane in its atmosphere absorbs red light", 
+        "Presence of oceans", 
+        "Reflecting light from Neptune", 
+        "Abundance of oxygen in its atmosphere"]
+    },
+
+    {
+        "questionID": 50,
+        "questionStr": "How is Uranus' axis tilted compared to other planets?",
+        "answer": 1,
+        "answerList": 
+        ["It's perfectly vertical", 
+        "It rotates on its side, with an axial tilt of about 98 degrees", 
+        "It's tilted at a slight angle", 
+        "It has no axial tilt"]
+    },
+    
+    {
+        "questionID": 51,
+        "questionStr": "What is unique about Uranus' seasons?",
+        "answer": 2,
+        "answerList": 
+        ["They are extremely short", 
+        "They are almost non-existent", 
+        "Each season lasts about 21 Earth years due to its extreme axial tilt", 
+        "They are unpredictable"]
+    },
+
+    {
+        "questionID": 52,
+        "questionStr": "Does Uranus have a solid surface?",
+        "answer": 3,
+        "answerList": 
+        ["Yes, it has a rocky surface similar to Earth", 
+        "No, it's made entirely of gas", 
+        "Yes, but it's covered by thick clouds", 
+        "No, it has a rocky core surrounded by water, methane, and ammonia ices"]
+    },
+
+    {
+        "questionID": 53,
+        "questionStr": "What Voyager mission provided detailed images of Uranus?",
+        "answer": 1,
+        "answerList": 
+        ["Voyager 1 in 1979", 
+        "Voyager 2 in 1986", 
+        "Voyager 3 in 1983", 
+        "Voyager 4 in 1990"]
+    },
+
+    {
+        "questionID": 54,
+        "questionStr": "How were Uranus' rings discovered?",
+        "answer": 0,
+        "answerList": 
+        ["Through observations made from Earth in 1977", 
+        "By the Hubble Space Telescope in 1995", 
+        "By the Cassini spacecraft in 2004", 
+        "By the Voyager 2 spacecraft in 1986"]
+    },
+
+    {
+        "questionID": 55,
+        "questionStr": "How long does it take Uranus to orbit the Sun?",
+        "answer": 0,
+        "answerList": 
+        ["About 84 Earth years", 
+        "About 365 Earth days", 
+        "About 12 Earth years", 
+        "About 29.5 Earth years"]
+    },
+
+    {
+        "questionID": 56,
+        "questionStr": "How is Neptune's axial tilt compared to other planets?",
+        "answer": 2,
+        "answerList": 
+        ["Similar to Earth's", 
+        "It doesn't have an axial tilt", 
+        "It rotates perpendicular to its orbit", 
+        "Tilted at about 28 degrees"]
+    },
+
+    {
+        "questionID": 57,
+        "questionStr": "Neptune's atmosphere is primarily composed of what gas?",
+        "answer": 0,
+        "answerList": 
+        ["Methane", 
+        "Hydrogen", 
+        "Helium", 
+        "Nitrogen"]
+    },
+
+    {
+        "questionID": 58,
+        "questionStr": "What is the average temperature on Neptune's surface?",
+        "answer": 2,
+        "answerList": 
+        ["-100°C", 
+        "-200°C", 
+        "-300°C", 
+        "-400°C"]
+    },
+
+    {
+        "questionID": 59,
+        "questionStr": "What is the name of the massive storm system observed on Neptune?",
+        "answer": 1,
+        "answerList": 
+        ["Great Red Spot", 
+        "Great Dark Spot", 
+        "Dark Vortex", 
+        "White Oval"]
+    },
+
+    {
+        "questionID": 60,
+        "questionStr": "Who is the astronomer credited with the discovery of Neptune?",
+        "answer": 3,
+        "answerList": 
+        ["Johannes Kepler", 
+        "Galileo Galilei", 
+        "Isaac Newton", 
+        "Urbain Le Verrier"]
+    },
+
+    {
+        "questionID": 61,
+        "questionStr": "Which year was Neptune discovered?",
+        "answer": 1,
+        "answerList": 
+        ["1781", 
+        "1846", 
+        "1877", 
+        "1926"]
+    },
+
+    {
+        "questionID": 62,
+        "questionStr": "What is the name of the largest moon of Neptune?",
+        "answer": 0,
+        "answerList": 
+        ["Triton", 
+        "Nereid", 
+        "Proteus", 
+        "Larissa"]
+    },
+
+    {
+        "questionID": 63,
+        "questionStr": "What is the difference between a meteoroid, a meteor, and a meteorite?",
+        "answer": 3,
+        "answerList": 
+        ["Size", 
+        "Location in space", 
+        "Composition",
+        "Stage of entry into Earth's atmosphere"]
+    },
+    
+    {
+        "questionID": 64,
+        "questionStr": "What is the name of the asteroid belt located between the orbits of Mars and Jupiter?",
+        "answer": 2,
+        "answerList": 
+        ["Kuiper Belt", 
+        "Oort Cloud", 
+        "Main Asteroid Belt",
+        "Trans-Neptunian Objects"]
+    },
+
+    {
+        "questionID": 65,
+        "questionStr": "Which famous black hole lies at the center of our Milky Way galaxy?",
+        "answer": 0,
+        "answerList": 
+        ["Sagittarius A*", 
+        "Cygnus X-1", 
+        "V404 Cygni",
+        "M87*"]
+    },
+
+    {
+        "questionID": 66,
+        "questionStr": "What is the process called when a massive star collapses under its own gravity, forming a black hole?",
+        "answer": 3,
+        "answerList": 
+        ["Neutronization", 
+        "Hypernova", 
+        "Nova",
+        "Supernova"]
+    },
+
+    {
+        "questionID": 67,
+        "questionStr": "What is the name of the asteroid that is believed to have caused the extinction of the dinosaurs?",
+        "answer": 2,
+        "answerList": 
+        ["Ceres", 
+        "Vesta", 
+        "Chicxulub",
+        "Eros"]
+    },
+
+    {
+        "questionID": 68,
+        "questionStr": "What is the term for a small, icy body that orbits the Sun and can produce a visible tail of gas and dust when it approaches the Sun?",
+        "answer": 1,
+        "answerList": 
+        ["Meteoroid", 
+        "Comet", 
+        "Asteroid",
+        "Kuiper Belt Object"]
+    },
+
+    {
+        "questionID": 69,
+        "questionStr": "What is the name of the largest known asteroid in the asteroid belt?",
+        "answer": 0,
+        "answerList": 
+        ["Ceres", 
+        "Vesta", 
+        "Pallas",
+        "Hygiea"]
     }
 
-
+       
 
 ]
