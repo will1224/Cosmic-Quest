@@ -17,7 +17,7 @@ public class Accounts {
             if (accountsFile.createNewFile()) {
                 //Write an empty JSONArray to the file.
                 FileWriter fw = new FileWriter("accountsdata.json");
-                fw.write(this.accounts.toJSONString());
+                fw.write(accounts.toJSONString());
                 fw.close();
             }
             else {
@@ -47,6 +47,9 @@ public class Accounts {
         JSONObject newAccount = new JSONObject();
         newAccount.put("username", username);
         newAccount.put("password", password);
+        //Create progress data.
+        LevelProgress newProgress = new LevelProgress();
+        newAccount.put("progress", newProgress.getProgress());
         updateAccountsFile(newAccount);
 
         return true;
@@ -106,4 +109,9 @@ public class Accounts {
     public JSONArray getAccounts() {
         return accounts;
     }
+
+    //Getter method that returns the user's current level.
+    //public int currentLevel() {
+
+    //}
 }
