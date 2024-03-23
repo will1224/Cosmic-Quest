@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import javax.management.remote.JMXConnectorServerMBean;
 public class Accounts {
     private JSONArray accounts;
 
@@ -110,8 +112,37 @@ public class Accounts {
         return accounts;
     }
 
-    //Getter method that returns the user's current level.
-    //public int currentLevel() {
+    //Getter method that returns the progress for a user's account.
+    public JSONObject getAccountData(String username) {
+        for (int i = 0; i < accounts.size(); i++) {
+            JSONObject currentAccount = (JSONObject) accounts.get(i);
+            if (currentAccount.get(username).equals(username)) {
+                return currentAccount;
+            }
+        }
+        return new JSONObject();
+    }
 
-    //}
+    //Getter method that returns the progress for a given account.
+    public JSONArray getProgress(JSONObject account) {
+        return (JSONArray) account.get("progress");
+    }
+
+    //Setter method that updates the level progress for a user and writes the user to the accounts data file.
+    public void updateUserProgress(String username, JSONArray progress) {
+        for (int i = 0; i < accounts.size(); i++) {
+            if (((JSONObject) accounts.get(i)).get(username).equals(username)) {
+                ((JSONObject) accounts.get(i)).put("progress", progress);
+                break;
+            }
+        }
+        try {
+            FileWriter fw = new FileWriter("accountsdata.json");
+            fw.write(accounts.toJSONString());
+            fw.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
