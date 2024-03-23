@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+@SuppressWarnings("unchecked")
 public class Accounts {
     private JSONArray accounts;
 

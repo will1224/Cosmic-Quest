@@ -3,6 +3,7 @@ import org.json.simple.JSONObject;
 import java.util.List;
 import java.util.Arrays;
 
+@SuppressWarnings("unchecked")
 public class LevelProgress {
     private JSONArray progress;
 
