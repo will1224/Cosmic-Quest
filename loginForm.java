@@ -13,7 +13,7 @@ public class loginForm implements ActionListener {
     private JLabel passwordLabel = new JLabel("Password: ");
     private JLabel msg = new JLabel("");
 
-    HashMap accountDatabase;
+    HashMap<String, String> accountDatabase;
     public loginForm(HashMap<String, String> acc){
         accountDatabase = acc;
 
