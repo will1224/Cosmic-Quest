@@ -1,51 +1,54 @@
 [
     {
         "questionID": 0,
-        "questionStr": "q0",
+        "questionStr": "What is the primary gas that makes up the Sun?",
         "answer": 0,
-        "answerList": ["a", "b", "c", "d"]
+        "answerList": ["Hydrogen", "Oxygen", "Methane", "Nitrogen"]
     },
 
     {
         "questionID": 1,
-        "questionStr": "q1",
-        "answer": 0,
-        "answerList": ["a", "b", "c", "d"]
+        "questionStr": "What process powers the Sun?",
+        "answer": 1,
+        "answerList": ["Gravity", "Nuclear fusion", "Chemical combustion", "Oxygen"]
     },
 
     {
         "questionID": 2,
-        "questionStr": "q2",
+        "questionStr": "Is the Sun a star, planet, or moon?",
         "answer": 0,
-        "answerList": ["a", "b", "c", "d"]
+        "answerList": ["Star", "Planet", "Moon", "None of the above"]
     },
 
     {
         "questionID": 3,
-        "questionStr": "q3",
-        "answer": 0,
-        "answerList": ["a", "b", "c", "d"]
+        "questionStr": "What percentage of the solar system's mass does the Sun hold approximately?",
+        "answer": 2,
+        "answerList": ["50.2%", "95.9%", "99.8%", "75.5%"]
     },
 
     {
         "questionID": 4,
-        "questionStr": "q4",
-        "answer": 0,
-        "answerList": ["a", "b", "c", "d"]
+        "questionStr": "How far is the Sun from Earth approximately?",
+        "answer": 3,
+        "answerList": ["100 million km", "2 km", "300 thousand km", "150 million km"]
     },
 
     {
         "questionID": 5,
-        "questionStr": "q5",
-        "answer": 0,
-        "answerList": ["a", "b", "c", "d"]
+        "questionStr": "What is a solar flare?",
+        "answer": 2,
+        "answerList": ["A phenomenon caused by the gravitational pull of nearby planets disrupting the Sun's atmosphere.", 
+        "An eruption of energy and particles from the Sun's atmosphere into space.",
+        "A sudden, intense burst of electromagnetic radiation from the Sun's surface.", 
+        "A result of aliens visiting the Sun and causing explosions."]
     },
 
     {
         "questionID": 6,
-        "questionStr": "q6",
+        "questionStr": "What is the approximate surface temperature of the Sun?",
         "answer": 0,
-        "answerList": ["a", "b", "c", "d"]
+        "answerList": ["10,000°C (18,032°F)", "5,000°C (9,032°F)", "15,000°C (27,032°F)", "20,000°C (36,032°F)"]
     },
 
     {
