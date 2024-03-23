@@ -1,97 +1,96 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
 public class GameDisplay extends JFrame {
 
-    // constructor
+    private int selectedAnswerIndex = -1; // Track the selected answer
+    private Question currentQuestion; // Currently displayed question
+    private JPanel panel; // Main panel for the game display
+
     public GameDisplay() {
-        // set title
         setTitle("Cosmic Quest: Stellar Treasures");
-
-        // set default
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // set window size
         setSize(1920, 1080);
-
-        // make window visible
         setVisible(true);
     }
 
     public void displayLevel(Level currLevel, List<Question> questionSet) {
-        // create JPanel with grid
-        JPanel panel = new JPanel(new GridLayout(7, 3, 10, 10)); // 3x3 grid with 10px padding
+        // Assuming there's at least one question in the set
+        if (questionSet.isEmpty()) return;
+        this.currentQuestion = questionSet.get(0);
 
-        // fill grid
-        for (int i = 0; i < 21; i++) {
-            switch(i) {
-                case 1:
-                    JLabel title = new JLabel(currLevel.getName());
-                    title.setFont(new Font("Space Mono", Font.BOLD, 30));
-                    title.setHorizontalAlignment(JLabel.CENTER);
-                    panel.add(title);
-                    break;
-                case 4:
-                    JLabel questionText = new JLabel(questionSet.get(0).getQuestionText());
-                    questionText.setFont(new Font("Space Mono", Font.PLAIN, 30));
-                    questionText.setHorizontalAlignment(JLabel.CENTER);
-                    questionText.setVerticalAlignment(JLabel.NORTH);
-                    panel.add(questionText);
-                    break;
-                case 7:
-                    JButton optionA = new JButton(questionSet.get(0).getAnswers().get(0));
-                    optionA.setFont(new Font("Space Mono", Font.PLAIN, 25));
-                    panel.add(optionA);
-                    break;
-                case 10:
-                    JButton optionB = new JButton(questionSet.get(0).getAnswers().get(1));
-                    optionB.setFont(new Font("Space Mono", Font.PLAIN, 25));
-                    panel.add(optionB);
-                    break;
-                case 13:
-                    JButton optionC = new JButton(questionSet.get(0).getAnswers().get(2));
-                    optionC.setFont(new Font("Space Mono", Font.PLAIN, 25));
-                    panel.add(optionC);
-                    break;
-                case 16:
-                    JButton optionD = new JButton(questionSet.get(0).getAnswers().get(3));
-                    optionD.setFont(new Font("Space Mono", Font.PLAIN, 25));
-                    panel.add(optionD);
-                    break;
-
-                case 20:
-                    JPanel btnContainer = new JPanel();
-                    btnContainer.setSize(100,100);
-                    btnContainer.setVisible(true);
-                    JButton nextBtn = new JButton("Next");
-                    nextBtn.setFont(new Font("Space Mono", Font.PLAIN, 25));
-                    nextBtn.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent a) {
-                            verifyAns(); // call verifyAns when the button is clicked
-                        }
-                    });
-                    btnContainer.add(nextBtn);
-                    panel.add(btnContainer);
-                    break;
-                default:
-                    panel.add(new JPanel()); // fill w JButtons so I can see grid clearly lol
-            }
-        }
-
-        // make visible
+        this.panel = new JPanel(new GridLayout(7, 3, 10, 10));
+        addComponentsToPanel(currLevel);
         add(panel);
         revalidate();
         repaint();
     }
 
-    private void verifyAns() {
-        System.out.println("Next");
+    private void addComponentsToPanel(Level currLevel) {
+        for (int i = 0; i < 21; i++) {
+            switch (i) {
+                case 1:
+                    addTitleToPanel(currLevel.getName());
+                    break;
+                case 4:
+                    addQuestionToPanel(currentQuestion.getQuestionText());
+                    break;
+                case 7: case 10: case 13: case 16:
+                    addButtonToPanel(currentQuestion.getAnswers().get(i / 3 - 2), i / 3 - 2);
+                    break;
+                case 20:
+                    addNextButtonToPanel();
+                    break;
+                default:
+                    panel.add(new JPanel()); // Filler for empty grid spaces
+                    break;
+            }
+        }
     }
 
+    private void addTitleToPanel(String titleText) {
+        JLabel title = new JLabel(titleText, JLabel.CENTER);
+        title.setFont(new Font("Space Mono", Font.BOLD, 30));
+        panel.add(title);
+    }
 
+    private void addQuestionToPanel(String questionText) {
+        JLabel questionLabel = new JLabel(questionText, JLabel.CENTER);
+        questionLabel.setFont(new Font("Space Mono", Font.PLAIN, 30));
+        panel.add(questionLabel);
+    }
+
+    private void addButtonToPanel(String buttonText, int index) {
+        JButton button = new JButton(buttonText);
+        button.setFont(new Font("Space Mono", Font.PLAIN, 25));
+        button.addActionListener(e -> selectedAnswerIndex = index);
+        panel.add(button);
+    }
+
+    private void addNextButtonToPanel() {
+        JButton nextBtn = new JButton("Next");
+        nextBtn.setFont(new Font("Space Mono", Font.PLAIN, 25));
+        nextBtn.addActionListener(this::nextButtonAction);
+        JPanel btnContainer = new JPanel();
+        btnContainer.add(nextBtn);
+        panel.add(btnContainer);
+    }
+
+    private void nextButtonAction(ActionEvent e) {
+        if (selectedAnswerIndex == -1) {
+            JOptionPane.showMessageDialog(this, "Please select an answer.", "No Selection", JOptionPane.WARNING_MESSAGE);
+        } else {
+            verifyAns(currentQuestion, selectedAnswerIndex);
+            // Reset for next question or end the game
+            selectedAnswerIndex = -1;
+        }
+    }
+
+    private void verifyAns(Question question, int answerIndex) {
+        System.out.println("dawg");
+        // Additional code for handling the verification result
+    }
 
 }
