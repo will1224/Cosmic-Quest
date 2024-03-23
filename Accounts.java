@@ -66,7 +66,7 @@ public class Accounts {
     }
 
     //Private helper method for getting the password associated with a user account.
-    private String getPassword(String username) {
+    public String getPassword(String username) {
         for (int i = 0; i < accounts.size(); i++) {
             String currentUsername = (String) ((JSONObject) accounts.get(i)).get("username");
             if (currentUsername.equals(username)) {
@@ -77,7 +77,7 @@ public class Accounts {
     }
 
     //Checks the accounts file to see if the account exists. Returns true if the account exists, false otherwise.
-    private boolean accountExists(String username) {
+    public boolean accountExists(String username) {
         for (int i = 0; i < accounts.size(); i++) {
             //If so, return false.
             String currentUsername = (String) ((JSONObject) accounts.get(i)).get("username");
@@ -102,16 +102,8 @@ public class Accounts {
         }
     }
 
-    public static void main(String[] args) {
-        try {
-            Accounts accounts = new Accounts();
-            accounts.registerAccount("hkong47", "abc123");
-            accounts.registerAccount("hkong47", "abc123");
-            accounts.registerAccount("rluo57", "def456");
-            accounts.registerAccount("stong55", "ghi789");
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+    //Getter method that returns a JSONArray with all accounts.
+    public JSONArray getAccounts() {
+        return accounts;
     }
 }

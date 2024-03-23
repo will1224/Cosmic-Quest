@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
+import org.json.simple.JSONArray;
 public class loginForm implements ActionListener {
     private JFrame loginPage = new JFrame();
     private JButton signUpButton = new JButton("Sign Up");
@@ -13,8 +13,9 @@ public class loginForm implements ActionListener {
     private JLabel passwordLabel = new JLabel("Password: ");
     private JLabel msg = new JLabel("");
 
-    HashMap<String, String> accountDatabase;
-    public loginForm(HashMap<String, String> acc){
+    Accounts accountDatabase;
+
+    public loginForm(Accounts acc){
         accountDatabase = acc;
 
         usernameLabel.setBounds(50, 100, 75, 25);
@@ -51,17 +52,18 @@ public class loginForm implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == loginButton){
-            String username = usernameField.getText();
+            String username = String.valueOf(usernameField.getText());
             String password = String.valueOf(passwordField.getText());
-            if (accountDatabase.get(username) == null){
+            boolean successfulLogin = accountDatabase.login(username, password);
+            if (!successfulLogin) {
                 msg.setForeground(Color.red);
                 msg.setFont(new Font(null, Font.BOLD,15));
-                msg.setText("Username or Password Incorrect");
+                msg.setText("Username or password incorrect");
                 loginPage.add(msg);
             }
-            else if(accountDatabase.get(username).equals(password)){
+            else if (successfulLogin) {
                 msg.setForeground(Color.green);
-                msg.setText("Log In Successful");
+                msg.setText("Login successful");
                 loginPage.add(msg);
                 loginPage.dispose();
                 mainMenu mainMenu = new mainMenu();

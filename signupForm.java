@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 
 public class signupForm implements ActionListener{
     private JFrame signUpPage = new JFrame();
@@ -14,8 +13,8 @@ public class signupForm implements ActionListener{
     private JLabel passwordLabel = new JLabel("Enter Password: ");
     private JLabel msg = new JLabel("");
 
-    HashMap accountDatabase;
-    public signupForm(HashMap<String, String> acc){
+    Accounts accountDatabase;
+    public signupForm(Accounts acc){
         accountDatabase = acc;
 
         usernameLabel.setBounds(25, 100, 150, 25);
@@ -55,8 +54,20 @@ public class signupForm implements ActionListener{
             signUpPage.dispose();
             loginForm loginPage = new loginForm(accountDatabase);
         } else if (a.getSource() == createAccount) {
-            //add account to json file of accounts
-            System.out.println("Lol");
+            boolean succesfulCreation = accountDatabase.registerAccount(usernameField.getText(), passwordField.getText());
+            if (succesfulCreation) {
+                msg.setForeground(Color.green);
+                msg.setFont(new Font(null, Font.BOLD,15));
+                msg.setText("Created account successfully!");
+                signUpPage.add(msg);
+                signUpPage.dispose();
+                mainMenu mainMenu = new mainMenu();
+            }
+            else {
+                msg.setForeground(Color.red);
+                msg.setText("An account with this username already exists. Please try to login instead.");
+                signUpPage.add(msg);
+            }
         }
     }
 }
