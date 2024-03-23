@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 public class GameDisplay extends JFrame {
@@ -59,6 +61,22 @@ public class GameDisplay extends JFrame {
                     optionD.setFont(new Font("Space Mono", Font.PLAIN, 25));
                     panel.add(optionD);
                     break;
+
+                case 20:
+                    JPanel btnContainer = new JPanel();
+                    btnContainer.setSize(100,100);
+                    btnContainer.setVisible(true);
+                    JButton nextBtn = new JButton("Next");
+                    nextBtn.setFont(new Font("Space Mono", Font.PLAIN, 25));
+                    nextBtn.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent a) {
+                            verifyAns(); // call verifyAns when the button is clicked
+                        }
+                    });
+                    btnContainer.add(nextBtn);
+                    panel.add(btnContainer);
+                    break;
                 default:
                     panel.add(new JPanel()); // fill w JButtons so I can see grid clearly lol
             }
@@ -68,8 +86,12 @@ public class GameDisplay extends JFrame {
         add(panel);
         revalidate();
         repaint();
-
     }
+
+    private void verifyAns() {
+        System.out.println("Next");
+    }
+
 
 
 }
