@@ -1,4 +1,3 @@
-import javax.print.DocFlavor.URL;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -93,6 +92,8 @@ public class mainMenu implements ActionListener {
         } else if (e.getSource() == newGame) {
             menu.dispose(); // Example: Close the main menu and start a new game
             // new GameLogic().startNewGame(); // Hypothetical method to start a new game
+        } else if (e.getSource() == options) {
+            new OptionsMenu();
         }
         // Handle other button actions...
     }
