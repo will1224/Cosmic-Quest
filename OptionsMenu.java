@@ -36,7 +36,7 @@ public class OptionsMenu extends JFrame {
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose(); 
+                dispose();
             }
         });
 
@@ -100,7 +100,8 @@ public class OptionsMenu extends JFrame {
 
         public BackgroundPanel() {
             try {
-                backgroundImage = new ImageIcon("path/to/your/image.jpg").getImage();
+                backgroundImage = new ImageIcon("background.jpg").getImage();
+                System.out.println("bruh");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -113,12 +114,5 @@ public class OptionsMenu extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new OptionsMenu();
-            }
-        });
-    }
 }
+
