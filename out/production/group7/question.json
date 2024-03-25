@@ -1,23 +1,58 @@
 [
-{
-    "questionID": 0,
-    "questionStr": "would you rather a,b, or,c",
-    "answer": 2,
-    "answerList": ["hi", "bye", "bruh"]
-},
+    {
+        "questionID": 0,
+        "questionStr": "q0",
+        "answer": 0,
+        "answerList": ["a", "b", "c", "d"]
+    },
 
-{
-    "questionID": 1,
-    "questionStr": "to be or not to be",
-    "answer": 1,
-    "answerList": ["a", "b", "c"]
-},
+    {
+        "questionID": 1,
+        "questionStr": "q1",
+        "answer": 0,
+        "answerList": ["a", "b", "c", "d"]
+    },
 
-{
+    {
+        "questionID": 2,
+        "questionStr": "q2",
+        "answer": 0,
+        "answerList": ["a", "b", "c", "d"]
+    },
 
-    "questionID": 2,
-    "questionStr": "which is biggest",
-    "answer": 2,
-    "answerList": ["earth", "mars", "jupiter"]
-}
+    {
+        "questionID": 3,
+        "questionStr": "q3",
+        "answer": 0,
+        "answerList": ["a", "b", "c", "d"]
+    },
+
+    {
+        "questionID": 4,
+        "questionStr": "q4",
+        "answer": 0,
+        "answerList": ["a", "b", "c", "d"]
+    },
+
+    {
+        "questionID": 5,
+        "questionStr": "q5",
+        "answer": 0,
+        "answerList": ["a", "b", "c", "d"]
+    },
+
+    {
+        "questionID": 6,
+        "questionStr": "q6",
+        "answer": 0,
+        "answerList": ["a", "b", "c", "d"]
+    },
+
+    {
+        "questionID": 7,
+        "questionStr": "q7",
+        "answer": 0,
+        "answerList": ["a", "b", "c", "d"]
+    }
+
 ]

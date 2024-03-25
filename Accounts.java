@@ -1,23 +1,109 @@
-import java.util.HashMap;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.*;
+import org.json.simple.JSONArray;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 public class Accounts {
-    private HashMap<String, String> accounts;
+    private JSONArray accounts;
 
-    public void idandpass(){
-        accounts.put("William", "Guo");
-        accounts.put("Sophia", "Tong");
-        accounts.put("Jennifer", "Cao");
-        accounts.put("Geoffrey", "Kong");
-        accounts.put("Ryanna", "Luo");
-        accounts.put("","");
-    }
-
+    //Constructor will either create a new accounts file or read in an existing one.
     public Accounts(){
-        this.accounts = new HashMap<String, String>();
+        try {
+            File accountsFile = new File("accountsdata.json");
+            accounts = new JSONArray();
+            //Check if the accounts file exists.
+            if (accountsFile.createNewFile()) {
+                //Write an empty JSONArray to the file.
+                FileWriter fw = new FileWriter("accountsdata.json");
+                fw.write(this.accounts.toJSONString());
+                fw.close();
+            }
+            else {
+                //Accounts file already exists, so read in data from the file.
+                JSONArray temp = (JSONArray) new JSONParser().parse(new FileReader("accountsdata.json"));
+                for (int i = 0; i < temp.size(); i++) {
+                    accounts.add((JSONObject) temp.get(i));
+                }
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
-    protected HashMap getLoginInfo(){
+
+    //Method to register an account. Returns true if successful, false otherwise.
+    public boolean registerAccount(String username, String password) {
+        //Gets input from fields in register form (later).
+        //Check if account already exists by looping through the account data.
+        if (accountExists(username)) {
+            return false;
+        }
+        //If not, add account to the database with the user's chosen username and password.
+        JSONObject newAccount = new JSONObject();
+        newAccount.put("username", username);
+        newAccount.put("password", password);
+        updateAccountsFile(newAccount);
+
+        return true;
+    }
+
+    //Checks login credentials. Returns false if account does not exist or password is incorrect. Returns true only on successful login.
+    public boolean login(String username, String password) {
+        //If the account does not exist, return false.
+        if (!accountExists(username)) {
+            return false;
+        }
+        String correctPassword = getPassword(username);
+        if (!correctPassword.equals(password)) {
+            return false;
+        }
+        return true;
+    }
+
+    //Private helper method for getting the password associated with a user account.
+    public String getPassword(String username) {
+        for (int i = 0; i < accounts.size(); i++) {
+            String currentUsername = (String) ((JSONObject) accounts.get(i)).get("username");
+            if (currentUsername.equals(username)) {
+                return (String) ((JSONObject) accounts.get(i)).get("password");
+            }
+        }
+        return "";
+    }
+
+    //Checks the accounts file to see if the account exists. Returns true if the account exists, false otherwise.
+    public boolean accountExists(String username) {
+        for (int i = 0; i < accounts.size(); i++) {
+            //If so, return false.
+            String currentUsername = (String) ((JSONObject) accounts.get(i)).get("username");
+            if (currentUsername.equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //Updates the accounts instance variable and the accountsdata.json file with new account data.
+    private void updateAccountsFile(JSONObject newAccount) {
+        accounts.add(newAccount);
+
+        try {
+            FileWriter fw = new FileWriter("accountsdata.json");
+            fw.write(accounts.toJSONString());
+            fw.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Getter method that returns a JSONArray with all accounts.
+    public JSONArray getAccounts() {
         return accounts;
-    }
-    protected boolean accountExists(String username, String password){
-        return accounts.get(username) != null;
     }
 }
