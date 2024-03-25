@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class OptionsMenu extends JFrame {
     private JSlider masterSoundSlider;
@@ -15,7 +14,7 @@ public class OptionsMenu extends JFrame {
         setTitle("Cosmic Quest: Stellar Treasures - Options");
         setSize(400, 300);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
         // Set the background image
@@ -33,12 +32,8 @@ public class OptionsMenu extends JFrame {
 
         // Return Button
         JButton returnButton = new JButton("Return to main menu");
-        returnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        returnButton.setForeground(Color.WHITE); // Set text color to white
+        returnButton.addActionListener(e -> dispose());
 
         add(optionsPanel, BorderLayout.CENTER);
         add(returnButton, BorderLayout.SOUTH);
@@ -53,6 +48,7 @@ public class OptionsMenu extends JFrame {
         // Heading "Sound" with larger font
         headingSound = new JLabel("Sound");
         headingSound.setFont(new Font("Arial", Font.BOLD, 16));
+        headingSound.setForeground(Color.WHITE); // Set text color to white
         soundPanel.add(headingSound);
 
         // Master Sound Slider
@@ -77,6 +73,7 @@ public class OptionsMenu extends JFrame {
         // Heading "Display" with larger font
         headingDisplay = new JLabel("Display");
         headingDisplay.setFont(new Font("Arial", Font.BOLD, 16));
+        headingDisplay.setForeground(Color.WHITE); // Set text color to white
         displayPanel.add(headingDisplay);
 
         // Brightness Slider
@@ -89,7 +86,9 @@ public class OptionsMenu extends JFrame {
     private JPanel createLabeledSlider(JSlider slider, String label) {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setOpaque(false); // Make the panel transparent
-        panel.add(new JLabel(label), BorderLayout.WEST);
+        JLabel labelComponent = new JLabel(label);
+        labelComponent.setForeground(Color.WHITE); // Set text color to white
+        panel.add(labelComponent, BorderLayout.WEST);
         panel.add(slider, BorderLayout.CENTER);
         return panel;
     }
@@ -100,8 +99,7 @@ public class OptionsMenu extends JFrame {
 
         public BackgroundPanel() {
             try {
-                backgroundImage = new ImageIcon("background.jpg").getImage();
-                System.out.println("bruh");
+                backgroundImage = new ImageIcon("images/menuBackground.jpg").getImage();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -113,6 +111,5 @@ public class OptionsMenu extends JFrame {
             g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
         }
     }
-
 }
 
