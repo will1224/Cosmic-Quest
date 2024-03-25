@@ -1,3 +1,4 @@
+import javax.print.DocFlavor.URL;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -67,7 +68,6 @@ public class mainMenu implements ActionListener {
         menu.add(buttonPanel, gbc);
 
         menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // menu.setSize(menuBackground.getIconWidth(), menuBackground.getIconHeight());
         menu.setVisible(true);
         menu.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
@@ -91,13 +91,13 @@ public class mainMenu implements ActionListener {
             menu.dispose(); // Close the application
         } else if (e.getSource() == newGame) {
             menu.dispose(); // Example: Close the main menu and start a new game
-            // new GameLogic().startNewGame(); // Hypothetical method to start a new game
         } else if (e.getSource() == options) {
             new OptionsMenu();
+        } else if (e.getSource() == scores) {
+            new ScoreBoard(menu, "Jennifer Cao", 1000, "images/jen.jpeg").setVisible(true); 
         }
-        // Handle other button actions...
-    }
 
+    }
 
 }
 
