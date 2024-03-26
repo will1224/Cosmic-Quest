@@ -32,6 +32,8 @@ Download and install the appropriate JDK for your operating system from the offi
 
 **Step 3:**
 
+**Step 4:**
+
 ## User Guide
 
 1. **Login Page** </br>
