@@ -1,9 +1,10 @@
+# Cosmic Quest: Stellar Treasures
 
-Description
+## Description
 
 Cosmic Quest: Stellar Treasures is designed to be an interactive, educational tool that teaches students aged 8-14 about our solar system and basic scientific principles through gameplay. Coded using Java, our game is accessible on computers and does not require an internet connection, ensuring wide accessibility and ease of use. Players assume the role of an astronaut navigating through space, starting from the Sun and moving outward through the solar system. The core mechanics involve answering trivia questions to gather fuel, which enables the player to travel to the next planet. This approach combines learning with goal-oriented gaming, encouraging players to engage with educational content to progress.
 
-Required Libraries & Third-Party Tools
+## Required Libraries & Third-Party Tools
 
 Java Development Kit (JDK) - version 21 (Compiler and runtime environment for Java applications)
 JSON.simple - version 1.1 (for JSON parsing) (Lightweight Java library for parsing JSON data)
@@ -15,23 +16,23 @@ AWT (Abstract Window Toolkit) (Java library for creating user interfaces, deprec
 Java.io (Input/output classes) (Java package for input/output operations)
 Ensure that you have these libraries and tools properly installed and configured to build and run Cosmic Quest: Stellar Treasures.
 
-Building the Software
+## Building the Software
 
-Step 1: Install Java Development Kit (JDK)
+**Step 1:** Install Java Development Kit (JDK)
 Download and install the appropriate JDK for your operating system from the official Oracle website or any other trusted source. Follow the installation instructions provided.
 
-Step 2: 
+**Step 2:**
 
-Step 3:
+**Step 3:**
 
-User Guide
+## User Guide
 
-1. Login Page
+1. **Login Page** </br>
 Upon launching the game, you'll be directed to the login page.
 If you already have an account, enter your account details (username and password) and click the "Login" button.
 If you don't have an account yet, click the "Create Account" button to register.
 
-2. Account Creation
+2. **Account Creation** </br>
 If you choose to create an account, you'll be prompted to enter your desired username and password.
 After entering your credentials, click the "Create Account" button to register.
 Once your account is created, you'll be automatically logged in and redirected to the level selection screen.
