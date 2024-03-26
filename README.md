@@ -3,6 +3,8 @@
 ## Description
 <p>Cosmic Quest: Stellar Treasures is designed to be an interactive, educational tool that teaches students aged 8-14 about our solar system and basic scientific principles through gameplay. Coded using Java, our game is accessible on computers and does not require an internet connection, ensuring wide accessibility and ease of use. Players assume the role of an astronaut navigating through space, starting from the Sun and moving outward through the solar system. The core mechanics involve answering trivia questions to gather fuel, which enables the player to travel to the next planet. This approach combines learning with goal-oriented gaming, encouraging players to engage with educational content to progress.</p>
 
+---
+
 ## Required Libraries & Third-Party Tools
 - **Java Development Kit** (JDK) - version 21 
     - Compiler and runtime environment for Java applications
@@ -23,6 +25,8 @@
 
 <p>Ensure that you have these libraries and tools properly installed and configured to build and run Cosmic Quest: Stellar Treasures.</p>
 
+---
+
 ## Building the Software
 
 **Step 1:** Install Java Development Kit (JDK)
@@ -33,6 +37,8 @@ Download and install the appropriate JDK for your operating system from the offi
 **Step 3:**
 
 **Step 4:**
+
+---
 
 ## User Guide
 
@@ -82,12 +88,16 @@ When you return to play again, simply launch the game and enter your account det
 You'll be logged in to your existing account, and you can continue your cosmic journey from your last saved progress.
 </br>
 
+---
+
 ## Teacher Mode
 
 <p>To access Teacher Mode, enter the designated username and password provided below:</p>
 <p>Username: <em>education</em> </br>
 Password: <em>cosmic123</em></p>
 <p>Teacher Mode allows educators to customize trivia questions and track student progress.</p>
+
+---
 
 ## Developer Mode
 
@@ -96,8 +106,12 @@ Password: <em>cosmic123</em></p>
 Password: <em>cosmic456</em></p>
 <p>Developer Mode allows the user to access backend code and commit changes.</p>
 
+---
+
 ## Additonal Information
 
 For any issues or inquiries, please contact rluo57@uwo.ca
-> Enjoy your cosmic journey through the solar system! :)
- ##
+Enjoy your cosmic journey through the solar system! :)
+
+Best, </br>
+Team 7
