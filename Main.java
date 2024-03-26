@@ -3,6 +3,7 @@
 public class Main {
     public static void main(String[] args) {
         Accounts accounts = new Accounts();
-        loginForm loginForm = new loginForm(accounts);
+        accounts.registerAccount("hkong47", "abc123");
+        // loginForm loginForm = new loginForm(accounts);
     }
 }
