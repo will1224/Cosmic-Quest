@@ -81,6 +81,5 @@ Developer Mode allows the user to access backend code and commit changes.
 Additonal Information
 
 For any issues or inquiries, please contact rluo57@uwo.ca
-Enjoy your cosmic journey through the solar system!
-
+Enjoy your cosmic journey through the solar system! :)
  
