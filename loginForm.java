@@ -21,22 +21,78 @@ public class loginForm implements ActionListener {
     public loginForm(Accounts acc){
         accountDatabase = acc;
 
-        usernameLabel.setBounds(50, 100, 75, 25);
-        passwordLabel.setBounds(50, 150, 75, 25);
+        loginPage.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        loginPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+        ImageIcon icon = new ImageIcon("images/middle.png");
+        BackgroundPanel backgroundPanel = new BackgroundPanel(icon.getImage());
+        backgroundPanel.setLayout(new BorderLayout());
+    
+        loginPage.setContentPane(backgroundPanel);
+    
+        JPanel centerPanel = new JPanel(new GridBagLayout());
+        centerPanel.setOpaque(false);
+        JPanel formPanel = new JPanel(new GridBagLayout());
+        formPanel.setOpaque(false);
+        GridBagConstraints gbc = new GridBagConstraints();
+    
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(10, 50, 10, 50);
+    
+        // Set font for titles to be a bit bigger
+        Font labelFont = new Font("Arial", Font.BOLD, 18);
+        usernameLabel.setFont(labelFont);
+        passwordLabel.setFont(labelFont);
+    
+        formPanel.add(titleLabel, gbc);
+        gbc.insets = new Insets(10, 50, 15, 50);
+    
+        // Font settings for text fields
+        Font textFieldFont = new Font("Arial", Font.PLAIN, 24);
+        usernameField.setFont(textFieldFont);
+        passwordField.setFont(textFieldFont);
+    
+        usernameField.setPreferredSize(new Dimension(usernameField.getPreferredSize().width, 60));
+        passwordField.setPreferredSize(new Dimension(passwordField.getPreferredSize().width, 60));
+    
+        titleLabel.setForeground(Color.WHITE);
+        usernameLabel.setForeground(Color.WHITE);
+        passwordLabel.setForeground(Color.WHITE);
+        usernameField.setForeground(Color.black);
+        passwordField.setForeground(Color.black);
+        usernameField.setCaretColor(Color.black);
+        passwordField.setCaretColor(Color.black);
 
-        msg.setBounds(125,250,250,35);
-        msg.setFont(new Font(null, Font.BOLD,25));
+        gbc.anchor = GridBagConstraints.CENTER;
+        formPanel.add(usernameLabel, gbc);
+        formPanel.add(usernameField, gbc);
+        formPanel.add(passwordLabel, gbc);
+        formPanel.add(passwordField, gbc);
 
-        usernameField.setBounds(125, 100, 200, 25);
-        passwordField.setBounds(125, 150, 200, 25);
+        // Adjust constraints for the message label
+        gbc.insets = new Insets(5, 50, 0, 50); // Reduce top padding for the message
+        formPanel.add(msg, gbc); // Add the message label directly under the password field
 
-        loginButton.setBounds(125, 200, 100, 25);
-        loginButton.setFocusable(false);
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        buttonPanel.setOpaque(false);
+        buttonPanel.add(loginButton);
+        buttonPanel.add(signUpButton);
+        formPanel.add(buttonPanel, gbc);
+
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
+        msg.setFont(new Font("Arial", Font.PLAIN, 16));
+
+        centerPanel.add(formPanel);
+
+        backgroundPanel.add(centerPanel, BorderLayout.CENTER);
+
         loginButton.addActionListener(this);
         signUpButton.addActionListener(this);
 
         loginPage.pack();
         loginPage.setVisible(true);
+
     }
 
     @Override
