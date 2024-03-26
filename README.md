@@ -46,19 +46,12 @@ Download and install the appropriate JDK for your operating system from the offi
 
 1. **Login Page**<br>
 Upon launching the game, you'll be directed to the login page. If you already have an account, enter your account details (username and password) and click the "Login" button. If you don't have an account yet, click the "Create Account" button to register.
-<br>
 
 2. **Account Creation** <br>
-If you choose to create an account, you'll be prompted to enter your desired username and password.<br>
-After entering your credentials, click the "Create Account" button to register.<br>
-Once your account is created, you'll be automatically logged in and redirected to the level selection screen.
-<br>
+If you choose to create an account, you'll be prompted to enter your desired username and password. After entering your credentials, click the "Create Account" button to register. Once your account is created, you'll be automatically logged in and redirected to the level selection screen.
 
 3. **Level Selection** <br>
-After logging in, you'll be taken to the level selection screen.<br>
-Start at the Sun, the first level/planet, by clicking on it.<br>
-Each planet represents a level, and you must progress through them sequentially.
-<br>
+After logging in, you'll be taken to the level selection screen. Start at the Sun, the first level/planet, by clicking on it. Each planet represents a level, and you must progress through them sequentially.
 
 4. **Educational Lesson** <br>
 Before each trivia part, you'll encounter an educational lesson page.<br>
