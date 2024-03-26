@@ -1,4 +1,4 @@
-# Cosmic Quest: Stellar Treasures
+# 🚀 Cosmic Quest: Stellar Treasures
 
 ---
 
