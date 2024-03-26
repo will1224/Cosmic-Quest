@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import org.json.simple.JSONArray;
-
 public class loginForm implements ActionListener {
     private JFrame loginPage = new JFrame("Cosmic Quest: Stellar Treasure");
     private JButton signUpButton = new JButton("Sign Up");
