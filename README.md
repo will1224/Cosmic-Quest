@@ -53,21 +53,24 @@ If you choose to create an account, you'll be prompted to enter your desired use
 <br>
 
 3. **Level Selection** <br>
-After logging in, you'll be taken to the level selection screen. Start at the Sun, the first level/planet, by clicking on it. Each planet represents a level, and you must progress through them sequentially.<br>
+After logging in, you'll be taken to the level selection screen. Start at the Sun, the first level/planet, by clicking on it. Each planet represents a level, and you must progress through them sequentially.
+<br>
 
 4. **Educational Lesson** <br>
 Before each trivia part, you'll encounter an educational lesson page. Learn interesting facts and principles related to each specific planet. Take your time to read through the lesson content before proceeding to the trivia questions.
+<br>
 
 5. **Trivia Gameplay** <br>
-After completing the educational lesson, you'll move on to the trivia gameplay section.
-Answer each trivia question correctly to collect points (fuel) needed to advance to the next level/planet.
-You must answer a minimum of 5 questions correctly to unlock the next level/planet.
+After completing the educational lesson, you'll move on to the trivia gameplay section. Answer each trivia question correctly to collect points (fuel) needed to advance to the next level/planet. You must answer a minimum of 5 questions correctly to unlock the next level/planet.
+<br>
 
 6. **Bonus Level** <br>
 Reach the outermost planet to complete the main game! Upon completion, you may unlock a bonus level featuring additional celestial phenomena like black holes. Explore the bonus level and learn more about these fascinating cosmic objects.
+<br>
 
 7. **Exiting the Game** <br>
 You can exit the game at any time by closing the application window. Your progress will be saved automatically, allowing you to log in again later and resume from where you left off.
+<br>
 
 8. **Logging In Again** <br>
 When you return to play again, simply launch the game and enter your account details on the login page. You'll be logged in to your existing account, and you can continue your cosmic journey from your last saved progress.
