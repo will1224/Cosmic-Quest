@@ -1,5 +1,7 @@
 # Cosmic Quest: Stellar Treasures
 
+---
+
 ## Description
 <p>Cosmic Quest: Stellar Treasures is designed to be an interactive, educational tool that teaches students aged 8-14 about our solar system and basic scientific principles through gameplay. Coded using Java, our game is accessible on computers and does not require an internet connection, ensuring wide accessibility and ease of use. Players assume the role of an astronaut navigating through space, starting from the Sun and moving outward through the solar system. The core mechanics involve answering trivia questions to gather fuel, which enables the player to travel to the next planet. This approach combines learning with goal-oriented gaming, encouraging players to engage with educational content to progress.</p>
 
@@ -113,5 +115,5 @@ You'll be logged in to your existing account, and you can continue your cosmic j
 For any issues or inquiries, please contact rluo57@uwo.ca
 Enjoy your cosmic journey through the solar system! :)
 
-Best,</br>
-Team 7
+<p>Best,</p>
+<p>Team 7</p>
