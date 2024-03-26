@@ -8,7 +8,6 @@ import java.io.*;
 public class Level {
     private int levelID;
     private String name;
-    private String description;
     private List<Question> questionList;
 
 
@@ -21,39 +20,30 @@ public class Level {
         switch (levelID) {
             case 0:
                 this.name = "Sun";
-                this.description ="temp";
                 break;
             case 1:
                 this.name = "Mercury";
-                this.description ="temp";
                 break;
             case 2:
                 this.name = "Venus";
-                this.description ="temp";
                 break;
             case 3:
                 this.name = "Earth";
-                this.description ="temp";
                 break;
             case 4:
                 this.name = "Mars";
-                this.description ="temp";
                 break;
             case 5:
                 this.name = "Jupiter";
-                this.description ="temp";
                 break;
             case 6:
                 this.name = "Saturn";
-                this.description ="temp";
                 break;
             case 7:
-                this.name = "Uranus";
-                this.description ="temp";
+                this.name = "Neptune";
                 break;
             case 8:
-                this.name = "Neptune";
-                this.description ="temp";
+                this.name = "Uranus";
                 break;
         }
     }
