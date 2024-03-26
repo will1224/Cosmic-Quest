@@ -113,7 +113,7 @@ You'll be logged in to your existing account, and you can continue your cosmic j
 ## Additonal Information
 
 For any issues or inquiries, please contact rluo57@uwo.ca
-Enjoy your cosmic journey through the solar system! :)
+</br>Enjoy your cosmic journey through the solar system! :)
 
 <p>Best,</p>
 <p>Team 7</p>
