@@ -45,9 +45,7 @@ Download and install the appropriate JDK for your operating system from the offi
 ## User Guide
 
 1. **Login Page**<br>
-Upon launching the game, you'll be directed to the login page.<br>
-If you already have an account, enter your account details (username and password) and click the "Login" button.<br>
-If you don't have an account yet, click the "Create Account" button to register.
+Upon launching the game, you'll be directed to the login page. If you already have an account, enter your account details (username and password) and click the "Login" button. If you don't have an account yet, click the "Create Account" button to register.
 <br>
 
 2. **Account Creation** <br>
