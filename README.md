@@ -44,7 +44,7 @@ Download and install the appropriate JDK for your operating system from the offi
 
 ## User Guide
 
-1. **Login Page**</br>
+1. **Login Page**<br>
 Upon launching the game, you'll be directed to the login page.
 If you already have an account, enter your account details (username and password) and click the "Login" button.
 If you don't have an account yet, click the "Create Account" button to register.
@@ -113,7 +113,7 @@ You'll be logged in to your existing account, and you can continue your cosmic j
 ## Additonal Information
 
 For any issues or inquiries, please contact rluo57@uwo.ca
-</br>Enjoy your cosmic journey through the solar system! :)
+<br>Enjoy your cosmic journey through the solar system! :)
 
 <p>Best,</p>
 <p>Team 7</p>
