@@ -53,7 +53,7 @@ If you choose to create an account, you'll be prompted to enter your desired use
 <br>
 
 3. **Level Selection** <br>
-After logging in, you'll be taken to the level selection screen. Start at the Sun, the first level/planet, by clicking on it. Each planet represents a level, and you must progress through them sequentially.
+After logging in, you'll be taken to the level selection screen. Start at the Sun, the first level/planet, by clicking on it. Each planet represents a level, and you must progress through them sequentially.<br>
 
 4. **Educational Lesson** <br>
 Before each trivia part, you'll encounter an educational lesson page. Learn interesting facts and principles related to each specific planet. Take your time to read through the lesson content before proceeding to the trivia questions.
