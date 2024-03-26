@@ -153,21 +153,4 @@ public class Accounts {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) {
-        Accounts accounts = new Accounts();
-        // accounts.registerAccount("hkong47", "abc123");
-        accounts.login("hkong47", "abc123");
-        JSONObject loggedInUser = accounts.getCurrentAccount();
-        LevelProgress progress = new LevelProgress((JSONArray) loggedInUser.get("progress"));
-        //Simulation: Successful completion of a level
-        //Updates the high score for the completed level.
-        progress.setLevelScore(1, 6969);
-        //Unlock the next level.
-        progress.setUnlockedStatus(2, true);
-        //Set the current level to the next level for save file purposes.
-        progress.setCurrentLevelStatus(2, true);
-        //Update the progress in the user's account.
-        accounts.updateUserProgress((String) loggedInUser.get("username"), progress.getProgress());
-    }
 }
