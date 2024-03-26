@@ -6,9 +6,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 @SuppressWarnings("unchecked")
 public class Accounts {
     private JSONArray accounts;
+    private JSONObject currentAccount;
 
     //Constructor will either create a new accounts file or read in an existing one.
     public Accounts(){
@@ -53,7 +55,7 @@ public class Accounts {
         LevelProgress newProgress = new LevelProgress();
         newAccount.put("progress", newProgress.getProgress());
         updateAccountsFile(newAccount);
-
+        currentAccount = getAccountData(username);
         return true;
     }
 
@@ -67,6 +69,7 @@ public class Accounts {
         if (!correctPassword.equals(password)) {
             return false;
         }
+        currentAccount = getAccountData(username);
         return true;
     }
 
@@ -112,11 +115,16 @@ public class Accounts {
         return accounts;
     }
 
+    //Getter method that returns the current logged in account.
+    public JSONObject getCurrentAccount() {
+        return currentAccount;
+    }
+
     //Getter method that returns the progress for a user's account.
     public JSONObject getAccountData(String username) {
         for (int i = 0; i < accounts.size(); i++) {
             JSONObject currentAccount = (JSONObject) accounts.get(i);
-            if (currentAccount.get(username).equals(username)) {
+            if (currentAccount.get("username").equals(username)) {
                 return currentAccount;
             }
         }
@@ -131,7 +139,7 @@ public class Accounts {
     //Setter method that updates the level progress for a user and writes the user to the accounts data file.
     public void updateUserProgress(String username, JSONArray progress) {
         for (int i = 0; i < accounts.size(); i++) {
-            if (((JSONObject) accounts.get(i)).get(username).equals(username)) {
+            if (((JSONObject) accounts.get(i)).get("username").equals(username)) {
                 ((JSONObject) accounts.get(i)).put("progress", progress);
                 break;
             }
@@ -144,5 +152,22 @@ public class Accounts {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        Accounts accounts = new Accounts();
+        // accounts.registerAccount("hkong47", "abc123");
+        accounts.login("hkong47", "abc123");
+        JSONObject loggedInUser = accounts.getCurrentAccount();
+        LevelProgress progress = new LevelProgress((JSONArray) loggedInUser.get("progress"));
+        //Simulation: Successful completion of a level
+        //Updates the high score for the completed level.
+        progress.setLevelScore(1, 6969);
+        //Unlock the next level.
+        progress.setUnlockedStatus(2, true);
+        //Set the current level to the next level for save file purposes.
+        progress.setCurrentLevelStatus(2, true);
+        //Update the progress in the user's account.
+        accounts.updateUserProgress((String) loggedInUser.get("username"), progress.getProgress());
     }
 }

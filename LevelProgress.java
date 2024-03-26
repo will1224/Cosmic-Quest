@@ -11,12 +11,13 @@ public class LevelProgress {
         List<String> levelNames = Arrays.asList("The Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Other Celestial Bodies");
         progress = new JSONArray();
 
-        for (int i = 0; i < levelNames.size(); i++) {
+        for (int i = 1; i <= levelNames.size(); i++) {
             JSONObject temp = new JSONObject();
-            temp.put("levelName", levelNames.get(i));
+            temp.put("levelName", levelNames.get(i-1));
+            temp.put("levelNumber", i);
             temp.put("highscore", 0);
 
-            if (i == 0) {
+            if (i == 1) {
                 temp.put("unlocked", true);
                 temp.put("currentLevel", true);
             }
@@ -29,6 +30,10 @@ public class LevelProgress {
         }
     }
 
+    public LevelProgress(JSONArray progress) {
+        this.progress = progress;
+    }
+
     public JSONArray getProgress() {
         return progress;
     }
@@ -36,25 +41,25 @@ public class LevelProgress {
     //Getter method that returns the current level on a user's save.
     public int getCurrentLevel() {
         for (int i = 0; i < progress.size(); i++) {
-            if ((Boolean)((JSONObject)progress.get(i)).get("currentLevel")) {
-                return i;
+            if ((Boolean) ((JSONObject) progress.get(i)).get("currentLevel")) {
+                return i + 1;
             }
         }
-        return 0;
+        return 1;
     }
 
     //Setter method to change the score of a level.
     public void setLevelScore(int levelNumber, int score) {
-        ((JSONObject) progress.get(levelNumber)).put("highscore", score);
+        ((JSONObject) progress.get(levelNumber - 1)).put("highscore", score);
     }
 
     //Setter method to change the locked/unlocked status of a level.
-    public void setLockStatus(int levelNumber, boolean lockStatus) {
-        ((JSONObject) progress.get(levelNumber)).put("unlocked", lockStatus);
+    public void setUnlockedStatus(int levelNumber, boolean lockStatus) {
+        ((JSONObject) progress.get(levelNumber - 1)).put("unlocked", lockStatus);
     }
 
     //Setter method to change the current level status of a level.
     public void setCurrentLevelStatus(int levelNumber, boolean currentLevelStatus) {
-        ((JSONObject) progress.get(levelNumber)).put("currentLevel", currentLevelStatus);
+        ((JSONObject) progress.get(levelNumber - 1)).put("currentLevel", currentLevelStatus);
     }
 }
