@@ -49,7 +49,6 @@ Upon launching the game, you'll be directed to the login page.<br>
 If you already have an account, enter your account details (username and password) and click the "Login" button.<br>
 If you don't have an account yet, click the "Create Account" button to register.
 <br>
-
 2. **Account Creation** <br>
 If you choose to create an account, you'll be prompted to enter your desired username and password.<br>
 After entering your credentials, click the "Create Account" button to register.<br>
