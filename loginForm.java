@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import org.json.simple.JSONArray;
+
 public class loginForm implements ActionListener {
     private JFrame loginPage = new JFrame("Cosmic Quest: Stellar Treasure");
     private JButton signUpButton = new JButton("Sign Up");
@@ -23,7 +24,7 @@ public class loginForm implements ActionListener {
         loginPage.setExtendedState(JFrame.MAXIMIZED_BOTH);
         loginPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
-        ImageIcon icon = new ImageIcon("images/middle.png");
+        ImageIcon icon = new ImageIcon("images/loginBGD.png");
         BackgroundPanel backgroundPanel = new BackgroundPanel(icon.getImage());
         backgroundPanel.setLayout(new BorderLayout());
     
