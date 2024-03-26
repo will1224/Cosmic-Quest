@@ -49,34 +49,41 @@ Upon launching the game, you'll be directed to the login page.<br>
 If you already have an account, enter your account details (username and password) and click the "Login" button.<br>
 If you don't have an account yet, click the "Create Account" button to register.
 <br>
+
 2. **Account Creation** <br>
 If you choose to create an account, you'll be prompted to enter your desired username and password.<br>
 After entering your credentials, click the "Create Account" button to register.<br>
-Once your account is created, you'll be automatically logged in and redirected to the level selection screen.<br>
+Once your account is created, you'll be automatically logged in and redirected to the level selection screen.
+<br>
 
 3. **Level Selection** <br>
 After logging in, you'll be taken to the level selection screen.<br>
 Start at the Sun, the first level/planet, by clicking on it.<br>
-Each planet represents a level, and you must progress through them sequentially.<br>
+Each planet represents a level, and you must progress through them sequentially.
+<br>
 
 4. **Educational Lesson** <br>
 Before each trivia part, you'll encounter an educational lesson page.<br>
 Learn interesting facts and principles related to each specific planet.<br>
-Take your time to read through the lesson content before proceeding to the trivia questions.<br>
+Take your time to read through the lesson content before proceeding to the trivia questions.
+<br>
 
 5. **Trivia Gameplay** <br>
 After completing the educational lesson, you'll move on to the trivia gameplay section.<br>
 Answer each trivia question correctly to collect points (fuel) needed to advance to the next level/planet.<br>
-You must answer a minimum of 5 questions correctly to unlock the next level/planet.<br>
+You must answer a minimum of 5 questions correctly to unlock the next level/planet.
+<br>
 
 6. **Bonus Level** <br>
 Reach the outermost planet to complete the main game!<br>
 Upon completion, you may unlock a bonus level featuring additional celestial phenomena like black holes.<br>
-Explore the bonus level and learn more about these fascinating cosmic objects.<br>
+Explore the bonus level and learn more about these fascinating cosmic objects.
+<br>
 
 7. **Exiting the Game** <br>
 You can exit the game at any time by closing the application window.<br>
-Your progress will be saved automatically, allowing you to log in again later and resume from where you left off.<br>
+Your progress will be saved automatically, allowing you to log in again later and resume from where you left off.
+<br>
 
 8. **Logging In Again** <br>
 When you return to play again, simply launch the game and enter your account details on the login page.<br>
