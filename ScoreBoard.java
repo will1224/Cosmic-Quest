@@ -4,49 +4,54 @@ import java.awt.*;
 public class ScoreBoard extends JDialog {
     public ScoreBoard(Frame parent, String playerName, int playerScore, String imagePath) {
         super(parent, "Player Score", true);
-        //setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new BorderLayout()); // Use BorderLayout at the top level
 
-        // Set layout for dialog to GridBagLayout for flexibility
-        setLayout(new GridBagLayout());
+        // Background panel with GridBagLayout for components
+        JPanel backgroundPanel = new JPanel(new GridBagLayout()) {
+            // Overriding paintComponent to draw the background image
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon backgroundIcon = new ImageIcon("images/background.jpg"); // Replace with your background image path
+                Image backgroundImage = backgroundIcon.getImage();
+                g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+            }
+        };
+        add(backgroundPanel); // Add backgroundPanel to the dialog's content pane
+
         GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 15, 5, 5); // Adding some margin
 
-        // This helps to center the components in the page
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.CENTER;
-
-        // Load the original profile picture
+        // Load and resize the profile picture
         ImageIcon originalIcon = new ImageIcon(imagePath);
-        Image originalImage = originalIcon.getImage();
-        
-        // Resize the image to fit a standard profile picture size (e.g., 100x100 pixels)
-        Image resizedImage = originalImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        ImageIcon profilePic = new ImageIcon(resizedImage);
-        
-        JLabel picLabel = new JLabel(profilePic);
+        Image resizedImage = originalIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        JLabel picLabel = new JLabel(new ImageIcon(resizedImage));
 
         // Player name and score labels
+        JPanel textPanel = new JPanel(new GridBagLayout()); // Panel for text to keep it together
         JLabel nameLabel = new JLabel("Name: " + playerName);
         JLabel scoreLabel = new JLabel("Score: " + playerScore);
 
-        // Adding some space between the name and score
-        scoreLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0)); // Top, left, bottom, right
+        // Adding components to the text panel with constraints
+        gbc.anchor = GridBagConstraints.WEST;
+        textPanel.add(nameLabel, gbc);
+        gbc.gridy = 1;
+        textPanel.add(scoreLabel, gbc);
 
-        // Adding components to the dialog with constraints
-        add(picLabel, gbc); // Adds the resized profile picture to the center
-        add(nameLabel, gbc); // Adds the name label below the profile picture
-        add(scoreLabel, gbc); // Adds the score label below the name label with added space
+        // Adding picture label and text panel to the background panel
+        gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 25, 10, 10);
+        gbc.anchor = GridBagConstraints.WEST;
+        backgroundPanel.add(picLabel, gbc);
 
-        // Set window size, location, and make it visible
-        setSize(400, 400);
-        setLocationRelativeTo(parent); // This will center the dialog in the parent frame
+        gbc.gridx = 1;
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        backgroundPanel.add(textPanel, gbc);
+
+        setSize(400, 300); 
+        setLocationRelativeTo(parent);
     }
 
-    public static void main(String[] args) {
-        // Creating and showing this application's GUI.
-        SwingUtilities.invokeLater(() -> {
-            ScoreBoard dialog = new ScoreBoard(null, "Player1", 100, "images/jen.jpeg");
-            dialog.setVisible(true);
-            System.exit(0);
-        });
-    }
 }
+
