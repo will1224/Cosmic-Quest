@@ -29,14 +29,14 @@
 
 ## Building the Software
 
-**Step 1:** Install Java Development Kit (JDK)
+> **Step 1:** Install Java Development Kit (JDK)
 Download and install the appropriate JDK for your operating system from the official Oracle website or any other trusted source. Follow the installation instructions provided.
 
-**Step 2:**
+> **Step 2:**
 
-**Step 3:**
+> **Step 3:**
 
-**Step 4:**
+> **Step 4:**
 
 ---
 
@@ -93,8 +93,8 @@ You'll be logged in to your existing account, and you can continue your cosmic j
 ## Teacher Mode
 
 <p>To access Teacher Mode, enter the designated username and password provided below:</p>
-<p>Username: <em>education</em> </br>
-Password: <em>cosmic123</em></p>
+<p>Username: <em>education</em> </p>
+<p>Password: <em>cosmic123</em></p>
 <p>Teacher Mode allows educators to customize trivia questions and track student progress.</p>
 
 ---
@@ -102,8 +102,8 @@ Password: <em>cosmic123</em></p>
 ## Developer Mode
 
 <p>To access Developer Mode, enter the designated username and password provided below:</p>
-<p>Username: <em>admin</em> </br>
-Password: <em>cosmic456</em></p>
+<p>Username: <em>admin</em> </p>
+<p>Password: <em>cosmic456</em></p>
 <p>Developer Mode allows the user to access backend code and commit changes.</p>
 
 ---
@@ -113,5 +113,5 @@ Password: <em>cosmic456</em></p>
 For any issues or inquiries, please contact rluo57@uwo.ca
 Enjoy your cosmic journey through the solar system! :)
 
-Best, </br>
+Best,</br>
 Team 7
