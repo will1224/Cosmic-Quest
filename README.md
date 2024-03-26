@@ -47,65 +47,72 @@ Download and install the appropriate JDK for your operating system from the offi
 1. **Login Page**<br>
 Upon launching the game, you'll be directed to the login page.<br>
 If you already have an account, enter your account details (username and password) and click the "Login" button.<br>
-If you don't have an account yet, click the "Create Account" button to register.
+If you don't have an account yet, click the "Create Account" button to register.<br>
 
 2. **Account Creation** <br>
 If you choose to create an account, you'll be prompted to enter your desired username and password.<br>
 After entering your credentials, click the "Create Account" button to register.<br>
-Once your account is created, you'll be automatically logged in and redirected to the level selection screen.
+Once your account is created, you'll be automatically logged in and redirected to the level selection screen.<br>
 
 3. **Level Selection** <br>
 After logging in, you'll be taken to the level selection screen.<br>
 Start at the Sun, the first level/planet, by clicking on it.<br>
-Each planet represents a level, and you must progress through them sequentially.
+Each planet represents a level, and you must progress through them sequentially.<br>
 
 4. **Educational Lesson** <br>
 Before each trivia part, you'll encounter an educational lesson page.<br>
 Learn interesting facts and principles related to each specific planet.<br>
-Take your time to read through the lesson content before proceeding to the trivia questions.
+Take your time to read through the lesson content before proceeding to the trivia questions.<br>
 
 5. **Trivia Gameplay** <br>
 After completing the educational lesson, you'll move on to the trivia gameplay section.<br>
 Answer each trivia question correctly to collect points (fuel) needed to advance to the next level/planet.<br>
-You must answer a minimum of 5 questions correctly to unlock the next level/planet.
+You must answer a minimum of 5 questions correctly to unlock the next level/planet.<br>
 
 6. **Bonus Level** <br>
 Reach the outermost planet to complete the main game!<br>
 Upon completion, you may unlock a bonus level featuring additional celestial phenomena like black holes.<br>
-Explore the bonus level and learn more about these fascinating cosmic objects.
+Explore the bonus level and learn more about these fascinating cosmic objects.<br>
 
 7. **Exiting the Game** <br>
 You can exit the game at any time by closing the application window.<br>
-Your progress will be saved automatically, allowing you to log in again later and resume from where you left off.
+Your progress will be saved automatically, allowing you to log in again later and resume from where you left off.<br>
 
 8. **Logging In Again** <br>
 When you return to play again, simply launch the game and enter your account details on the login page.<br>
-You'll be logged in to your existing account, and you can continue your cosmic journey from your last saved progress.
+You'll be logged in to your existing account, and you can continue your cosmic journey from your last saved progress.<br>
 
 ---
 
 ## Teacher Mode
 
-<p>To access Teacher Mode, enter the designated username and password provided below:</p>
-<p>Username: <em>education</em> </p>
-<p>Password: <em>cosmic123</em></p>
-<p>Teacher Mode allows educators to customize trivia questions and track student progress.</p>
+To access Teacher Mode, enter the designated username and password provided below:
+
+Username: *education* <br>
+Password: *cosmic123*
+
+Teacher Mode allows educators to customize trivia questions and track student progress.
 
 ---
 
 ## Developer Mode
 
-<p>To access Developer Mode, enter the designated username and password provided below:</p>
-<p>Username: <em>admin</em> </p>
-<p>Password: <em>cosmic456</em></p>
-<p>Developer Mode allows the user to access backend code and commit changes.</p>
+To access Developer Mode, enter the designated username and password provided below:
+
+Username: *admin* <br>
+Password: *cosmic456*
+
+Developer Mode allows the user to access backend code and commit changes.
 
 ---
 
 ## Additonal Information
 
 For any issues or inquiries, please contact rluo57@uwo.ca
-<br>Enjoy your cosmic journey through the solar system! :)
 
-<p>Best,</p>
-<p>Team 7</p>
+
+Enjoy your cosmic journey through the solar system! :)
+
+Best,
+
+Team 7
