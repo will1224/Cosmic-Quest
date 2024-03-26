@@ -1,6 +1,7 @@
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicSliderUI;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+
 
 public class OptionsMenu extends JFrame {
     private JSlider masterSoundSlider;
@@ -88,6 +89,14 @@ public class OptionsMenu extends JFrame {
         panel.setOpaque(false); // Make the panel transparent
         JLabel labelComponent = new JLabel(label);
         labelComponent.setForeground(Color.WHITE); // Set text color to white
+        
+        // Set slider properties to make it appear white
+        slider.setForeground(Color.WHITE); // Changes the color of the ticks and numbers
+        slider.setUI(new BasicSliderUI(slider));
+        slider.setOpaque(false); // Makes the slider background transparent
+        
+        UIManager.put("Slider.thumbWidth", 10); // Example of changing thumb width, might not take effect here
+        
         panel.add(labelComponent, BorderLayout.WEST);
         panel.add(slider, BorderLayout.CENTER);
         return panel;
@@ -99,7 +108,7 @@ public class OptionsMenu extends JFrame {
 
         public BackgroundPanel() {
             try {
-                backgroundImage = new ImageIcon("images/menuBackground.jpg").getImage();
+                backgroundImage = new ImageIcon("images/gradient.png").getImage();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -111,5 +120,8 @@ public class OptionsMenu extends JFrame {
             g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
         }
     }
-}
 
+    public static void main(String[] args) {
+        new OptionsMenu();
+    }
+}

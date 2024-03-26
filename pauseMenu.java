@@ -17,49 +17,72 @@ public class pauseMenu extends JFrame implements ActionListener {
         setLocationRelativeTo(null); // Center on screen
 
         // Use the custom background panel
-        BackgroundPanel backgroundPanel = new BackgroundPanel(new ImageIcon("images/background.jpg").getImage());
+        BackgroundPanel backgroundPanel = new BackgroundPanel(new ImageIcon("images/pause.png").getImage());
         backgroundPanel.setLayout(new BorderLayout());
         setContentPane(backgroundPanel); // Set the background panel as the main content pane
 
-        // Title label
-        JLabel titleLabel = new JLabel("Cosmic Quest: Stellar Treasures", SwingConstants.CENTER);
-        backgroundPanel.add(titleLabel, BorderLayout.NORTH);
-
-        // Button panel
+        // Button panel for aligning buttons vertically
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-        buttonPanel.setOpaque(false); // Make the panel transparent to show the background
+        buttonPanel.setOpaque(false); // Make the panel transparent
+
+        // Add padding around the button panel
+        JPanel containerPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0));
+        containerPanel.setOpaque(false); // Make container panel transparent
+        containerPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 100)); // Top, Left, Bottom, Right padding
 
         // Create buttons with images
-        resumeButton = createImageButton("images/button.png");
-        optionsButton = createImageButton("images/button.png");
-        returnButton = createImageButton("images/button.png");
-        exitButton = createImageButton("images/button.png");
+        resumeButton = createImageButton("images/continue.png");
+        optionsButton = createImageButton("images/options.png");
+        returnButton = createImageButton("images/menu.png");
+        exitButton = createImageButton("images/exit.png");
 
-        // Adding buttons to the panel
+        // Adding buttons to the panel with 30 pixels space underneath each
+        buttonPanel.add(Box.createVerticalStrut(80)); // Space underneath resumeButton
         buttonPanel.add(resumeButton);
+        buttonPanel.add(Box.createVerticalStrut(80)); // Space underneath resumeButton
+
         buttonPanel.add(optionsButton);
+        buttonPanel.add(Box.createVerticalStrut(80)); // Space underneath optionsButton
+
         buttonPanel.add(returnButton);
+        buttonPanel.add(Box.createVerticalStrut(80)); // Space underneath returnButton
+
         buttonPanel.add(exitButton);
 
-        // Adding button panel to the background panel
-        backgroundPanel.add(buttonPanel, BorderLayout.CENTER);
+        // Add the button panel to the container panel to apply padding
+        containerPanel.add(buttonPanel);
+
+        // Adding the container panel to the background panel on the right
+        backgroundPanel.add(containerPanel, BorderLayout.EAST);
 
         setVisible(true);
     }
 
     private JButton createImageButton(String imagePath) {
-        ImageIcon icon = new ImageIcon(imagePath); // Load the image icon
+        ImageIcon icon = new ImageIcon(imagePath);
         JButton button = new JButton(icon);
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setBorderPainted(false);
+        button.setContentAreaFilled(false);
+        button.setFocusPainted(false);
         button.setMaximumSize(new Dimension(icon.getIconWidth() + 20, icon.getIconHeight() + 20));
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
         button.addActionListener(this);
         return button;
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Your action handling code remains the same
+        if (e.getSource() == resumeButton) {
+            this.dispose();  
+        } else if (e.getSource() == optionsButton) {
+            new OptionsMenu();
+        } else if (e.getSource() == returnButton) {
+            this.dispose(); // Example: Close the main menu and start a new game
+        } else if (e.getSource() == exitButton) {
+            this.dispose();
+        }
     }
 
     // Custom JPanel class for drawing the background image
@@ -78,5 +101,13 @@ public class pauseMenu extends JFrame implements ActionListener {
         }
     }
 
+    public static void main(String[] args) {
+        // Run the GUI in the Event Dispatch Thread (EDT)
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new pauseMenu(); 
+            }
+        });
+    }
 }
-
