@@ -13,39 +13,12 @@ public class Level {
 
     // constructor
     public Level(int levelID) {
+        String[] PLANET_NAMES = {"Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"};
+
         this.levelID = levelID;
         this.questionList = readQuestions();
+        this.name = PLANET_NAMES[levelID];
 
-        // set name and description based on levelID
-        switch (levelID) {
-            case 0:
-                this.name = "Sun";
-                break;
-            case 1:
-                this.name = "Mercury";
-                break;
-            case 2:
-                this.name = "Venus";
-                break;
-            case 3:
-                this.name = "Earth";
-                break;
-            case 4:
-                this.name = "Mars";
-                break;
-            case 5:
-                this.name = "Jupiter";
-                break;
-            case 6:
-                this.name = "Saturn";
-                break;
-            case 7:
-                this.name = "Neptune";
-                break;
-            case 8:
-                this.name = "Uranus";
-                break;
-        }
     }
 
     private List<Question> readQuestions() {

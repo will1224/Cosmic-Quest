@@ -6,11 +6,12 @@ import java.util.List;
 public class GameDisplay extends JFrame {
 
     private JButton[] optionButtons = new JButton[4];
-    private int selectedAnswerIndex = -1; // Track the selected answer
+    private int selectedAnswerIndex; // Track the selected answer
     private List<Question> questions; // List of questions for the current level
     private int currentQuestionIndex; // Index of the current question in the list
     private Level currentLevel;
     private JPanel panel;
+    private int gameState; // 0 = question mode
 
     public GameDisplay() {
         setTitle("Cosmic Quest: Stellar Treasures");
@@ -30,11 +31,15 @@ public class GameDisplay extends JFrame {
         this.currentLevel = currLevel;
         this.questions = questionSet; // Store the list of questions
         this.currentQuestionIndex = 0; // Start from the first question
+        this.selectedAnswerIndex = -1; // set default for no selection
+        this.gameState = 0;
         displayQuestion(currLevel); // Display the first question
 
     }
 
     private void displayQuestion(Level currLevel) {
+        gameState = 0;
+
         if (currentQuestionIndex >= questions.size()) {
             JOptionPane.showMessageDialog(this, "You've completed all the questions!", "End of Questions", JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -52,6 +57,7 @@ public class GameDisplay extends JFrame {
     }
 
     private void displayNext() {
+
         if (selectedAnswerIndex == -1) {
             JOptionPane.showMessageDialog(this, "Please select an answer before proceeding.", "No Selection", JOptionPane.WARNING_MESSAGE);
             return;
@@ -98,7 +104,7 @@ public class GameDisplay extends JFrame {
 
         button.addActionListener(e -> {
             selectedAnswerIndex = index;
-            updateButtonColors();
+            updateSelected(); // show selected answer
         });
 
         optionButtons[index] = button; // Store the button in the array
@@ -117,16 +123,20 @@ public class GameDisplay extends JFrame {
     private void nextButtonAction(ActionEvent e) {
         Question currentQuestion = questions.get(currentQuestionIndex);
 
-        if (selectedAnswerIndex == -1) {
-            JOptionPane.showMessageDialog(this, "Please select an answer.", "No Selection", JOptionPane.WARNING_MESSAGE);
-        } else {
-            verifyAns(currentQuestion, selectedAnswerIndex);
-            // Reset for next question or end the game
-            selectedAnswerIndex = -1;
+        if (gameState == 0) {
+            if (selectedAnswerIndex == -1) {
+                JOptionPane.showMessageDialog(this, "Please select an answer.", "No Selection", JOptionPane.WARNING_MESSAGE);
+            } else {
+                verifyAns(currentQuestion, selectedAnswerIndex);
+                // reset for next
+                selectedAnswerIndex = -1;
+            }
+        } else if (gameState == 1) {
+            displayNext(); // Move to the next question or finish
         }
     }
 
-    private void updateButtonColors() {
+    private void updateSelected() {
         for (int i = 0; i < optionButtons.length; i++) {
             JButton button = optionButtons[i];
             if (button == null) continue; // Skip if the button hasn't been initialized yet
@@ -141,13 +151,30 @@ public class GameDisplay extends JFrame {
         }
     }
 
+    // go through each button and check if correct answer
     private void verifyAns(Question question, int answerIndex) {
-        if (question.isCorrectAnswer(selectedAnswerIndex)) {
-            System.out.println("Correct answer!");
-        } else {
-            System.out.println("Incorrect answer.");
+
+        for (int i = 0; i < optionButtons.length; i++) {
+            JButton button = optionButtons[i];
+            if (button == null) continue; // Skip if the button hasn't been initialized yet
+
+            // change colour for correct answer
+            if (i == selectedAnswerIndex && (question.isCorrectAnswer(selectedAnswerIndex))) {
+                // correct
+                button.setForeground(Color.GREEN);
+                System.out.println("Correct answer!");
+            } else if (i == selectedAnswerIndex) {
+                button.setForeground(Color.PINK);
+            } else if ((question.isCorrectAnswer(i))) {
+                // wrong answer: show correct
+                button.setForeground(Color.RED);
+            } else {
+                // default button
+                button.setBackground(UIManager.getColor("Button.background")); // Default button color
+                button.setForeground(UIManager.getColor("Button.foreground")); // Default text color
+                System.out.println("Incorrect answer.");
+            }
         }
-        displayNext(); // Move to the next question or finish
     }
 }
 
