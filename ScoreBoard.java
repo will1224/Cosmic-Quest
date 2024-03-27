@@ -12,7 +12,8 @@ public class ScoreBoard extends JDialog {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon backgroundIcon = new ImageIcon("images/background.jpg"); // Replace with your background image path
+                ImageIcon backgroundIcon = new ImageIcon("images/gradient.png"); // Replace with your background image
+                                                                                 // path
                 Image backgroundImage = backgroundIcon.getImage();
                 g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
             }
@@ -29,6 +30,7 @@ public class ScoreBoard extends JDialog {
 
         // Player name and score labels
         JPanel textPanel = new JPanel(new GridBagLayout()); // Panel for text to keep it together
+        textPanel.setBackground(new Color(245, 141, 110)); // This is an example of light gray color
         JLabel nameLabel = new JLabel("Name: " + playerName);
         JLabel scoreLabel = new JLabel("Score: " + playerScore);
 
@@ -49,9 +51,8 @@ public class ScoreBoard extends JDialog {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         backgroundPanel.add(textPanel, gbc);
 
-        setSize(400, 300); 
+        setSize(400, 300);
         setLocationRelativeTo(parent);
     }
 
 }
-

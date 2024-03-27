@@ -2,11 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Ellipse2D;
-import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.awt.image.BufferedImage;
 
 public class levelMenu implements ActionListener {
     private JFrame frame;
@@ -65,10 +64,9 @@ public class levelMenu implements ActionListener {
     private JButton createButtonWithImage(String imagePath, String actionCommand) {
         try {
             BufferedImage originalImage = ImageIO.read(new File(imagePath));
-            int buttonDiameter = 250;
-            Image processedImage = processImageToCircle(originalImage, buttonDiameter);
+            Image resizedImage = originalImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
 
-            JButton button = new JButton(new ImageIcon(processedImage));
+            JButton button = new JButton(new ImageIcon(resizedImage));
             button.setBorderPainted(false);
             button.setFocusPainted(false);
             button.setContentAreaFilled(false);
@@ -77,22 +75,8 @@ public class levelMenu implements ActionListener {
             return button;
         } catch (IOException e) {
             e.printStackTrace();
-            return new JButton(actionCommand); 
+            return new JButton(actionCommand);
         }
-    }
-
-    private Image processImageToCircle(Image originalImage, int diameter) {
-        BufferedImage resizedImage = new BufferedImage(diameter, diameter, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2d = resizedImage.createGraphics();
-
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-
-        g2d.setClip(new Ellipse2D.Float(0, 0, diameter, diameter));
-        g2d.drawImage(originalImage, 0, 0, diameter, diameter, null);
-
-        g2d.dispose();
-        return resizedImage;
     }
 
     @Override
@@ -101,8 +85,8 @@ public class levelMenu implements ActionListener {
         System.out.println(command + " button pressed");
 
         if ("Return to Main Menu".equals(command)) {
-            frame.dispose(); 
-            new mainMenu(); 
+            frame.dispose();
+            new mainMenu();
         }
     }
 

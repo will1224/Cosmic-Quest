@@ -15,7 +15,7 @@ public class mainMenu implements ActionListener {
 
     public mainMenu() {
         menu = new JFrame("Cosmic Quest: Stellar Treasures");
-        java.net.URL menuBackgroundURL = getClass().getResource("/images/menuBackground.jpg");
+        java.net.URL menuBackgroundURL = getClass().getResource("/images/mainmenuBGD.png");
         if (menuBackgroundURL != null) {
             ImageIcon menuBackground = new ImageIcon(menuBackgroundURL);
             JLabel backgroundLabel = new JLabel(menuBackground);
@@ -30,7 +30,7 @@ public class mainMenu implements ActionListener {
         buttonPanel.setOpaque(false); // Make panel transparent
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 
-        title = new JTextField("Cosmic Quest: Stellar Treasures");
+        title = new JTextField("");
         title.setForeground(Color.WHITE);
         title.setFont(new Font(null, Font.BOLD, 24));
         title.setHorizontalAlignment(JTextField.CENTER); // Ensure title is centered
@@ -38,22 +38,28 @@ public class mainMenu implements ActionListener {
         title.setBorder(null); // Remove border
         title.setOpaque(false); // Make background transparent
 
-        newGame = createButton("New Game");
-        continueGame = createButton("Continue");
-        selectLevel = createButton("Select Level");
-        scores = createButton("Scores");
-        options = createButton("Options");
-        exitGame = createButton("Exit");
+        newGame = createImageButton("images/newgameBTN.png");
+        continueGame = createImageButton("images/continueBTN.png");
+        selectLevel = createImageButton("images/levelBTN.png");
+        scores = createImageButton("images/scoreBTN.png");
+        options = createImageButton("images/optionBTN.png");
+        exitGame = createImageButton("images/exitBTN.png");
 
         // Add components to the button panel
         buttonPanel.add(Box.createVerticalGlue()); // Add space at the top
         buttonPanel.add(title);
         buttonPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Add space between title and buttons
+        buttonPanel.add(Box.createVerticalStrut(30)); // Space underneath Button
         buttonPanel.add(newGame);
+        buttonPanel.add(Box.createVerticalStrut(20)); // Space underneath
         buttonPanel.add(continueGame);
+        buttonPanel.add(Box.createVerticalStrut(20)); // Space underneath
         buttonPanel.add(selectLevel);
+        buttonPanel.add(Box.createVerticalStrut(20)); // Space underneath
         buttonPanel.add(scores);
+        buttonPanel.add(Box.createVerticalStrut(20)); // Space underneath
         buttonPanel.add(options);
+        buttonPanel.add(Box.createVerticalStrut(20)); // Space underneath
         buttonPanel.add(exitGame);
         buttonPanel.add(Box.createVerticalGlue()); // Add space at the bottom
 
@@ -69,6 +75,18 @@ public class mainMenu implements ActionListener {
         menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         menu.setVisible(true);
         menu.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+
+    private JButton createImageButton(String imagePath) {
+        ImageIcon icon = new ImageIcon(imagePath);
+        JButton button = new JButton(icon);
+        button.setBorderPainted(false);
+        button.setContentAreaFilled(false);
+        button.setFocusPainted(false);
+        button.setMaximumSize(new Dimension(icon.getIconWidth() + 20, icon.getIconHeight() + 20));
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.addActionListener(this);
+        return button;
     }
 
     private JButton createButton(String text) {
@@ -93,10 +111,9 @@ public class mainMenu implements ActionListener {
         } else if (e.getSource() == options) {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
-            new ScoreBoard(menu, "Jennifer Cao", 1000, "images/jen.jpeg").setVisible(true); 
+            new ScoreBoard(menu, "Jennifer Cao", 1000, "images/jen.jpeg").setVisible(true);
         }
 
     }
 
 }
-
