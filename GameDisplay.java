@@ -128,10 +128,9 @@ public class GameDisplay extends JFrame {
                 JOptionPane.showMessageDialog(this, "Please select an answer.", "No Selection", JOptionPane.WARNING_MESSAGE);
             } else {
                 verifyAns(currentQuestion, selectedAnswerIndex);
-                // reset for next
-                selectedAnswerIndex = -1;
             }
         } else if (gameState == 1) {
+            System.out.println("runs");
             displayNext(); // Move to the next question or finish
         }
     }
@@ -145,8 +144,7 @@ public class GameDisplay extends JFrame {
                 button.setForeground(Color.PINK);
             } else {
                 // Reset color to default to indicate deselection
-                button.setBackground(UIManager.getColor("Button.background")); // Default button color
-                button.setForeground(UIManager.getColor("Button.foreground")); // Default text color
+                button.setForeground(UIManager.getColor(Color.RED)); // Default text color
             }
         }
     }
@@ -167,7 +165,9 @@ public class GameDisplay extends JFrame {
                 button.setForeground(Color.PINK);
             } else if ((question.isCorrectAnswer(i))) {
                 // wrong answer: show correct
-                button.setForeground(Color.RED);
+                button.setForeground(Color.WHITE);
+                button.setBackground(Color.RED);
+                button.setOpaque(true);
             } else {
                 // default button
                 button.setBackground(UIManager.getColor("Button.background")); // Default button color
@@ -175,6 +175,8 @@ public class GameDisplay extends JFrame {
                 System.out.println("Incorrect answer.");
             }
         }
+
+        gameState = 1;
     }
 }
 
