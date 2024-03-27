@@ -4,7 +4,7 @@ public class User {
     private int level; // user's CURRENT level
 
     public User(String username, String password) {
-        level = 1; // temp hardcoded
+        level = 2; // temp hardcoded
     }
 
     public int getLevel() {

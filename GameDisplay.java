@@ -1,6 +1,10 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class GameDisplay extends JFrame {
@@ -10,19 +14,40 @@ public class GameDisplay extends JFrame {
     private List<Question> questions; // List of questions for the current level
     private int currentQuestionIndex; // Index of the current question in the list
     private Level currentLevel;
+    private Image scaledBackgroundImage;
     private JPanel panel;
     private int gameState; // 0 = question mode
 
+
+    private int tempScore;
+
+
+    //constructor
     public GameDisplay() {
         setTitle("Cosmic Quest: Stellar Treasures");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920, 1080);
-        setVisible(true);
 
+        // Load the background image
+        try {
+            BufferedImage backgroundImage = ImageIO.read(new File("images/menuBackground.jpg"));
+            JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImage));
+            setContentPane(backgroundLabel);
+            setLayout(new BorderLayout()); // Use BorderLayout
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Ensure panel is transparent to show the background image
         this.panel = new JPanel();
-        add(panel);
-        panel.setVisible(true);
+        panel.setOpaque(false); // Make panel transparent
+        add(panel, BorderLayout.CENTER); // Add the panel to the center
 
+        // Your existing initialization code
+        panel.setVisible(true);
+        tempScore = 0;
+
+        setVisible(true); // It's a good practice to make the frame visible after adding all components
     }
 
     public void displayLevel(Level currLevel, List<Question> questionSet) {
@@ -32,7 +57,7 @@ public class GameDisplay extends JFrame {
         this.questions = questionSet; // Store the list of questions
         this.currentQuestionIndex = 0; // Start from the first question
         this.selectedAnswerIndex = -1; // set default for no selection
-        this.gameState = 0;
+
         displayQuestion(currLevel); // Display the first question
 
     }
@@ -85,12 +110,14 @@ public class GameDisplay extends JFrame {
     private void addTitleToPanel(String titleText) {
         JLabel title = new JLabel(titleText, JLabel.CENTER);
         title.setFont(new Font("Space Mono", Font.BOLD, 30));
+        title.setForeground(Color.white);
         panel.add(title);
     }
 
     private void addQuestionToPanel(String questionText) {
         JLabel questionLabel = new JLabel(questionText, JLabel.CENTER);
         questionLabel.setFont(new Font("Space Mono", Font.PLAIN, 20));
+        questionLabel.setForeground(Color.white);
         panel.add(questionLabel);
     }
 
@@ -103,9 +130,13 @@ public class GameDisplay extends JFrame {
         button.setFont(new Font("Space Mono", Font.PLAIN, 20));
 
         button.addActionListener(e -> {
-            selectedAnswerIndex = index;
-            updateSelected(); // show selected answer
+            if (gameState == 0) {
+                System.out.println("Clicked");
+                selectedAnswerIndex = index;
+                updateSelected(); // show selected answer
+            }
         });
+
 
         optionButtons[index] = button; // Store the button in the array
         panel.add(button);
@@ -116,6 +147,7 @@ public class GameDisplay extends JFrame {
         nextBtn.setFont(new Font("Space Mono", Font.PLAIN, 20));
         nextBtn.addActionListener(this::nextButtonAction);
         JPanel btnContainer = new JPanel();
+        btnContainer.setOpaque(false);
         btnContainer.add(nextBtn);
         panel.add(btnContainer);
     }
@@ -130,7 +162,6 @@ public class GameDisplay extends JFrame {
                 verifyAns(currentQuestion, selectedAnswerIndex);
             }
         } else if (gameState == 1) {
-            System.out.println("runs");
             displayNext(); // Move to the next question or finish
         }
     }
@@ -138,19 +169,20 @@ public class GameDisplay extends JFrame {
     private void updateSelected() {
         for (int i = 0; i < optionButtons.length; i++) {
             JButton button = optionButtons[i];
-            if (button == null) continue; // Skip if the button hasn't been initialized yet
+            if (button == null) continue;
 
             if (i == selectedAnswerIndex) {
-                button.setForeground(Color.PINK);
+                button.setForeground(Color.BLUE);
             } else {
-                // Reset color to default to indicate deselection
-                button.setForeground(UIManager.getColor(Color.RED)); // Default text color
+                button.setForeground(Color.BLACK); // Use a standard color instead of resetting to default
             }
         }
     }
 
     // go through each button and check if correct answer
     private void verifyAns(Question question, int answerIndex) {
+
+        gameState = 1;
 
         for (int i = 0; i < optionButtons.length; i++) {
             JButton button = optionButtons[i];
@@ -160,23 +192,20 @@ public class GameDisplay extends JFrame {
             if (i == selectedAnswerIndex && (question.isCorrectAnswer(selectedAnswerIndex))) {
                 // correct
                 button.setForeground(Color.GREEN);
-                System.out.println("Correct answer!");
+
+                tempScore++;
+                System.out.println("Score update: " + tempScore);
             } else if (i == selectedAnswerIndex) {
-                button.setForeground(Color.PINK);
+                button.setForeground(Color.BLUE);
             } else if ((question.isCorrectAnswer(i))) {
                 // wrong answer: show correct
-                button.setForeground(Color.WHITE);
-                button.setBackground(Color.RED);
-                button.setOpaque(true);
+                button.setForeground(Color.RED);
             } else {
                 // default button
                 button.setBackground(UIManager.getColor("Button.background")); // Default button color
                 button.setForeground(UIManager.getColor("Button.foreground")); // Default text color
-                System.out.println("Incorrect answer.");
             }
         }
-
-        gameState = 1;
     }
 }
 
