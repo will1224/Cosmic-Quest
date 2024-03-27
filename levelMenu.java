@@ -38,7 +38,7 @@ public class levelMenu implements ActionListener {
         JButton marsButton = createButtonWithImage("images/mars.png", "Mars");
         JButton jupiterButton = createButtonWithImage("images/jupiter.png", "Jupiter");
         JButton saturnButton = createButtonWithImage("images/saturn.png", "Saturn");
-        JButton uranusButton = createButtonWithImage("images/uranus.png", "Uranus");
+        JButton uranusButton = createButtonWithImageWidth("images/uranus.png", "Uranus");
         JButton returnButton = createButtonWithImage("images/button.png", "Return to Main Menu");
         JButton neptuneButton = createButtonWithImage("images/neptune.png", "Neptune");
         JButton nebulasButton = createButtonWithImage("images/circleButton.jpg", "Nebulas");
@@ -64,7 +64,35 @@ public class levelMenu implements ActionListener {
     private JButton createButtonWithImage(String imagePath, String actionCommand) {
         try {
             BufferedImage originalImage = ImageIO.read(new File(imagePath));
-            Image resizedImage = originalImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+            int originalWidth = originalImage.getWidth(null);
+            int originalHeight = originalImage.getHeight(null);
+            int newHeight = 190; 
+
+            double aspectRatio = (double) originalWidth / (double) originalHeight;
+            int newWidth = (int) Math.round(newHeight * aspectRatio);
+            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+            JButton button = new JButton(new ImageIcon(resizedImage));
+            button.setBorderPainted(false);
+            button.setFocusPainted(false);
+            button.setContentAreaFilled(false);
+            button.setActionCommand(actionCommand);
+            button.addActionListener(this);
+            return button;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new JButton(actionCommand);
+        }
+    }
+    private JButton createButtonWithImageWidth(String imagePath, String actionCommand) {
+        try {
+            BufferedImage originalImage = ImageIO.read(new File(imagePath));
+            int originalWidth = originalImage.getWidth(null);
+            int originalHeight = originalImage.getHeight(null);
+            int newWidth = 200;
+            double aspectRatio = (double) originalHeight / (double) originalWidth;
+            int newHeight = (int) Math.round(newWidth * aspectRatio);
+            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
             JButton button = new JButton(new ImageIcon(resizedImage));
             button.setBorderPainted(false);
@@ -89,5 +117,6 @@ public class levelMenu implements ActionListener {
             new mainMenu();
         }
     }
+
 
 }
