@@ -1,16 +1,49 @@
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
 public class levelInfo extends JFrame implements ActionListener {
     private User user;
     private JButton next;
     private JLabel title;
     private JTextArea info;
+    private String level;
+    private String text;
 
     public levelInfo(User user){
         super("Cosmic Quest: Stellar Treasures");
+        this.user = user;
+
+        try{
+            File levelInfoFile= new File("lessons.json");
+            JSONArray levels;
+            if (levelInfoFile.exists()) {
+                levels = (JSONArray) new JSONParser().parse(new FileReader("lessons.json")); //issue?
+                JSONObject userLevelInfo = (JSONObject) levels.get(user.getLevel());
+                level = (String) userLevelInfo.get("level");
+                text = (String) userLevelInfo.get("info");
+            }
+            else {
+                levels = new JSONArray();
+                FileWriter fw = new FileWriter("lessons.json");
+                fw.write(levels.toJSONString());
+                fw.close();
+                level = "no level found";
+                text = "no info";
+            }
+
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920, 1080);
 
@@ -21,13 +54,13 @@ public class levelInfo extends JFrame implements ActionListener {
         next = new JButton("Next");
         title = new JLabel();
 
-        title.setText("whatever planet we are on ");
+        title.setText(level);
         title.setFont(new Font(null, Font.PLAIN, 40));
         title.setForeground(Color.white);
 
         info = new JTextArea(10, 20);
         info.setFont(new Font(null, Font.PLAIN, 20));
-        info.setText("read from JSON file");
+        info.setText(text);
         info.setEditable(false);
 
         background.setLayout(null);
@@ -48,13 +81,14 @@ public class levelInfo extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == next){
-             GameControl questions = new GameControl(user); 
+             GameControl questions = new GameControl(user);
              questions.startGame(); //move to questions screen
              dispose();
         }
     }
 
     public static void main(String[] args) {
-        levelInfo level = new levelInfo(new User("will", "g"));
+        User user = new User("will", "g");
+        levelInfo level = new levelInfo(user);
     }
 }
