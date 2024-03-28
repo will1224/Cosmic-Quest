@@ -7,7 +7,7 @@ import org.json.simple.JSONObject;
 public class Main {
     public static void main(String[] args) {
         Accounts accounts = new Accounts();
-        accounts.login("hkong47", "abc123");
+        accounts.registerAccount("hkong47", "abc123");
         JSONObject loggedInUser = accounts.getCurrentAccount();
         LevelProgress progress = new LevelProgress((JSONArray) loggedInUser.get("progress"));
         //Simulation: Successful completion of a level
