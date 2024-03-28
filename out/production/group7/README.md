@@ -10,19 +10,19 @@ Cosmic Quest: Stellar Treasures is designed to be an interactive, educational to
 ## Required Libraries & Third-Party Tools
 - **Java Development Kit** (JDK) - version 21 
     - Compiler and runtime environment for Java applications
-- **JSON.simple** - [version 1.1](http://www.java2s.com/Code/Jar/j/Downloadjsonsimple11jar.htm) (for JSON parsing) 
+- **JSON.simple** - [version 1.1.1](http://www.java2s.com/Code/Jar/j/Downloadjsonsimple111jar.htm) (for JSON parsing) 
     - Lightweight Java library for parsing JSON data
 - **Java Swing** (for GUI)
     - Java library for creating graphical user interfaces
 - **JavaDoc** (for documentation)
     - Tool for generating API documentation from Java source code
-- **Junit** (for testing)
+- **JUnit** (for testing)
     - Java testing framework for unit testing
 - **JavaUtil** (Java utility classes) 
     - Standard Java utility classes for common programming tasks
 - **AWT** (Abstract Window Toolkit)
     - Java library for creating user interfaces, deprecated in favor of Swing
-- **Java.io** (Input/output classes) 
+- **Java.IO** (Input/output classes) 
     - Java package for input/output operations
 
 Ensure that you have these libraries and tools properly installed and configured to build and run Cosmic Quest: Stellar Treasures.
@@ -31,14 +31,17 @@ Ensure that you have these libraries and tools properly installed and configured
 
 ## Building the Software
 
-**Step 1:** Install Java Development Kit (JDK)
+**Step 1:** Install Java Development Kit (JDK)<br>
 Download and install the appropriate JDK for your operating system from the official Oracle website or any other trusted source. Follow the installation instructions provided.
 
-**Step 2:**
+**Step 2:** Extract the folder containing the game<br>
+Open File Explorer and extract the contents of the game folder.
 
-**Step 3:**
+**Step 3:** Add JSON.simple to your CLASSPATH<br>
+Open a new command prompt in the group7 folder. Type the command: `set CLASSPATH=.;json-simple-1.1.1.jar`
 
-**Step 4:**
+**Step 4:** Run the executable file<br>
+Open the executable file named "Insert file name here" to run the game.
 
 ---
 
