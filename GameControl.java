@@ -29,7 +29,7 @@ public class GameControl {
         Level currLevel;
     public GameControl(JSONObject currUser) {
         this.currUser = currUser;
-        //Progress is extracted from the user JSONOBject by grabbing the "progress" key (typecast is done to avoid errors).
+        //Progress is extracted from the user JSONObject by grabbing the "progress" key (typecast is done to avoid errors).
         progress = new LevelProgress((JSONArray) this.currUser.get("progress"));
         //With the progress loaded into the LevelProgress object, class methods such as obtaining the current level can be done properly.
         this.currLevel = new Level(progress.getCurrentLevel()); 
@@ -46,7 +46,7 @@ public class GameControl {
     }
 
     public static void main(String[] args) {
-        //Accounts object must be created for login/signup to occurr.
+        //Accounts object must be created for login/signup to occur.
         Accounts accounts = new Accounts();
         //Account must be logged in (or new registration must be successful) for the getCurrentUser() method in Accounts.java to work properly.
         accounts.login("testing", "abc123");
