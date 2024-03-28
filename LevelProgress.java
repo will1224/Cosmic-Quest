@@ -30,13 +30,13 @@ public class LevelProgress {
          * The Sun is unlocked and set as the current level, while all other levels are locked.
          * All levels start with a score of 0.
         */
-        for (int i = 1; i <= levelNames.size(); i++) {
+        for (int i = 0; i < levelNames.size(); i++) {
             JSONObject temp = new JSONObject();
-            temp.put("levelName", levelNames.get(i - 1));
+            temp.put("levelName", levelNames.get(i));
             temp.put("levelNumber", i);
             temp.put("highscore", 0);
 
-            if (i == 1) {
+            if (i == 0) {
                 temp.put("unlocked", true);
                 temp.put("currentLevel", true);
             }
@@ -78,11 +78,11 @@ public class LevelProgress {
         for (int i = 0; i < progress.size(); i++) {
             /**If the current level is found, then return the level number.*/
             if ((Boolean) ((JSONObject) progress.get(i)).get("currentLevel")) {
-                return i + 1;
+                return i;
             }
         }
         /**Otherwise, return the tutorial level number.*/
-        return 1;
+        return 0;
     }
 
     /**
@@ -92,7 +92,7 @@ public class LevelProgress {
      * @param score the new score to assign to the level
      */
     public void setLevelScore(int levelNumber, int score) {
-        ((JSONObject) progress.get(levelNumber - 1)).put("highscore", score);
+        ((JSONObject) progress.get(levelNumber)).put("highscore", score);
     }
 
     /**
@@ -102,7 +102,7 @@ public class LevelProgress {
      * @return the highscore of the specified level
      */
     public int getLevelScore(int levelNumber) {
-        return (Integer) ((JSONObject) progress.get(levelNumber - 1)).get("highscore");
+        return (Integer) ((JSONObject) progress.get(levelNumber)).get("highscore");
     }
 
     /**
@@ -112,7 +112,7 @@ public class LevelProgress {
      * @param lockStatus the unlocked status to set the level to
      */
     public void setUnlockedStatus(int levelNumber, boolean lockStatus) {
-        ((JSONObject) progress.get(levelNumber - 1)).put("unlocked", lockStatus);
+        ((JSONObject) progress.get(levelNumber)).put("unlocked", lockStatus);
     }
 
     /**
@@ -122,7 +122,7 @@ public class LevelProgress {
      * @return the unlocked status of the specified level
      */
     public boolean getUnlockedStatus(int levelNumber) {
-        return (Boolean) ((JSONObject) progress.get(levelNumber - 1)).get("unlocked");
+        return (Boolean) ((JSONObject) progress.get(levelNumber)).get("unlocked");
     }
 
     /**
@@ -133,7 +133,7 @@ public class LevelProgress {
      */
     //Setter method to change the current level status of a level.
     public void setCurrentLevelStatus(int levelNumber, boolean currentLevelStatus) {
-        ((JSONObject) progress.get(levelNumber - 1)).put("currentLevel", currentLevelStatus);
+        ((JSONObject) progress.get(levelNumber)).put("currentLevel", currentLevelStatus);
     }
 
     /**
@@ -143,6 +143,6 @@ public class LevelProgress {
      * @return the current level status of the specified level
      */
     public boolean getCurrentLevelStatus(int levelNumber) {
-        return (Boolean) ((JSONObject) progress.get(levelNumber - 1)).get("currentLevel");
+        return (Boolean) ((JSONObject) progress.get(levelNumber)).get("currentLevel");
     }
 }

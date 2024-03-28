@@ -59,7 +59,7 @@ public class Level {
 
     }
 
-    // parses json file and returns list of questions
+    // Parses JSON file and returns list of questions
     // Method to parse a JSON string into a list of Question objects
     private List<Question> parseQuestions(String jsonText) throws ParseException {
         // Initialize an empty list to hold the Question objects
