@@ -22,6 +22,7 @@ public class levelInfo extends JFrame implements ActionListener {
         super("Cosmic Quest: Stellar Treasures");
         this.user = user;
 
+        /*
         try{
             File levelInfoFile= new File("lessons.json");
             JSONArray levels;
@@ -42,10 +43,10 @@ public class levelInfo extends JFrame implements ActionListener {
 
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
-        }
+        }*/
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1920, 1080);
+        setSize(1000, 1000);
 
         ImageIcon backgroundImage = new ImageIcon(getClass().getResource("images/menuBackground.jpg"));
         JLabel background = new JLabel(backgroundImage);
