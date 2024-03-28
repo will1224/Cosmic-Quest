@@ -17,7 +17,6 @@ public class GameControl {
 
         GameDisplay d = new GameDisplay();
         d.displayLevel(currLevel, questionSet);
-
     }
 
     public static void main(String[] args) {
