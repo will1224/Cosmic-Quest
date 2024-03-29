@@ -28,7 +28,7 @@ public class Accounts {
      * If the file <b>accountsdata.json</b> does not exist, the constructor will create an empty JSONArray and store it within the file.
      * If the file <b>accountsdata.json</b> does exist, the constructor will read the data in the file and load the list of accounts into the accounts instance variable.
      */
-    public Accounts(){
+    public Accounts() {
         /**Try-catch block to catch IO and parsing exceptions.*/
         try {
             /**Obtain the data file from the current directory.*/
@@ -217,7 +217,7 @@ public class Accounts {
             }
         }
         /**Otherwise, the account does not exist, and an empty JSONObject is returned.*/
-        return new JSONObject();
+        return null;
     }
 
     /**
@@ -258,5 +258,12 @@ public class Accounts {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Method logs out a user and sets the currently logged in user instance variable to null.
+     */
+    public void logout() {
+        currentAccount = null;
     }
 }

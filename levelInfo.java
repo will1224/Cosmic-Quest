@@ -11,17 +11,18 @@ import java.awt.event.ActionListener;
 import java.io.*;
 
 public class levelInfo extends JFrame implements ActionListener {
-    private User user;
+    private JSONObject user;
     private JButton next;
     private JLabel title;
     private JTextArea info;
     private String level;
     private String text;
 
-    public levelInfo(User user){
+    public levelInfo(JSONObject user){
         super("Cosmic Quest: Stellar Treasures");
         this.user = user;
 
+        /*
         try{
             File levelInfoFile= new File("lessons.json");
             JSONArray levels;
@@ -42,10 +43,10 @@ public class levelInfo extends JFrame implements ActionListener {
 
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
-        }
+        }*/
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1920, 1080);
+        setSize(1000, 1000);
 
         ImageIcon backgroundImage = new ImageIcon(getClass().getResource("images/menuBackground.jpg"));
         JLabel background = new JLabel(backgroundImage);
@@ -88,7 +89,8 @@ public class levelInfo extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        User user = new User("will", "g");
-        levelInfo level = new levelInfo(user);
+        Accounts accounts = new Accounts();
+        accounts.login("testing", "abc123");
+        levelInfo level = new levelInfo(accounts.getCurrentAccount());
     }
 }

@@ -2,10 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import org.json.simple.JSONArray;
 
 public class loginForm implements ActionListener {
-    private JFrame loginPage = new JFrame("Cosmic Quest: Stellar Treasure");
+    private JFrame loginPage = new JFrame("Cosmic Quest: Stellar Treasures");
     private JButton signUpButton = new JButton("Sign Up");
     private JButton loginButton = new JButton("Log In");
     private JTextField usernameField = new JTextField(20);
@@ -13,7 +12,7 @@ public class loginForm implements ActionListener {
     private JLabel usernameLabel = new JLabel("Username: ");
     private JLabel passwordLabel = new JLabel("Password: ");
     private JLabel msg = new JLabel("", SwingConstants.CENTER);
-    private JLabel titleLabel = new JLabel("Welcome to Cosmic Quest: Stellar Treasure", SwingConstants.CENTER);
+    private JLabel titleLabel = new JLabel("Welcome to Cosmic Quest: Stellar Treasures!", SwingConstants.CENTER);
 
 
     Accounts accountDatabase;
