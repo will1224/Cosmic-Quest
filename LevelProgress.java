@@ -111,8 +111,8 @@ public class LevelProgress {
      * @param levelNumber the number of the level to get the unlocked status for
      * @param lockStatus the unlocked status to set the level to
      */
-    public void setUnlockedStatus(int levelNumber, boolean lockStatus) {
-        ((JSONObject) progress.get(levelNumber)).put("unlocked", lockStatus);
+    public void setUnlockedStatus(int levelNumber, boolean unlockStatus) {
+        ((JSONObject) progress.get(levelNumber)).put("unlocked", unlockStatus);
     }
 
     /**

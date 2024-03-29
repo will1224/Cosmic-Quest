@@ -17,8 +17,6 @@ public class GameDisplay extends JFrame {
     private Image scaledBackgroundImage;
     private JPanel panel;
     private int gameState; // 0 = question mode
-
-
     private int tempScore;
 
 
@@ -82,7 +80,6 @@ public class GameDisplay extends JFrame {
     }
 
     private void displayNext() {
-
         if (selectedAnswerIndex == -1) {
             JOptionPane.showMessageDialog(this, "Please select an answer before proceeding.", "No Selection", JOptionPane.WARNING_MESSAGE);
             return;
@@ -104,7 +101,6 @@ public class GameDisplay extends JFrame {
 
         // add next
         addNextButtonToPanel();
-
     }
 
     private void addTitleToPanel(String titleText) {
@@ -136,7 +132,6 @@ public class GameDisplay extends JFrame {
                 updateSelected(); // show selected answer
             }
         });
-
 
         optionButtons[index] = button; // Store the button in the array
         panel.add(button);

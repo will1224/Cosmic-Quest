@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import org.junit.*;
 
+
 public class TestAccounts {
     private static Accounts accounts;
     private static JSONArray restore;
@@ -79,5 +80,48 @@ public class TestAccounts {
         assertEquals(false, accounts.login("test-ing", "abc123"));
         //Case 4: Test logging into an account with the wrong password.
         assertEquals(false, accounts.login("testing", "abc456"));
+    }
+
+    @Test
+    public void testGetAccountData() {
+        JSONObject aData = accounts.getAccountData("testing");
+        JSONObject fData = accounts.getAccountData("test-ing");
+        LevelProgress p = new LevelProgress();
+        assertNotEquals(null, aData);
+        assertEquals("testing", aData.get("username"));
+        assertEquals("abc123", aData.get("password"));
+        assertEquals(p.getProgress().toString(), aData.get("progress").toString());
+        assertEquals(null, fData);
+    }
+
+    @Test
+    public void testUpdateAccountsFile() {
+        accounts.registerAccount("testing2", "def456");
+        accounts = new Accounts();
+        JSONObject newAccount = accounts.getAccountData("testing2");
+        LevelProgress p = new LevelProgress();
+        assertEquals("testing2", newAccount.get("username"));
+        assertEquals("def456", newAccount.get("password"));
+        assertEquals(p.getProgress().toString(), newAccount.get("progress").toString());
+    }
+
+    @Test
+    public void testUpdateUserProgress() {
+        LevelProgress p = new LevelProgress((JSONArray) accounts.getAccountData("testing").get("progress"));
+        p.setCurrentLevelStatus(0, false);
+        p.setCurrentLevelStatus(1, true);
+        p.setUnlockedStatus(1, true);
+        accounts.updateUserProgress("testing", p.getProgress());
+
+        LevelProgress newP = new LevelProgress((JSONArray) accounts.getAccountData("testing").get("progress"));
+        assertEquals(false, newP.getCurrentLevelStatus(0));
+        assertEquals(true, newP.getCurrentLevelStatus(1));
+        assertEquals(true, newP.getUnlockedStatus(1));
+    }
+
+    @Test
+    public void testLogout() {
+        accounts.logout();
+        assertEquals(null, accounts.getCurrentAccount());
     }
 }

@@ -217,7 +217,7 @@ public class Accounts {
             }
         }
         /**Otherwise, the account does not exist, and an empty JSONObject is returned.*/
-        return new JSONObject();
+        return null;
     }
 
     /**
@@ -258,5 +258,12 @@ public class Accounts {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Method logs out a user and sets the currently logged in user instance variable to null.
+     */
+    public void logout() {
+        currentAccount = null;
     }
 }

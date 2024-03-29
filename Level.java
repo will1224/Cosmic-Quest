@@ -5,11 +5,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.io.*;
 
+
+/**
+ * Class 
+ */
 public class Level {
     private int levelID;
     private String name;
     private List<Question> questionList;
-
 
     // constructor
     public Level(int levelID) {
@@ -18,11 +21,9 @@ public class Level {
         this.levelID = levelID;
         this.questionList = readQuestions();
         this.name = PLANET_NAMES[levelID];
-
     }
 
     private List<Question> readQuestions() {
-
         // make 5 question objects
         // randomize each one and make sure of no repeats
         // store in list
@@ -35,14 +36,6 @@ public class Level {
 
             // parse json text and make question objects
             List<Question> questionList = parseQuestions(jsonText);
-
-            // print every question FOR TESTING
-            /*
-            for (int i = 0; i < questionList.size(); i++) {
-                System.out.println("Question: " + questionList.get(i).getQuestionText());
-                System.out.println("Answers: " + questionList.get(i).getAnswers());
-                System.out.println("Correct: " + questionList.get(i).getCorrectAnsText());
-            }*/
 
             return questionList;
 
@@ -132,5 +125,4 @@ public class Level {
     public static void main(String[] args) {
         Level testLvl = new Level(0);
     }
-
 }
