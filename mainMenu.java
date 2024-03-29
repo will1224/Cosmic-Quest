@@ -113,7 +113,5 @@ public class mainMenu implements ActionListener {
         } else if (e.getSource() == scores) {
             new ScoreBoard(menu, "Jennifer Cao", 1000, "images/jen.jpeg").setVisible(true);
         }
-
     }
-
 }

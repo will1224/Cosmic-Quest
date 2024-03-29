@@ -1,0 +1,14 @@
+{
+<<<<<<< HEAD
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/Users/ryanna/Downloads/json-simple-1.1.jar"
+    ]
+}
+=======
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "/Users/sophiatong/Downloads/json-simple-1.1.jar"
+  ]
+}
+>>>>>>> 282559de2e5d755db3f0339be7337053f4c708a5
