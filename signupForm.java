@@ -4,47 +4,69 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class signupForm implements ActionListener{
-    private JFrame signUpPage = new JFrame();
-    private JButton createAccount = new JButton("Create Account");
+    private JFrame signUpPage = new JFrame("Sign Up for Cosmic Quest: Stellar Treasure");
+    private JButton createAccountButton = new JButton("Create Account");
     private JButton backButton = new JButton("Back");
-    private JTextField usernameField = new JTextField();
-    private JTextField passwordField = new JPasswordField();
+    private JTextField usernameField = new JTextField(20);
+    private JPasswordField passwordField = new JPasswordField(20);
     private JLabel usernameLabel = new JLabel("Enter Username: ");
     private JLabel passwordLabel = new JLabel("Enter Password: ");
-    private JLabel msg = new JLabel("");
+    private JLabel msg = new JLabel("", SwingConstants.CENTER);
+    private JLabel titleLabel = new JLabel("Welcome to Cosmic Quest: Stellar Treasure", SwingConstants.CENTER);
 
     Accounts accountDatabase;
     public signupForm(Accounts acc){
         accountDatabase = acc;
 
-        usernameLabel.setBounds(25, 100, 150, 25);
-        passwordLabel.setBounds(25, 150, 150, 25);
-
-        msg.setBounds(125,250,250,35);
-        msg.setFont(new Font(null, Font.BOLD,25));
-
-        usernameField.setBounds(125, 100, 200, 25);
-        passwordField.setBounds(125, 150, 200, 25);
-
-        backButton.setBounds(125, 200, 100, 25);
-        backButton.setFocusable(false);
-        backButton.addActionListener(this);
-
-        createAccount.setBounds(225, 200, 100, 25);
-        createAccount.setFocusable(false);
-        createAccount.addActionListener(this);
-
-        signUpPage.add(usernameLabel);
-        signUpPage.add(passwordLabel);
-        signUpPage.add(msg);
-        signUpPage.add(createAccount);
-        signUpPage.add(backButton);
-        signUpPage.add(usernameField);
-        signUpPage.add(passwordField);
-
+        signUpPage.setExtendedState(JFrame.MAXIMIZED_BOTH);
         signUpPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        signUpPage.setSize(420,420);
-        signUpPage.setLayout(null);
+    
+        // Background panel setup
+        ImageIcon icon = new ImageIcon("images/mainmenuBGD.png"); 
+        BackgroundPanel backgroundPanel = new BackgroundPanel(icon.getImage());
+        backgroundPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+    
+        // Components setup
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(0, 50, 10, 50); // Margin settings
+
+        Font textFieldFont = new Font("Arial", Font.PLAIN, 24);
+        usernameField.setFont(textFieldFont);
+        passwordField.setFont(textFieldFont);
+
+    
+        // Change text color
+        usernameLabel.setForeground(Color.WHITE);
+        passwordLabel.setForeground(Color.WHITE);
+        msg.setForeground(Color.WHITE); // Set message color, you might want to differentiate error/success messages
+        titleLabel.setForeground(Color.WHITE);
+    
+        createAccountButton.setForeground(Color.BLACK);
+        backButton.setForeground(Color.BLACK);
+    
+        // Add components
+        backgroundPanel.add(usernameLabel, gbc);
+        backgroundPanel.add(usernameField, gbc);
+        backgroundPanel.add(passwordLabel, gbc);
+        backgroundPanel.add(passwordField, gbc);
+    
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        buttonPanel.setOpaque(false); // Transparent to show the background
+        buttonPanel.add(backButton);
+        buttonPanel.add(createAccountButton);
+        backgroundPanel.add(buttonPanel, gbc);
+    
+        backgroundPanel.add(msg, gbc);
+    
+        // Listeners
+        backButton.addActionListener(this);
+        createAccountButton.addActionListener(this);
+    
+        // Frame setup
+        signUpPage.setContentPane(backgroundPanel);
+        signUpPage.pack();
         signUpPage.setVisible(true);
     }
 
@@ -53,7 +75,7 @@ public class signupForm implements ActionListener{
         if (a.getSource() == backButton) {
             signUpPage.dispose();
             loginForm loginPage = new loginForm(accountDatabase);
-        } else if (a.getSource() == createAccount) {
+        } else if (a.getSource() == createAccountButton) {
             boolean succesfulCreation = accountDatabase.registerAccount(usernameField.getText(), passwordField.getText());
             if (succesfulCreation) {
                 msg.setForeground(Color.green);
@@ -70,4 +92,5 @@ public class signupForm implements ActionListener{
             }
         }
     }
+
 }
