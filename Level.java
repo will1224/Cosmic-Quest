@@ -9,6 +9,9 @@ import java.io.*;
 /**
  * Class creates a level and controls the logic and questions provided.
  * Grabs stored questions from the <b>question.json</b> file.
+ * 
+ * @version 1.0
+ * @author Jennifer Cao
  */
 public class Level {
     /**The ID of the level. Uniquely identifies each level in increasing order from 0-9 inclusive.*/

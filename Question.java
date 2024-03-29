@@ -2,6 +2,9 @@ import java.util.*;
 
 /**
  * Class contains logic related to question implementation.
+ * 
+ * @version 1.0
+ * @author Jennifer Cao
  */
 public class Question {
     /**The text of the question.*/
