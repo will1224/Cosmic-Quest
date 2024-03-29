@@ -36,6 +36,7 @@ public class Level {
      * Method makes five question objects, ensuring randomization and no repeats, and stores them in a list.
      * 
      * @return a list of five questions
+     * @see parseQuestions
      */
     private List<Question> readQuestions() {
         String FILE = "question.json";
