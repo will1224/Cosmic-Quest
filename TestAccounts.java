@@ -10,10 +10,6 @@ public class TestAccounts {
     private static Accounts accounts;
     private static JSONArray restore;
 
-    public TestAccounts() {
-
-    }
-
     @BeforeClass
     public static void setUpClass() {
         //Backup current list of accounts.

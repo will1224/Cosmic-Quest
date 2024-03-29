@@ -96,7 +96,7 @@ public class Level {
 
     // return randomized list of 5 questions from the question list
     public List<Question> getQuestions() {
-        // First, ensure the questionList is not null and has questions
+        // Ensure the questionList is not null and has questions
         if (questionList == null || questionList.isEmpty()) {
             System.out.println("The question list is empty or not initialized.");
             return Collections.emptyList(); // Return an empty list to avoid null pointer exceptions
@@ -119,7 +119,6 @@ public class Level {
     public String getName() {
         return name;
     }
-
 
     /* TESTER */
     public static void main(String[] args) {
