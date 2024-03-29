@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class GameDisplay extends JFrame {
-
+    //for questions
     private JButton[] optionButtons = new JButton[4];
     private int selectedAnswerIndex; // Track the selected answer
     private List<Question> questions; // List of questions for the current level
@@ -19,6 +19,12 @@ public class GameDisplay extends JFrame {
     private int gameState; // 0 = question mode
     private int tempScore;
 
+    //for lesson
+    private JLabel levelName;
+    private JTextArea lesson;
+    private JButton next;
+    private boolean nextPressed;
+
 
     //constructor
     public GameDisplay() {
@@ -27,14 +33,14 @@ public class GameDisplay extends JFrame {
         setSize(1920, 1080);
 
         // Load the background image
-        try {
-            BufferedImage backgroundImage = ImageIO.read(new File("images/menuBackground.jpg"));
-            JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImage));
-            setContentPane(backgroundLabel);
-            setLayout(new BorderLayout()); // Use BorderLayout
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            BufferedImage backgroundImage = ImageIO.read(new File("images/gradient.jpg"));
+//            JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImage));
+//            setContentPane(backgroundLabel);
+//            setLayout(new BorderLayout()); // Use BorderLayout
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         // Ensure panel is transparent to show the background image
         this.panel = new JPanel();
@@ -47,7 +53,43 @@ public class GameDisplay extends JFrame {
 
         setVisible(true); // It's a good practice to make the frame visible after adding all components
     }
+    public void displayLesson() {
+        // Clear the panel
+        panel.removeAll();
 
+        // Set layout for lesson display
+        panel.setLayout(new BorderLayout());
+
+        // Add level name at the top
+        JLabel levelName = new JLabel(currentLevel.getName(), SwingConstants.CENTER);
+        levelName.setFont(new Font("Space Mono", Font.BOLD, 30));
+        levelName.setForeground(Color.black);
+        panel.add(levelName, BorderLayout.NORTH);
+
+        // Create and add lesson text area in the center
+        JTextArea lessonText = new JTextArea();
+        lessonText.setText(currentLevel.getLesson());
+        lessonText.setFont(new Font("Space Mono", Font.PLAIN, 20));
+        lessonText.setLineWrap(true);
+        lessonText.setWrapStyleWord(true);
+        lessonText.setEditable(false);
+        lessonText.setForeground(Color.black);
+        JScrollPane scrollPane = new JScrollPane(lessonText);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        // Add 'Next' button at the bottom
+        JButton nextButton = new JButton("Next");
+        nextButton.setFont(new Font("Space Mono", Font.PLAIN, 20));
+        nextButton.addActionListener(e -> {
+            nextPressed = true;
+            displayLevel(currentLevel, questions);
+            dispose();
+        });
+        panel.add(nextButton, BorderLayout.SOUTH);
+
+        panel.revalidate();
+        panel.repaint();
+    }
     public void displayLevel(Level currLevel, List<Question> questionSet) {
         if (questionSet.isEmpty()) return;
 
@@ -56,6 +98,7 @@ public class GameDisplay extends JFrame {
         this.currentQuestionIndex = 0; // Start from the first question
         this.selectedAnswerIndex = -1; // set default for no selection
 
+        while(!nextPressed){displayLesson();}
         displayQuestion(currLevel); // Display the first question
 
     }

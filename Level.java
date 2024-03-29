@@ -28,7 +28,7 @@ public class Level {
      * @see readQuestions
      */
     public Level(int levelID) {
-        String[] PLANET_NAMES = {"Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"};
+        String[] PLANET_NAMES = {"Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Other Celestial Bodies"};
 
         this.levelID = levelID;
         this.questionList = readQuestions();
@@ -148,8 +148,32 @@ public class Level {
         return name;
     }
 
+
+
+    public String getLesson() {
+        String file = "lessons.json";
+        try {
+            Object obj = new JSONParser().parse(new FileReader(file));
+            JSONObject jsonObj = (JSONObject) obj;
+            JSONArray lessons = (JSONArray) jsonObj.get("lessons");
+
+            for (Object element : lessons) {
+                JSONObject lesson = (JSONObject) element;
+                String levelNum = Integer.toString(levelID);
+                if (lesson.get("levelId").toString().equals(levelNum)) {
+//                    System.out.println((String) lesson.get("info"));
+                    return (String) lesson.get("info");
+                }
+            }
+        } catch(IOException | ParseException e){
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
     /* TESTER */
     public static void main(String[] args) {
         Level testLvl = new Level(0);
+
     }
 }

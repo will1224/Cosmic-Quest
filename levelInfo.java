@@ -22,28 +22,28 @@ public class levelInfo extends JFrame implements ActionListener {
         super("Cosmic Quest: Stellar Treasures");
         this.user = user;
 
-        /*
-        try{
-            File levelInfoFile= new File("lessons.json");
-            JSONArray levels;
-            if (levelInfoFile.exists()) {
-                levels = (JSONArray) new JSONParser().parse(new FileReader("lessons.json")); //issue?
-                JSONObject userLevelInfo = (JSONObject) levels.get(user.getLevel());
-                level = (String) userLevelInfo.get("level");
-                text = (String) userLevelInfo.get("info");
-            }
-            else {
-                levels = new JSONArray();
-                FileWriter fw = new FileWriter("lessons.json");
-                fw.write(levels.toJSONString());
-                fw.close();
-                level = "no level found";
-                text = "no info";
-            }
 
-        } catch (IOException | ParseException e) {
-            throw new RuntimeException(e);
-        }*/
+//        try{
+//            File levelInfoFile= new File("lessons.json");
+//            JSONArray levels;
+//            if (levelInfoFile.exists()) {
+//                levels = (JSONArray) new JSONParser().parse(new FileReader("lessons.json")); //issue?
+//                JSONObject userLevelInfo = (JSONObject) levels.get(user);
+//                level = (String) userLevelInfo.get("level");
+//                text = (String) userLevelInfo.get("info");
+//            }
+//            else {
+//                levels = new JSONArray();
+//                FileWriter fw = new FileWriter("lessons.json");
+//                fw.write(levels.toJSONString());
+//                fw.close();
+//                level = "no level found";
+//                text = "no info";
+//            }
+//
+//        } catch (IOException | ParseException e) {
+//            throw new RuntimeException(e);
+//        }
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000, 1000);
