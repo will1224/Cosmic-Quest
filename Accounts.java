@@ -266,4 +266,10 @@ public class Accounts {
     public void logout() {
         currentAccount = null;
     }
+
+    public static void main(String[] args) {
+        Accounts accounts = new Accounts();
+        JSONArray testing = accounts.getAccounts();
+        System.out.println(testing);
+    }
 }
