@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ScoreBoard extends JDialog {
+    private String playerUsername;
     public ScoreBoard(Frame parent, String playerName, int playerScore, String imagePath) {
         super(parent, "Player Score", true);
         getContentPane().setLayout(new BorderLayout()); // Use BorderLayout at the top level
@@ -54,6 +55,7 @@ public class ScoreBoard extends JDialog {
         setSize(400, 300);
         setLocationRelativeTo(parent);
     }
+
 
     public static void main(String[] args) {
         // Creating and showing this application's GUI.
