@@ -1,10 +1,10 @@
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 import org.json.simple.JSONArray;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class is used to store all relevant information related to accounts.<br><br>
@@ -41,8 +41,7 @@ public class Accounts {
                 FileWriter fw = new FileWriter("accountsdata.json");
                 fw.write(accounts.toJSONString());
                 fw.close();
-            }
-            else {
+            } else {
                 /**Accounts file already exists, so read in data from the file.*/
                 JSONArray temp = (JSONArray) new JSONParser().parse(new FileReader("accountsdata.json"));
                 /**Add each account into the list of accounts.*/
@@ -50,15 +49,11 @@ public class Accounts {
                     accounts.add((JSONObject) temp.get(i));
                 }
             }
+        }catch (IOException | ParseException ex) {
+            throw new RuntimeException(ex);
         }
         /**Catches IOExceptions.*/
-        catch (IOException e) {
-            e.printStackTrace();
-        }
         /**Catches ParseExceptions.*/
-        catch (ParseException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -267,6 +262,41 @@ public class Accounts {
         currentAccount = null;
     }
 
+
+
+
+    public PlayerScore getPlayerScore(String username){
+//        try {
+            Accounts accounts = new Accounts();
+            JSONArray allUserData = accounts.getAccounts();
+//            String jsonData = "[{\"password\":\"cosmic123\",\"progress\":[{\"currentLevel\":false,\"highscore\":1,\"levelNumber\":0,\"levelName\":\"The Sun\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":2,\"levelNumber\":1,\"levelName\":\"Mercury\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":2,\"levelName\":\"Venus\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":3,\"levelName\":\"Earth\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":4,\"levelName\":\"Mars\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":5,\"levelName\":\"Jupiter\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":6,\"levelName\":\"Saturn\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":7,\"levelName\":\"Uranus\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":8,\"levelName\":\"Neptune\",\"unlocked\":true},{\"currentLevel\":true,\"highscore\":0,\"levelNumber\":9,\"levelName\":\"Other Celestial Bodies\",\"unlocked\":true}],\"username\":\"education\"},{\"password\":\"cosmic456\",\"progress\":[{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":0,\"levelName\":\"The Sun\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":1,\"levelName\":\"Mercury\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":2,\"levelName\":\"Venus\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":3,\"levelName\":\"Earth\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":4,\"levelName\":\"Mars\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":5,\"levelName\":\"Jupiter\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":6,\"levelName\":\"Saturn\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":7,\"levelName\":\"Uranus\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":8,\"levelName\":\"Neptune\",\"unlocked\":true},{\"currentLevel\":true,\"highscore\":0,\"levelNumber\":9,\"levelName\":\"Other Celestial Bodies\",\"unlocked\":true}],\"username\":\"developer\"},{\"password\":\"abc123\",\"progress\":[{\"currentLevel\":true,\"highscore\":0,\"levelNumber\":0,\"levelName\":\"The Sun\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":1,\"levelName\":\"Mercury\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":2,\"levelName\":\"Venus\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":3,\"levelName\":\"Earth\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":4,\"levelName\":\"Mars\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":5,\"levelName\":\"Jupiter\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":6,\"levelName\":\"Saturn\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":7,\"levelName\":\"Uranus\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":8,\"levelName\":\"Neptune\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":9,\"levelName\":\"Other Celestial Bodies\",\"unlocked\":false}],\"username\":\"testing\"},{\"password\":\"\",\"progress\":[{\"currentLevel\":true,\"highscore\":0,\"levelNumber\":0,\"levelName\":\"The Sun\",\"unlocked\":true},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":1,\"levelName\":\"Mercury\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":2,\"levelName\":\"Venus\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":3,\"levelName\":\"Earth\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":4,\"levelName\":\"Mars\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":5,\"levelName\":\"Jupiter\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":6,\"levelName\":\"Saturn\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":7,\"levelName\":\"Uranus\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":8,\"levelName\":\"Neptune\",\"unlocked\":false},{\"currentLevel\":false,\"highscore\":0,\"levelNumber\":9,\"levelName\":\"Other Celestial Bodies\",\"unlocked\":false}],\"username\":\"\"}]";
+//            JSONArray allUserData = null;
+//            allUserData = (JSONArray) new JSONParser().parse(jsonData);
+            List<PlayerScore> userScores = new ArrayList<>();
+            int score = 0;
+            for (Object i : allUserData){
+                JSONObject userData = (JSONObject) i;
+                if(username.equals(userData.get("username").toString())) {
+                    JSONArray progressArray = (JSONArray) userData.get("progress");
+                    for (Object element : progressArray) {
+                        JSONObject levelData = (JSONObject) element;
+                        Object highScoreobj = levelData.get("highscore");
+                        if (highScoreobj != null) {
+                            try {
+                                score += Integer.parseInt(highScoreobj.toString());
+                            } catch (NumberFormatException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+            return new PlayerScore(username, score);
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
+    }
     public static void main(String[] args) {
         Accounts accounts = new Accounts();
         JSONArray testing = accounts.getAccounts();
