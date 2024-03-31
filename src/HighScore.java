@@ -1,7 +1,13 @@
 package src;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -9,7 +15,7 @@ import java.util.List;
 public class HighScore extends JFrame {
     private static final String DEFAULT_BACKGROUND_IMAGE_PATH = "images/background.jpg"; // Adjust as needed
 
-    public HighScore() {
+    public HighScore() throws ParseException {
         setTitle("High Scores");
         setSize(300, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,17 +51,39 @@ public class HighScore extends JFrame {
         backgroundPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
-    private List<PlayerScore> getScoresFromDatabase() {
-        return Arrays.asList(
-            new PlayerScore("Alice", 90),
-            new PlayerScore("Bob", 120),
-            new PlayerScore("Charlie", 85)
-        );
+    private List<PlayerScore> getScoresFromDatabase() throws ParseException {
+        Accounts accounts = new Accounts();
+        JSONArray allUserData = accounts.getAccounts();
+        List<PlayerScore> userScores = new ArrayList<>();
+        for (Object i : allUserData) {
+            int score = 0;
+            JSONObject userData = (JSONObject) i;
+            JSONArray progressArray = (JSONArray) userData.get("progress");
+            for (Object element : progressArray) {
+                JSONObject levelData = (JSONObject) element;
+                Object highScoreobj = levelData.get("highscore");
+                if (highScoreobj != null) {
+                    try {
+                        score += Integer.parseInt(highScoreobj.toString());
+                    } catch (NumberFormatException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+            userScores.add(new PlayerScore(userData.get("username").toString(), score));
+        }
+        return userScores;
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            HighScore frame = new HighScore();
+            HighScore frame = null;
+            try {
+                frame = new HighScore();
+                frame.getScoresFromDatabase();
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
             frame.setVisible(true);
         });
     }

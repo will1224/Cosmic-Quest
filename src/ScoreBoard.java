@@ -56,10 +56,15 @@ public class ScoreBoard extends JDialog {
         setLocationRelativeTo(parent);
     }
 
+
+
     public static void main(String[] args) {
         // Creating and showing this application's GUI.
+        Accounts acc = new Accounts();
+        PlayerScore user = acc.getPlayerScore("user");
+        // Creating and showing this application's GUI.
         SwingUtilities.invokeLater(() -> {
-            ScoreBoard dialog = new ScoreBoard(null, "Player1", 100, "images/profile.jpg");
+            ScoreBoard dialog = new ScoreBoard(null, user.getPlayerName(), user.getScore(), "images/profile.jpg");
             dialog.setVisible(true);
             System.exit(0);
         });
