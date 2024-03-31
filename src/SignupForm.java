@@ -83,6 +83,7 @@ public class SignupForm implements ActionListener {
 
         backButton.addActionListener(this);
         createAccountButton.addActionListener(this);
+        signUpPage.getRootPane().setDefaultButton(createAccountButton);
 
         signUpPage.pack();
         signUpPage.setVisible(true);

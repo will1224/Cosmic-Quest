@@ -89,7 +89,8 @@ public class LoginForm implements ActionListener {
 
         loginButton.addActionListener(this);
         signUpButton.addActionListener(this);
-
+        loginPage.getRootPane().setDefaultButton(loginButton);
+    
         loginPage.pack();
         loginPage.setVisible(true);
 
