@@ -113,6 +113,12 @@ public class MainMenu implements ActionListener {
             new LoginForm(null);
         } else if (e.getSource() == newGame) {
             menu.dispose(); // Example: Close the main menu and start a new game
+            GameControl game = new GameControl(accounts, true);
+            game.startGame();
+        } else if (e.getSource() == continueGame) {
+            menu.dispose();
+            GameControl game = new GameControl(accounts);
+            game.startGame();
         } else if (e.getSource() == options) {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
