@@ -24,6 +24,7 @@ public class SignupForm implements ActionListener {
     private JLabel passwordLabel = new JLabel("Enter Password: ");
     private JLabel msg = new JLabel("", SwingConstants.CENTER);
     private JLabel titleLabel = new JLabel("Welcome to Cosmic Quest: Stellar Treasure", SwingConstants.CENTER);
+    private Accounts accounts; 
 
     Accounts accountDatabase;
 
@@ -136,7 +137,6 @@ public class SignupForm implements ActionListener {
                 msg.setText("Created account successfully!");
                 signUpPage.add(msg);
                 signUpPage.dispose();
-                Accounts accounts = this.accountDatabase; // Use the existing Accounts object
                 MainMenu mainMenu = new MainMenu(accounts);
             } else {
                 msg.setForeground(Color.red);
