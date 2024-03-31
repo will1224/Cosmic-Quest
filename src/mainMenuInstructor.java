@@ -112,7 +112,8 @@ public class mainMenuInstructor implements ActionListener {
             menu.dispose(); // Close the main menu
             new levelMenu(accounts); // Open the level menu
         } else if (e.getSource() == exitGame) {
-            menu.dispose(); // Close the application
+            menu.dispose();
+            new loginForm(null);
         } else if (e.getSource() == newGame) {
             menu.dispose(); // Example: Close the main menu and start a new game
         } else if (e.getSource() == options) {
