@@ -136,7 +136,8 @@ public class SignupForm implements ActionListener {
                 msg.setText("Created account successfully!");
                 signUpPage.add(msg);
                 signUpPage.dispose();
-                MainMenu mainMenu = new MainMenu();
+                Accounts accounts = this.accountDatabase; // Use the existing Accounts object
+                MainMenu mainMenu = new MainMenu(accounts);
             } else {
                 msg.setForeground(Color.red);
                 msg.setText("An account with this username already exists. Please try to login instead.");

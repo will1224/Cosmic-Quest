@@ -117,7 +117,8 @@ public class LoginForm implements ActionListener {
                 } else if (username.toLowerCase().contains("developer")) {
                     MainMenuSoftware softwareMenu = new MainMenuSoftware();
                 } else {
-                    MainMenu userMenu = new MainMenu();
+                    Accounts accounts = this.accountDatabase; // Use the existing Accounts object
+                    MainMenu mainMenu = new MainMenu(accounts);
                 }
             }
         } else if (e.getSource() == signUpButton) {
