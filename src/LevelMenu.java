@@ -256,9 +256,8 @@ public class LevelMenu implements ActionListener {
                 selected = 9;
                 break;
             case "Return to Main Menu":
-                // Handle return to main menu
                 frame.dispose();
-                MainMenu mainMenu = new MainMenu(accounts);
+                //MainMenu mainMenu = new MainMenu(accounts);
                 return; // Exit the method to prevent further execution
         }
 

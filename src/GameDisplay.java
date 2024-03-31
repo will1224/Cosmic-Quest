@@ -6,6 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +32,7 @@ public class GameDisplay extends JFrame {
     private JTextArea lesson;
     private JButton next;
     private boolean nextPressed;
+    private JButton backButton;
 
     // colour constants
     private Color PINK = new Color(255, 104, 176);
@@ -61,6 +63,24 @@ public class GameDisplay extends JFrame {
         panel.setVisible(true);
         tempScore = 0;
         accounts = a;
+
+        backButton = new JButton("Back");
+        backButton.setFont(new Font("Space Mono", Font.PLAIN, 20));
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+
+        // Create a panel at the bottom for the Back button
+        JPanel bottomPanel = new JPanel(new BorderLayout());
+        bottomPanel.add(backButton, BorderLayout.WEST); // Place the Back button on the west
+        bottomPanel.setOpaque(false); // Optional: make the panel transparent
+
+        // Add the bottom panel to the main frame
+        add(bottomPanel, BorderLayout.SOUTH);
+
 
         setVisible(true);
     }
