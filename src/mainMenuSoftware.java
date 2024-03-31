@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URI;
 
 public class mainMenuSoftware implements ActionListener {
     private JFrame menu;
@@ -120,9 +121,19 @@ public class mainMenuSoftware implements ActionListener {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
             new ScoreBoard(menu, "Jennifer Cao", 1000, "images/jen.jpeg").setVisible(true);
-        }  else if (e.getSource() == software) {
-            menu.dispose();
+        } else if (e.getSource() == software) {
+            try {
+                Desktop desktop = Desktop.getDesktop();
+                if (Desktop.isDesktopSupported() && desktop.isSupported(Desktop.Action.BROWSE)) {
+                    URI uri = new URI("https://repo.csd.uwo.ca/dashboard");
+                    desktop.browse(uri);
+                } else {
+                    throw new UnsupportedOperationException("Browsing not supported!");
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                // Handle exceptions or errors here, such as a dialog box to inform the user
+            }
         }
-
     }
 }

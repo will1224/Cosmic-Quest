@@ -1,4 +1,5 @@
 package src;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,7 +22,7 @@ public class levelMenu implements ActionListener {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 try {
-                    BufferedImage backgroundImage = ImageIO.read(new File("images/menuBackground.jpg"));
+                    BufferedImage backgroundImage = ImageIO.read(new File("images/space.jpg"));
                     Image scaledImage = backgroundImage.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
                     g.drawImage(scaledImage, 0, 0, this);
                 } catch (IOException e) {
@@ -32,7 +33,7 @@ public class levelMenu implements ActionListener {
         frame.setContentPane(backgroundPanel);
 
         // Manually create each button with its own image
-        JButton sunButton = createButtonWithImage("images/circleButton.jpg", "The Sun");
+        JButton sunButton = createButtonWithImage("images/sun.png", "The Sun");
         JButton mercuryButton = createButtonWithImage("images/mercury.png", "Mercury");
         JButton venusButton = createButtonWithImage("images/venus.png", "Venus");
         JButton earthButton = createButtonWithImage("images/earth.png", "Earth");
@@ -40,10 +41,10 @@ public class levelMenu implements ActionListener {
         JButton jupiterButton = createButtonWithImage("images/jupiter.png", "Jupiter");
         JButton saturnButton = createButtonWithImage("images/saturn.png", "Saturn");
         JButton uranusButton = createButtonWithImageWidth("images/uranus.png", "Uranus");
-        JButton returnButton = createButtonWithImage("images/button.png", "Return to Main Menu");
+        JButton returnButton = createButtonWithImageBack("images/backbtn.png", "Return to Main Menu");
         JButton neptuneButton = createButtonWithImage("images/neptune.png", "Neptune");
-        JButton nebulasButton = createButtonWithImage("images/circleButton.jpg", "Nebulas");
-        JButton blackHolesButton = createButtonWithImage("images/circleButton.jpg", "Black Holes");
+        JButton nebulasButton = createButtonWithImage("images/sun.png", "Nebulas");
+        JButton blackHolesButton = createButtonWithImage("images/blackhole.png", "Black Holes");
 
         // Add buttons to the background panel
         backgroundPanel.add(sunButton);
@@ -67,7 +68,7 @@ public class levelMenu implements ActionListener {
             BufferedImage originalImage = ImageIO.read(new File(imagePath));
             int originalWidth = originalImage.getWidth(null);
             int originalHeight = originalImage.getHeight(null);
-            int newHeight = 190; 
+            int newHeight = 190;
 
             double aspectRatio = (double) originalWidth / (double) originalHeight;
             int newWidth = (int) Math.round(newHeight * aspectRatio);
@@ -85,12 +86,36 @@ public class levelMenu implements ActionListener {
             return new JButton(actionCommand);
         }
     }
+
     private JButton createButtonWithImageWidth(String imagePath, String actionCommand) {
         try {
             BufferedImage originalImage = ImageIO.read(new File(imagePath));
             int originalWidth = originalImage.getWidth(null);
             int originalHeight = originalImage.getHeight(null);
             int newWidth = 200;
+            double aspectRatio = (double) originalHeight / (double) originalWidth;
+            int newHeight = (int) Math.round(newWidth * aspectRatio);
+            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+            JButton button = new JButton(new ImageIcon(resizedImage));
+            button.setBorderPainted(false);
+            button.setFocusPainted(false);
+            button.setContentAreaFilled(false);
+            button.setActionCommand(actionCommand);
+            button.addActionListener(this);
+            return button;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new JButton(actionCommand);
+        }
+    }
+
+    private JButton createButtonWithImageBack(String imagePath, String actionCommand) {
+        try {
+            BufferedImage originalImage = ImageIO.read(new File(imagePath));
+            int originalWidth = originalImage.getWidth(null);
+            int originalHeight = originalImage.getHeight(null);
+            int newWidth = 180;
             double aspectRatio = (double) originalHeight / (double) originalWidth;
             int newHeight = (int) Math.round(newWidth * aspectRatio);
             Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
@@ -118,6 +143,5 @@ public class levelMenu implements ActionListener {
             new mainMenu();
         }
     }
-
 
 }
