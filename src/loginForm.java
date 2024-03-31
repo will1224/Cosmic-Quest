@@ -97,27 +97,33 @@ public class loginForm implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == loginButton){
-            String username = String.valueOf(usernameField.getText());
-            String password = String.valueOf(passwordField.getText());
+        if (e.getSource() == loginButton) {
+            String username = usernameField.getText();
+            String password = new String(passwordField.getPassword()); // Correct way to get text from JPasswordField
             boolean successfulLogin = accountDatabase.login(username, password);
+            
             if (!successfulLogin) {
                 msg.setForeground(Color.red);
-                msg.setFont(new Font(null, Font.BOLD,15));
+                msg.setFont(new Font(null, Font.BOLD, 15));
                 msg.setText("Username or password incorrect");
-                loginPage.add(msg);
-            }
-            else if (successfulLogin) {
+            } else {
                 msg.setForeground(Color.green);
                 msg.setText("Login successful");
-                loginPage.add(msg);
-                loginPage.dispose();
-                mainMenu mainMenu = new mainMenu();
+                loginPage.dispose(); // Close the login window
+                
+                // Check username and open the corresponding main menu
+                if (username.toLowerCase().equals("education")) {
+                    mainMenuInstructor instructorMenu = new mainMenuInstructor(accountDatabase);
+                } else if (username.toLowerCase().contains("developer")) {
+                    mainMenuSoftware softwareMenu = new mainMenuSoftware(accountDatabase);
+                } else {
+                    mainMenu userMenu = new mainMenu(accountDatabase);
+                }
             }
-        }
-        else if (e.getSource() == signUpButton){
+        } else if (e.getSource() == signUpButton) {
             loginPage.dispose();
             signupForm signup = new signupForm(accountDatabase);
         }
     }
+
 }

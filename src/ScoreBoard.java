@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ScoreBoard extends JDialog {
-    public ScoreBoard(Frame parent, String playerName, int playerScore, String imagePath) {
+    public ScoreBoard(Frame parent, String playerName, int playerScore) {
         super(parent, "Player Score", true);
         getContentPane().setLayout(new BorderLayout()); // Use BorderLayout at the top level
 
@@ -25,7 +25,7 @@ public class ScoreBoard extends JDialog {
         gbc.insets = new Insets(5, 15, 5, 5); // Adding some margin
 
         // Load and resize the profile picture
-        ImageIcon originalIcon = new ImageIcon(imagePath);
+        ImageIcon originalIcon = new ImageIcon("images/profile.jpg");
         Image resizedImage = originalIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         JLabel picLabel = new JLabel(new ImageIcon(resizedImage));
 
@@ -56,10 +56,15 @@ public class ScoreBoard extends JDialog {
         setLocationRelativeTo(parent);
     }
 
+
+
     public static void main(String[] args) {
         // Creating and showing this application's GUI.
+        Accounts acc = new Accounts();
+        PlayerScore user = acc.getPlayerScore("user");
+        // Creating and showing this application's GUI.
         SwingUtilities.invokeLater(() -> {
-            ScoreBoard dialog = new ScoreBoard(null, "Player1", 100, "images/profile.jpg");
+            ScoreBoard dialog = new ScoreBoard(null, user.getPlayerName(), user.getScore());
             dialog.setVisible(true);
             System.exit(0);
         });

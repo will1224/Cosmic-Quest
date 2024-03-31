@@ -1,10 +1,14 @@
 package src;
+
 import javax.swing.*;
+
+import org.json.simple.parser.ParseException;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class mainMenu implements ActionListener {
+public class mainMenuInstructor implements ActionListener {
     private JFrame menu;
     private JTextField title;
     private JButton newGame;
@@ -15,8 +19,8 @@ public class mainMenu implements ActionListener {
     private JButton exitGame;
     private Accounts accounts;
 
-    public mainMenu(Accounts account) {
-        accounts = account;
+    public mainMenuInstructor(Accounts accounts) {
+        this.accounts = accounts;
         menu = new JFrame("Cosmic Quest: Stellar Treasures");
         java.net.URL menuBackgroundURL = getClass().getResource("/images/mainmenuBGD.png");
         if (menuBackgroundURL != null) {
@@ -108,14 +112,22 @@ public class mainMenu implements ActionListener {
             menu.dispose(); // Close the main menu
             new levelMenu(accounts); // Open the level menu
         } else if (e.getSource() == exitGame) {
-            menu.dispose(); // Close the application
+            menu.dispose();
+            new loginForm(null);
         } else if (e.getSource() == newGame) {
             menu.dispose(); // Example: Close the main menu and start a new game
         } else if (e.getSource() == options) {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
-            PlayerScore userScore = accounts.getPlayerScore(accounts.getCurrentAccount().get("username").toString());
-            new ScoreBoard(menu, userScore.getPlayerName(), userScore.getScore(), "images/jen.jpeg").setVisible(true);
+            SwingUtilities.invokeLater(() -> {
+                HighScore frame = null;
+                try {
+                    frame = new HighScore();
+                } catch (ParseException x) {
+                    throw new RuntimeException(x);
+                }
+                frame.setVisible(true);
+            });
         }
     }
 }

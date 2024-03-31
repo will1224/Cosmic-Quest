@@ -1,10 +1,12 @@
 package src;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URI;
 
-public class mainMenu implements ActionListener {
+public class mainMenuSoftware implements ActionListener {
     private JFrame menu;
     private JTextField title;
     private JButton newGame;
@@ -13,10 +15,11 @@ public class mainMenu implements ActionListener {
     private JButton scores;
     private JButton options;
     private JButton exitGame;
+    private JButton software;
     private Accounts accounts;
 
-    public mainMenu(Accounts account) {
-        accounts = account;
+    public mainMenuSoftware(Accounts accounts) {
+        this.accounts = accounts;
         menu = new JFrame("Cosmic Quest: Stellar Treasures");
         java.net.URL menuBackgroundURL = getClass().getResource("/images/mainmenuBGD.png");
         if (menuBackgroundURL != null) {
@@ -46,7 +49,9 @@ public class mainMenu implements ActionListener {
         selectLevel = createImageButton("images/levelBTN.png");
         scores = createImageButton("images/scoreBTN.png");
         options = createImageButton("images/optionBTN.png");
+        software = createImageButton("images/tools.png");
         exitGame = createImageButton("images/exitBTN.png");
+        
 
         // Add components to the button panel
         buttonPanel.add(Box.createVerticalGlue()); // Add space at the top
@@ -63,8 +68,11 @@ public class mainMenu implements ActionListener {
         buttonPanel.add(Box.createVerticalStrut(20)); // Space underneath
         buttonPanel.add(options);
         buttonPanel.add(Box.createVerticalStrut(20)); // Space underneath
+        buttonPanel.add(software);
+        buttonPanel.add(Box.createVerticalStrut(20)); // Space underneath
         buttonPanel.add(exitGame);
         buttonPanel.add(Box.createVerticalGlue()); // Add space at the bottom
+
 
         // Add button panel to the frame
         GridBagConstraints gbc = new GridBagConstraints();
@@ -108,14 +116,27 @@ public class mainMenu implements ActionListener {
             menu.dispose(); // Close the main menu
             new levelMenu(accounts); // Open the level menu
         } else if (e.getSource() == exitGame) {
-            menu.dispose(); // Close the application
+            menu.dispose();
+            new loginForm(null); // Close the application
         } else if (e.getSource() == newGame) {
             menu.dispose(); // Example: Close the main menu and start a new game
         } else if (e.getSource() == options) {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
-            PlayerScore userScore = accounts.getPlayerScore(accounts.getCurrentAccount().get("username").toString());
-            new ScoreBoard(menu, userScore.getPlayerName(), userScore.getScore(), "images/jen.jpeg").setVisible(true);
+            new ScoreBoard(menu, "Jennifer Cao", 1000).setVisible(true);
+        } else if (e.getSource() == software) {
+            try {
+                Desktop desktop = Desktop.getDesktop();
+                if (Desktop.isDesktopSupported() && desktop.isSupported(Desktop.Action.BROWSE)) {
+                    URI uri = new URI("https://repo.csd.uwo.ca/dashboard");
+                    desktop.browse(uri);
+                } else {
+                    throw new UnsupportedOperationException("Browsing not supported!");
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                // Handle exceptions or errors here, such as a dialog box to inform the user
+            }
         }
     }
 }
