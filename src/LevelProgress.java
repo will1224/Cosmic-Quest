@@ -103,7 +103,13 @@ public class LevelProgress {
      * @return the highscore of the specified level
      */
     public int getLevelScore(int levelNumber) {
-        return (Integer) ((JSONObject) progress.get(levelNumber)).get("highscore");
+        for(Object i: progress){
+            JSONObject arr = (JSONObject) i;
+            if (arr.get("levelNumber").toString().equals(String.valueOf(levelNumber))){
+                return Integer.parseInt(arr.get("highscore").toString());
+            }
+        }
+        return -1;
     }
 
     /**

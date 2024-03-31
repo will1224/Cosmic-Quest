@@ -208,7 +208,7 @@ public class LevelMenu implements ActionListener {
         }
 
         // Assuming GameControl's constructor takes an int for selected
-        GameControl game = new GameControl(accounts, false, selected);
+        GameControl game = new GameControl(accounts, false);
         game.startGame();
     }
 

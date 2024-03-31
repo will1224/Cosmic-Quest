@@ -11,11 +11,11 @@ public class GameControl {
         private Level currLevel;
         private GameDisplay d;
 
-    public GameControl(Accounts acc, boolean newgame, int selected) {
-        this.currLevel = new Level(selected);
+    public GameControl(Accounts acc, boolean newgame) {
         accounts = acc;
         clearProgress(acc);
         progress = new LevelProgress((JSONArray) accounts.getCurrentAccount().get("progress"));
+        this.currLevel = new Level(0);
     }
 
 
@@ -37,7 +37,7 @@ public class GameControl {
     public void startGame() {
         // set up questions
         List<Question> questionSet = currLevel.getQuestions();
-        System.out.println(currLevel.getName()); // TEMP TESTER
+//        System.out.println(currLevel.getName()); // TEMP TESTER
         d = new GameDisplay(accounts);
         d.displayLevel(currLevel, questionSet);
     }

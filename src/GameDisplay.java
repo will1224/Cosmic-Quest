@@ -121,6 +121,7 @@ public class GameDisplay extends JFrame {
         this.questions = questionSet; // store the list of questions
         this.currentQuestionIndex = 0; // start from the first question
         this.selectedAnswerIndex = -1; // set default for no selection
+        tempScore = 0;
 
         displayLesson();
     }
@@ -129,19 +130,37 @@ public class GameDisplay extends JFrame {
         gameState = 0;
 
         if (currentQuestionIndex >= questions.size()) {
-            JOptionPane.showMessageDialog(this, "You've completed all the questions!", "End of Questions", JOptionPane.INFORMATION_MESSAGE);
-            return;
+            if(tempScore != 5) {
+                JOptionPane.showMessageDialog(this, "You have not answered all questions right, please try again", "End of Questions", JOptionPane.INFORMATION_MESSAGE);
+                LevelProgress progress = new LevelProgress((JSONArray) accounts.getCurrentAccount().get("progress"));
+                if(tempScore > progress.getLevelScore(progress.getCurrentLevel())) {
+                    updateScore(tempScore);
+                }
+                tempScore = 0;
+                questions = currLevel.getQuestions();
+                displayLevel(currLevel, questions);
+            }else{
+                JOptionPane.showMessageDialog(this, "You've completed all the questions!", "End of Questions", JOptionPane.INFORMATION_MESSAGE);
+                updateScore(5);
+                LevelProgress progress = new LevelProgress((JSONArray) accounts.getCurrentAccount().get("progress"));
+                progress.setUnlockedStatus(progress.getCurrentLevel()+1, true);
+                progress.setCurrentLevelStatus((progress.getCurrentLevel() + 1), true);
+                progress.setCurrentLevelStatus(progress.getCurrentLevel(), false);
+                accounts.updateUserProgress(accounts.getCurrentAccount().get("username").toString(), progress.getProgress());
+                currLevel = new Level(currLevel.getLevelID()+1);
+                displayLevel(currLevel, currLevel.getQuestions());
+            }
+        }else {
+            Question currentQuestion = questions.get(currentQuestionIndex);
+
+            panel.removeAll(); // clear the panel for the new question
+            panel.setLayout(new GridLayout(7, 1, 10, 10)); // reset layout
+
+            addComponentsToPanel(currLevel);
+
+            revalidate();
+            repaint();
         }
-
-        Question currentQuestion = questions.get(currentQuestionIndex);
-
-        panel.removeAll(); // clear the panel for the new question
-        panel.setLayout(new GridLayout(7, 1, 10, 10)); // reset layout
-
-        addComponentsToPanel(currLevel);
-
-        revalidate();
-        repaint();
     }
 
     private void displayNext() {
@@ -258,8 +277,8 @@ public class GameDisplay extends JFrame {
                 button.setForeground(GREEN);
 
                 tempScore++;
-                System.out.println("Score update: " + tempScore);
-                updateScore(tempScore);
+//                System.out.println("Score update: " + tempScore);
+//                updateScore(tempScore);
             } else if (i == selectedAnswerIndex) {
                 button.setForeground(Color.BLUE);
             } else if ((question.isCorrectAnswer(i))) {
