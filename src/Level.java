@@ -149,7 +149,9 @@ public class Level {
         return name;
     }
 
-
+    public int getLevelID() {
+        return levelID;
+    }
 
     public String getLesson() {
         String file = "src/lessons.json";

@@ -2,12 +2,15 @@ package src;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
 
 public class GameDisplay extends JFrame {
     //for questions
@@ -20,6 +23,8 @@ public class GameDisplay extends JFrame {
     private JPanel panel;
     private int gameState; // 0 = question mode
     private int tempScore;
+    private Accounts accounts;
+    private int levelID;
 
     //for lesson
     private JLabel levelName;
@@ -33,7 +38,7 @@ public class GameDisplay extends JFrame {
 
 
     // constructor
-    public GameDisplay() {
+    public GameDisplay(Accounts a) {
         setTitle("Cosmic Quest: Stellar Treasures");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920, 1080);
@@ -55,6 +60,7 @@ public class GameDisplay extends JFrame {
 
         panel.setVisible(true);
         tempScore = 0;
+        accounts = a;
 
         setVisible(true);
     }
@@ -253,6 +259,7 @@ public class GameDisplay extends JFrame {
 
                 tempScore++;
                 System.out.println("Score update: " + tempScore);
+                updateScore(tempScore);
             } else if (i == selectedAnswerIndex) {
                 button.setForeground(Color.BLUE);
             } else if ((question.isCorrectAnswer(i))) {
@@ -265,5 +272,19 @@ public class GameDisplay extends JFrame {
             }
         }
     }
-}
 
+    
+    private void updateScore(int score) {
+        JSONObject currentAccount = accounts.getCurrentAccount();
+
+        //Get the current score.
+        LevelProgress progress = new LevelProgress((JSONArray) currentAccount.get("progress"));
+        progress.setLevelScore(currentLevel.getLevelID(), score);
+
+        //Uncomment the following line if using the instance variable instead of the parameter.
+        //progress.setLevelScore(currentLevel.getLevelID(), tempScore);
+
+        //Update the progress for the user's account.
+        accounts.updateUserProgress((String) currentAccount.get("username"), progress.getProgress());
+    }
+}
