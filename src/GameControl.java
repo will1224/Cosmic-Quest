@@ -11,12 +11,11 @@ public class GameControl {
         private Level currLevel;
         private GameDisplay d;
 
-    public GameControl(Accounts acc, boolean newgame) {
+    public GameControl(Accounts acc, boolean newgame, int selected) {
+        this.currLevel = new Level(selected);
         accounts = acc;
         clearProgress(acc);
         progress = new LevelProgress((JSONArray) accounts.getCurrentAccount().get("progress"));
-        //With the progress loaded into the LevelProgress object, class methods such as obtaining the current level can be done properly.
-        this.currLevel = new Level(progress.getCurrentLevel());
     }
 
 
@@ -36,9 +35,9 @@ public class GameControl {
 
     // Starts the game
     public void startGame() {
-        // make level
-        currLevel = new Level(0);// 0 for now
+        // set up questions
         List<Question> questionSet = currLevel.getQuestions();
+        System.out.println(currLevel.getName()); // TEMP TESTER
         d = new GameDisplay(accounts);
         d.displayLevel(currLevel, questionSet);
     }
