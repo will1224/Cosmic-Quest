@@ -29,16 +29,6 @@ public class LevelMenu implements ActionListener {
     private JFrame frame;
     private Accounts accounts;
 
-    /**
-     * Constructs a new {@code LevelMenu} with a reference to the {@code Accounts}
-     * object for user authentication
-     * and personalization. It initializes the GUI components, setting up a
-     * background and level selection buttons
-     * with custom images.
-     *
-     * @param accounts The {@code Accounts} object containing user account
-     *                 information and settings.
-     */
     public LevelMenu(Accounts accounts) {
 
         this.accounts = accounts;
@@ -229,13 +219,56 @@ public class LevelMenu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         System.out.println(command + " button pressed");
-        GameControl game = new GameControl(accounts, true, 0); //TRUE IS HARDCODED RN
 
-        if ("Return to Main Menu".equals(command)) {
-            frame.dispose();
-            Accounts accounts = this.accounts; // Use the existing Accounts object
-            MainMenu mainMenu = new MainMenu(accounts); 
+        // default
+        int selected = 0;
+
+        // Assign selected based on the command
+        switch (command) {
+            case "The Sun":
+                selected = 0;
+                break;
+            case "Mercury":
+                selected = 1;
+                break;
+            case "Venus":
+                selected = 2;
+                break;
+            case "Earth":
+                selected = 3;
+                break;
+            case "Mars":
+                selected = 4;
+                break;
+            case "Jupiter":
+                selected = 5;
+                break;
+            case "Saturn":
+                selected = 6;
+                break;
+            case "Uranus":
+                selected = 7;
+                break;
+            case "Neptune":
+                selected = 8;
+                break;
+            case "Black Holes":
+                selected = 9;
+                break;
+            case "Return to Main Menu":
+                // Handle return to main menu
+                frame.dispose();
+                MainMenu mainMenu = new MainMenu(accounts);
+                return; // Exit the method to prevent further execution
         }
+
+        // Assuming GameControl's constructor takes an int for selected
+        GameControl game = new GameControl(accounts, false, selected);
+        game.startGame();
     }
+
+    //public static void main(String[] args) {
+        //new LevelMenu(accounts);
+    //}
 
 }
