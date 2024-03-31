@@ -40,6 +40,9 @@ public class LevelMenu implements ActionListener {
      *                 information and settings.
      */
     public LevelMenu(Accounts accounts) {
+
+        this.accounts = accounts;
+
         frame = new JFrame("Cosmic Quest: Stellar Treasures");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(2880, 1800);
@@ -226,12 +229,12 @@ public class LevelMenu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         System.out.println(command + " button pressed");
+        GameControl game = new GameControl(accounts, true, 0); //TRUE IS HARDCODED RN
+
         if ("Return to Main Menu".equals(command)) {
             frame.dispose();
-            // new MainMenu(accounts); // This already seems correctly handled
-        } else {
-            // Assuming GameControl also requires an Accounts object
-            new GameControl(accounts, true); // Example, adjust based on your actual constructor
+            Accounts accounts = this.accounts; // Use the existing Accounts object
+            MainMenu mainMenu = new MainMenu(accounts); 
         }
     }
 

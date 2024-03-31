@@ -132,6 +132,7 @@ public class MainMenuInstructor implements ActionListener {
             return;
         }
         if (e.getSource() == selectLevel) {
+            menu.dispose(); /** Close the main menu */
             new LevelMenu(accounts); /** Open the level menu */
         } else if (e.getSource() == exitGame) {
             menu.dispose();
