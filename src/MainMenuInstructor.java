@@ -139,6 +139,9 @@ public class MainMenuInstructor implements ActionListener {
         } else if (e.getSource() == newGame) {
             GameControl game = new GameControl(accounts, true);
             game.startGame();
+        } else if (e.getSource() == continueGame) {
+            GameControl game = new GameControl(accounts);
+            game.startGame();
         } else if (e.getSource() == options) {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
