@@ -138,39 +138,3 @@ public class HighScore extends JFrame {
     }
 
 }
-
-class BackgroundPanel extends JPanel {
-    private Image backgroundImage;
-
-    public BackgroundPanel(Image backgroundImage2) {
-        super();
-        // Load the image
-        ImageIcon icon = new ImageIcon(backgroundImage2);
-        this.backgroundImage = icon.getImage();
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        // Draw the image as the background
-        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-    }
-}
-
-class PlayerScore {
-    private String playerName;
-    private int score;
-
-    public PlayerScore(String playerName, int score) {
-        this.playerName = playerName;
-        this.score = score;
-    }
-
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public int getScore() {
-        return score;
-    }
-}
