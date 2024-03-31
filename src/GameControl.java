@@ -17,7 +17,7 @@ public class GameControl {
         progress = new LevelProgress((JSONArray) accounts.getCurrentAccount().get("progress"));
         //With the progress loaded into the LevelProgress object, class methods such as obtaining the current level can be done properly.
         this.currLevel = new Level(progress.getCurrentLevel());
-        d = new GameDisplay();
+        d = new GameDisplay(accounts);
     }
 
 
