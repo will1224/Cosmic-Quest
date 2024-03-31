@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class signupForm implements ActionListener {
-    private JFrame signUpPage = new JFrame("Sign Up for Cosmic Quest: Stellar Treasure");
+    private JFrame signUpPage = new JFrame("Sign Up for Cosmic Quest: Stellar Treasures");
     private JButton createAccountButton = new JButton("Create Account");
     private JButton backButton = new JButton("Back");
     private JTextField usernameField = new JTextField(20);

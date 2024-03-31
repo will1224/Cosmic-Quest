@@ -106,13 +106,14 @@ public class mainMenu implements ActionListener {
             menu.dispose(); // Close the main menu
             new levelMenu(); // Open the level menu
         } else if (e.getSource() == exitGame) {
-            menu.dispose(); // Close the application
+            menu.dispose();
+            new loginForm(null);
         } else if (e.getSource() == newGame) {
             menu.dispose(); // Example: Close the main menu and start a new game
         } else if (e.getSource() == options) {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
-            new ScoreBoard(menu, "Jennifer Cao", 1000, "images/jen.jpeg").setVisible(true);
+            new ScoreBoard(menu, "Jennifer Cao", 1000).setVisible(true);
         }
     }
 }

@@ -13,7 +13,7 @@ public class levelMenu implements ActionListener {
     private JFrame frame;
 
     public levelMenu() {
-        frame = new JFrame("Cosmic Quest: Stellar Treasure");
+        frame = new JFrame("Cosmic Quest: Stellar Treasures");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(2880, 1800);
 
@@ -43,8 +43,8 @@ public class levelMenu implements ActionListener {
         JButton uranusButton = createButtonWithImageWidth("images/uranus.png", "Uranus");
         JButton returnButton = createButtonWithImageBack("images/backbtn.png", "Return to Main Menu");
         JButton neptuneButton = createButtonWithImage("images/neptune.png", "Neptune");
-        JButton nebulasButton = createButtonWithImage("images/sun.png", "Nebulas");
         JButton blackHolesButton = createButtonWithImage("images/blackhole.png", "Black Holes");
+        JButton logo = createButtonWithImageLogo("images/logo.png", "logo");
 
         // Add buttons to the background panel
         backgroundPanel.add(sunButton);
@@ -57,8 +57,9 @@ public class levelMenu implements ActionListener {
         backgroundPanel.add(uranusButton);
         backgroundPanel.add(returnButton);
         backgroundPanel.add(neptuneButton);
-        backgroundPanel.add(nebulasButton);
         backgroundPanel.add(blackHolesButton);
+        backgroundPanel.add(logo);
+
 
         frame.setVisible(true);
     }
@@ -115,7 +116,30 @@ public class levelMenu implements ActionListener {
             BufferedImage originalImage = ImageIO.read(new File(imagePath));
             int originalWidth = originalImage.getWidth(null);
             int originalHeight = originalImage.getHeight(null);
-            int newWidth = 180;
+            int newWidth = 300;
+            double aspectRatio = (double) originalHeight / (double) originalWidth;
+            int newHeight = (int) Math.round(newWidth * aspectRatio);
+            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+            JButton button = new JButton(new ImageIcon(resizedImage));
+            button.setBorderPainted(false);
+            button.setFocusPainted(false);
+            button.setContentAreaFilled(false);
+            button.setActionCommand(actionCommand);
+            button.addActionListener(this);
+            return button;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new JButton(actionCommand);
+        }
+    }
+
+    private JButton createButtonWithImageLogo(String imagePath, String actionCommand) {
+        try {
+            BufferedImage originalImage = ImageIO.read(new File(imagePath));
+            int originalWidth = originalImage.getWidth(null);
+            int originalHeight = originalImage.getHeight(null);
+            int newWidth = 270;
             double aspectRatio = (double) originalHeight / (double) originalWidth;
             int newHeight = (int) Math.round(newWidth * aspectRatio);
             Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
@@ -142,6 +166,10 @@ public class levelMenu implements ActionListener {
             frame.dispose();
             new mainMenu();
         }
+    }
+
+    public static void main(String[] args) {
+        new levelMenu();
     }
 
 }
