@@ -38,7 +38,7 @@ Download and install the appropriate JDK for your operating system from the offi
 Open File Explorer and extract the contents of the game folder.
 
 **Step 3:** Add JSON.simple to your CLASSPATH<br>
-Open a new command prompt in the group7 folder. Type the command: `set CLASSPATH=.;json-simple-1.1.1.jar` on Windows or `export CLASSPATH=:json-simple-1.1.1.jar` on Mac/Linux.
+Open a new command prompt in the group7 folder. Type the command: `set CLASSPATH=.;json-simple-1.1.1.jar` on Windows or `export CLASSPATH=.:json-simple-1.1.1.jar` on Mac/Linux.
 
 **Step 4:** Run the executable file<br>
 Open the executable file named "Insert file name here" to run the game.

@@ -34,14 +34,14 @@ public class GameDisplay extends JFrame {
         setSize(1920, 1080);
 
         // Load the background image
-//        try {
-//            BufferedImage backgroundImage = ImageIO.read(new File("images/gradient.jpg"));
-//            JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImage));
-//            setContentPane(backgroundLabel);
-//            setLayout(new BorderLayout()); // Use BorderLayout
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            BufferedImage backgroundImage = ImageIO.read(new File("images/gradient.png"));
+            JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImage));
+            setContentPane(backgroundLabel);
+            setLayout(new BorderLayout()); // Use BorderLayout
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         // Ensure panel is transparent to show the background image
         this.panel = new JPanel();
@@ -99,7 +99,7 @@ public class GameDisplay extends JFrame {
         this.currentQuestionIndex = 0; // Start from the first question
         this.selectedAnswerIndex = -1; // set default for no selection
 
-        while(!nextPressed){displayLesson();}
+        //while(!nextPressed){displayLesson();}
         displayQuestion(currLevel); // Display the first question
 
     }
