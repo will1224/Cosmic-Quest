@@ -31,7 +31,7 @@ public class HighScore extends JFrame {
         }
 
         // Set the background panel with the background image
-        BackgroundPanel backgroundPanel = backgroundImage != null ? new BackgroundPanel(backgroundImage) : new BackgroundPanel();
+        BackgroundPanel backgroundPanel = new BackgroundPanel(backgroundImage);
         backgroundPanel.setLayout(new BorderLayout());
         setContentPane(backgroundPanel);
 
@@ -51,7 +51,7 @@ public class HighScore extends JFrame {
         backgroundPanel.add(scrollPane, BorderLayout.CENTER);
     }
 
-    private List<PlayerScore> getScoresFromDatabase() throws ParseException {
+    public List<PlayerScore> getScoresFromDatabase() throws ParseException {
         Accounts accounts = new Accounts();
         JSONArray allUserData = accounts.getAccounts();
         List<PlayerScore> userScores = new ArrayList<>();
@@ -80,7 +80,6 @@ public class HighScore extends JFrame {
             HighScore frame = null;
             try {
                 frame = new HighScore();
-                frame.getScoresFromDatabase();
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }
@@ -89,41 +88,3 @@ public class HighScore extends JFrame {
     }
 }
 
-class BackgroundPanel extends JPanel {
-    private Image backgroundImage;
-
-    public BackgroundPanel(Image image) {
-        super();
-        this.backgroundImage = image;
-    }
-
-    public BackgroundPanel() {
-        super();
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        if (backgroundImage != null) {
-            g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
-        }
-    }
-}
-
-class PlayerScore {
-    private String playerName;
-    private int score;
-
-    public PlayerScore(String playerName, int score) {
-        this.playerName = playerName;
-        this.score = score;
-    }
-
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public int getScore() {
-        return score;
-    }
-}

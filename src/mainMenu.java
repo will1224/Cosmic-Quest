@@ -13,8 +13,10 @@ public class mainMenu implements ActionListener {
     private JButton scores;
     private JButton options;
     private JButton exitGame;
+    private Accounts accounts;
 
-    public mainMenu() {
+    public mainMenu(Accounts account) {
+        accounts = account;
         menu = new JFrame("Cosmic Quest: Stellar Treasures");
         java.net.URL menuBackgroundURL = getClass().getResource("/images/mainmenuBGD.png");
         if (menuBackgroundURL != null) {
@@ -104,7 +106,7 @@ public class mainMenu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == selectLevel) {
             menu.dispose(); // Close the main menu
-            new levelMenu(); // Open the level menu
+            new levelMenu(accounts); // Open the level menu
         } else if (e.getSource() == exitGame) {
             menu.dispose(); // Close the application
         } else if (e.getSource() == newGame) {
@@ -112,7 +114,8 @@ public class mainMenu implements ActionListener {
         } else if (e.getSource() == options) {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
-            new ScoreBoard(menu, "Jennifer Cao", 1000, "images/jen.jpeg").setVisible(true);
+            PlayerScore userScore = accounts.getPlayerScore(accounts.getCurrentAccount().get("username").toString());
+            new ScoreBoard(menu, userScore.getPlayerName(), userScore.getScore(), "images/jen.jpeg").setVisible(true);
         }
     }
 }

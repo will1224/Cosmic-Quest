@@ -16,8 +16,10 @@ public class mainMenuSoftware implements ActionListener {
     private JButton options;
     private JButton exitGame;
     private JButton software;
+    private Accounts accounts;
 
-    public mainMenuSoftware() {
+    public mainMenuSoftware(Accounts accounts) {
+        this.accounts = accounts;
         menu = new JFrame("Cosmic Quest: Stellar Treasures");
         java.net.URL menuBackgroundURL = getClass().getResource("/images/mainmenuBGD.png");
         if (menuBackgroundURL != null) {
@@ -112,7 +114,7 @@ public class mainMenuSoftware implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == selectLevel) {
             menu.dispose(); // Close the main menu
-            new levelMenu(); // Open the level menu
+            new levelMenu(accounts); // Open the level menu
         } else if (e.getSource() == exitGame) {
             menu.dispose(); // Close the application
         } else if (e.getSource() == newGame) {

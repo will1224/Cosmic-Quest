@@ -112,12 +112,12 @@ public class loginForm implements ActionListener {
                 loginPage.dispose(); // Close the login window
                 
                 // Check username and open the corresponding main menu
-                if (username.toLowerCase().contains("education")) {
-                    mainMenuInstructor instructorMenu = new mainMenuInstructor();
+                if (username.toLowerCase().equals("education")) {
+                    mainMenuInstructor instructorMenu = new mainMenuInstructor(accountDatabase);
                 } else if (username.toLowerCase().contains("developer")) {
-                    mainMenuSoftware softwareMenu = new mainMenuSoftware();
+                    mainMenuSoftware softwareMenu = new mainMenuSoftware(accountDatabase);
                 } else {
-                    mainMenu userMenu = new mainMenu();
+                    mainMenu userMenu = new mainMenu(accountDatabase);
                 }
             }
         } else if (e.getSource() == signUpButton) {

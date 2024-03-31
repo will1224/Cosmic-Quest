@@ -11,8 +11,10 @@ import java.awt.image.BufferedImage;
 
 public class levelMenu implements ActionListener {
     private JFrame frame;
+    private Accounts accounts;
 
-    public levelMenu() {
+    public levelMenu(Accounts accounts) {
+        this.accounts = accounts;
         frame = new JFrame("Cosmic Quest: Stellar Treasure");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(2880, 1800);
@@ -140,7 +142,7 @@ public class levelMenu implements ActionListener {
 
         if ("Return to Main Menu".equals(command)) {
             frame.dispose();
-            new mainMenu();
+            new mainMenu(accounts);
         }
     }
 
