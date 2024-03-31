@@ -18,8 +18,9 @@ public class signupForm implements ActionListener{
     public signupForm(Accounts acc){
         accountDatabase = acc;
 
-        signUpPage.setExtendedState(JFrame.MAXIMIZED_BOTH);
         signUpPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        signUpPage.setExtendedState(JFrame.MAXIMIZED_BOTH); // Set maximized state before any UI setup
+
     
         // Background panel setup
         ImageIcon icon = new ImageIcon("images/mainmenuBGD.png"); 
@@ -66,9 +67,9 @@ public class signupForm implements ActionListener{
     
         // Frame setup
         signUpPage.setContentPane(backgroundPanel);
-        signUpPage.pack();
-        signUpPage.setVisible(true);
-    }
+        signUpPage.pack(); // Prepare the window
+        signUpPage.setVisible(true); // Show the window already maximized
+}
 
     @Override
     public void actionPerformed(ActionEvent a) {
