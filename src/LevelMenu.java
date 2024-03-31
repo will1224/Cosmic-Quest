@@ -164,7 +164,8 @@ public class LevelMenu implements ActionListener {
 
         if ("Return to Main Menu".equals(command)) {
             frame.dispose();
-            new MainMenu();
+            Accounts accounts = this.accounts; // Use the existing Accounts object
+            MainMenu mainMenu = new MainMenu(accounts); 
         }
     }
 

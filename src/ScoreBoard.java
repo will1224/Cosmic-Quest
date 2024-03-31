@@ -57,17 +57,5 @@ public class ScoreBoard extends JDialog {
     }
 
 
-
-    public static void main(String[] args) {
-        // Creating and showing this application's GUI.
-        Accounts acc = new Accounts();
-        PlayerScore user = acc.getPlayerScore("user");
-        // Creating and showing this application's GUI.
-        SwingUtilities.invokeLater(() -> {
-            ScoreBoard dialog = new ScoreBoard(null, user.getPlayerName(), user.getScore());
-            dialog.setVisible(true);
-            System.exit(0);
-        });
-    }
 }
 
