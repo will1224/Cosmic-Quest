@@ -115,7 +115,7 @@ public class mainMenu implements ActionListener {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
             PlayerScore userScore = accounts.getPlayerScore(accounts.getCurrentAccount().get("username").toString());
-            new ScoreBoard(menu, userScore.getPlayerName(), userScore.getScore(), "images/jen.jpeg").setVisible(true);
+            new ScoreBoard(menu, userScore.getPlayerName(), userScore.getScore()).setVisible(true);
         }
     }
 }

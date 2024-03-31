@@ -191,7 +191,9 @@ public class GameDisplay extends JFrame {
             }
         });
 
-        optionButtons[index] = button; // Store the button in the array
+        selectedAnswerIndex = -1;
+
+        optionButtons[index] = button; // store the button in the array
         panel.add(button);
     }
 
@@ -207,6 +209,8 @@ public class GameDisplay extends JFrame {
 
     private void nextButtonAction(ActionEvent e) {
         Question currentQuestion = questions.get(currentQuestionIndex);
+
+        System.out.println(selectedAnswerIndex);
 
         if (gameState == 0) {
             if (selectedAnswerIndex == -1) {
