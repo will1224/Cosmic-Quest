@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class signupForm implements ActionListener {
+public class SignupForm implements ActionListener {
     private JFrame signUpPage = new JFrame("Sign Up for Cosmic Quest: Stellar Treasures");
     private JButton createAccountButton = new JButton("Create Account");
     private JButton backButton = new JButton("Back");
@@ -18,7 +18,7 @@ public class signupForm implements ActionListener {
 
     Accounts accountDatabase;
 
-    public signupForm(Accounts acc) {
+    public SignupForm(Accounts acc) {
         accountDatabase = acc;
 
         signUpPage.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -92,7 +92,7 @@ public class signupForm implements ActionListener {
     public void actionPerformed(ActionEvent a) {
         if (a.getSource() == backButton) {
             signUpPage.dispose();
-            loginForm loginPage = new loginForm(accountDatabase);
+            LoginForm loginPage = new LoginForm(accountDatabase);
         } else if (a.getSource() == createAccountButton) {
             boolean succesfulCreation = accountDatabase.registerAccount(usernameField.getText(),
                     passwordField.getText());
@@ -102,7 +102,7 @@ public class signupForm implements ActionListener {
                 msg.setText("Created account successfully!");
                 signUpPage.add(msg);
                 signUpPage.dispose();
-                mainMenu mainMenu = new mainMenu(accountDatabase);
+                MainMenu mainMenu = new MainMenu();
             } else {
                 msg.setForeground(Color.red);
                 msg.setText("An account with this username already exists. Please try to login instead.");

@@ -29,6 +29,7 @@ public class GameDisplay extends JFrame {
 
     // colour constants
     private Color PINK = new Color(255, 104, 176);
+    private Color GREEN = new Color(0, 180, 119);
 
 
     // constructor
@@ -80,7 +81,7 @@ public class GameDisplay extends JFrame {
         lessonText.setOpaque(false);
 
         JScrollPane scrollPane = new JScrollPane(lessonText);
-        scrollPane.setPreferredSize(new Dimension(800, 800)); // control text area dimensions
+        scrollPane.setPreferredSize(new Dimension(800, 700)); // control text area dimensions
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setBorder(null);
@@ -191,7 +192,9 @@ public class GameDisplay extends JFrame {
             }
         });
 
-        optionButtons[index] = button; // Store the button in the array
+        selectedAnswerIndex = -1;
+
+        optionButtons[index] = button; // store the button in the array
         panel.add(button);
     }
 
@@ -207,6 +210,8 @@ public class GameDisplay extends JFrame {
 
     private void nextButtonAction(ActionEvent e) {
         Question currentQuestion = questions.get(currentQuestionIndex);
+
+        System.out.println(selectedAnswerIndex);
 
         if (gameState == 0) {
             if (selectedAnswerIndex == -1) {
@@ -244,7 +249,7 @@ public class GameDisplay extends JFrame {
             // change colour for correct answer
             if (i == selectedAnswerIndex && (question.isCorrectAnswer(selectedAnswerIndex))) {
                 // correct
-                button.setForeground(Color.GREEN);
+                button.setForeground(GREEN);
 
                 tempScore++;
                 System.out.println("Score update: " + tempScore);
