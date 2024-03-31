@@ -107,13 +107,13 @@ public class MainMenu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == selectLevel) {
             menu.dispose(); // Close the main menu
-            new LevelMenu(); // Open the level menu
+            new LevelMenu(accounts); // Open the level menu
         } else if (e.getSource() == exitGame) {
             menu.dispose();
             new LoginForm(null);
         } else if (e.getSource() == newGame) {
             menu.dispose(); // Example: Close the main menu and start a new game
-            GameControl game = new GameControl(accounts, true);
+            GameControl game = new GameControl(accounts, true, 0);
             game.startGame();
         } else if (e.getSource() == continueGame) {
             menu.dispose();
