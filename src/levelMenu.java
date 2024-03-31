@@ -9,10 +9,10 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.image.BufferedImage;
 
-public class levelMenu implements ActionListener {
+public class LevelMenu implements ActionListener {
     private JFrame frame;
 
-    public levelMenu() {
+    public LevelMenu() {
         frame = new JFrame("Cosmic Quest: Stellar Treasures");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(2880, 1800);
@@ -164,12 +164,12 @@ public class levelMenu implements ActionListener {
 
         if ("Return to Main Menu".equals(command)) {
             frame.dispose();
-            new mainMenu();
+            new MainMenu();
         }
     }
 
     public static void main(String[] args) {
-        new levelMenu();
+        new LevelMenu();
     }
 
 }

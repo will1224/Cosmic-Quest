@@ -4,13 +4,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class pauseMenu extends JFrame implements ActionListener {
+public class PauseMenu extends JFrame implements ActionListener {
     private JButton resumeButton;
     private JButton optionsButton;
     private JButton returnButton;
     private JButton exitButton;
 
-    public pauseMenu() {
+    public PauseMenu() {
         setTitle("Cosmic Quest: Stellar Treasures");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -107,7 +107,7 @@ public class pauseMenu extends JFrame implements ActionListener {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new pauseMenu(); 
+                new PauseMenu(); 
             }
         });
     }
