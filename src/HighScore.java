@@ -22,7 +22,7 @@ public class HighScore extends JFrame {
     public HighScore() throws ParseException {
         setTitle("High Scores");
         setSize(300, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         // Load the default background image directly from file path
@@ -113,17 +113,7 @@ public class HighScore extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            try {
-                new HighScore().setVisible(true);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
-    private List<PlayerScore> getScoresFromDatabase() throws ParseException {
+    public List<PlayerScore> getScoresFromDatabase() throws ParseException {
         Accounts accounts = new Accounts();
         JSONArray allUserData = accounts.getAccounts();
         List<PlayerScore> userScores = new ArrayList<>();

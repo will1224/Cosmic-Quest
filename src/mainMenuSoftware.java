@@ -16,6 +16,7 @@ public class MainMenuSoftware implements ActionListener {
     private JButton options;
     private JButton exitGame;
     private JButton software;
+    private Accounts accounts;
 
     public MainMenuSoftware() {
         menu = new JFrame("Cosmic Quest: Stellar Treasures");
@@ -121,7 +122,7 @@ public class MainMenuSoftware implements ActionListener {
         } else if (e.getSource() == options) {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
-            new ScoreBoard(menu, "Jennifer Cao", 1000).setVisible(true);
+            new ScoreBoard(menu, "developer", 0).setVisible(true);
         } else if (e.getSource() == software) {
             try {
                 Desktop desktop = Desktop.getDesktop();

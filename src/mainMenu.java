@@ -13,6 +13,7 @@ public class MainMenu implements ActionListener {
     private JButton scores;
     private JButton options;
     private JButton exitGame;
+    private Accounts accounts;
 
     public MainMenu() {
         menu = new JFrame("Cosmic Quest: Stellar Treasures");
@@ -113,7 +114,8 @@ public class MainMenu implements ActionListener {
         } else if (e.getSource() == options) {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
-            new ScoreBoard(menu, "Jennifer Cao", 1000).setVisible(true);
+            PlayerScore userScore = accounts.getPlayerScore(accounts.getCurrentAccount().get("username").toString());
+            new ScoreBoard(menu, userScore.getPlayerName(), userScore.getScore()).setVisible(true);
         }
     }
 }

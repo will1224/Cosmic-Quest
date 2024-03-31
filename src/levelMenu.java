@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 
 public class LevelMenu implements ActionListener {
     private JFrame frame;
+    private Accounts accounts;
 
     public LevelMenu() {
         frame = new JFrame("Cosmic Quest: Stellar Treasures");
@@ -59,7 +60,6 @@ public class LevelMenu implements ActionListener {
         backgroundPanel.add(neptuneButton);
         backgroundPanel.add(blackHolesButton);
         backgroundPanel.add(logo);
-
 
         frame.setVisible(true);
     }
@@ -116,7 +116,7 @@ public class LevelMenu implements ActionListener {
             BufferedImage originalImage = ImageIO.read(new File(imagePath));
             int originalWidth = originalImage.getWidth(null);
             int originalHeight = originalImage.getHeight(null);
-            int newWidth = 300;
+            int newWidth = 180;
             double aspectRatio = (double) originalHeight / (double) originalWidth;
             int newHeight = (int) Math.round(newWidth * aspectRatio);
             Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);

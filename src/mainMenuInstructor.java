@@ -14,6 +14,7 @@ public class MainMenuInstructor implements ActionListener {
     private JButton scores;
     private JButton options;
     private JButton exitGame;
+    private Accounts accounts;
 
     public MainMenuInstructor() {
         menu = new JFrame("Cosmic Quest: Stellar Treasures");
@@ -114,7 +115,15 @@ public class MainMenuInstructor implements ActionListener {
         } else if (e.getSource() == options) {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
-            
+            SwingUtilities.invokeLater(() -> {
+                HighScore frame = null;
+                try {
+                    frame = new HighScore();
+                } catch (ParseException x) {
+                    throw new RuntimeException(x);
+                }
+                frame.setVisible(true);
+            });
         }
     }
 }

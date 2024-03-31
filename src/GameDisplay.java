@@ -1,6 +1,7 @@
 package src;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
@@ -26,82 +27,95 @@ public class GameDisplay extends JFrame {
     private JButton next;
     private boolean nextPressed;
 
+    // colour constants
+    private Color PINK = new Color(255, 104, 176);
 
-    //constructor
+
+    // constructor
     public GameDisplay() {
         setTitle("Cosmic Quest: Stellar Treasures");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920, 1080);
 
-        // Load the background image
+        // load the background image
         try {
             BufferedImage backgroundImage = ImageIO.read(new File("images/gradient.png"));
-            JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImage));
-            setContentPane(backgroundLabel);
-            setLayout(new BorderLayout()); // Use BorderLayout
+            BackgroundPanel bg = new BackgroundPanel(backgroundImage);
+            setContentPane(bg);
+            setLayout(new BorderLayout()); // use BorderLayout
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // Ensure panel is transparent to show the background image
+        // ensure panel is transparent to show the background image
         this.panel = new JPanel();
-        panel.setOpaque(false); // Make panel transparent
-        add(panel, BorderLayout.CENTER); // Add the panel to the center
+        panel.setOpaque(false); // make panel transparent
+        add(panel, BorderLayout.CENTER); // add the panel to the center
 
-        // Your existing initialization code
         panel.setVisible(true);
         tempScore = 0;
 
-        setVisible(true); // It's a good practice to make the frame visible after adding all components
+        setVisible(true);
     }
+
+
     public void displayLesson() {
-        // Clear the panel
         panel.removeAll();
+        panel.setLayout(new BorderLayout(10, 10));
+        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        // Set layout for lesson display
-        panel.setLayout(new BorderLayout());
-
-        // Add level name at the top
+        // Title
         JLabel levelName = new JLabel(currentLevel.getName(), SwingConstants.CENTER);
         levelName.setFont(new Font("Space Mono", Font.BOLD, 30));
-        levelName.setForeground(Color.black);
+        levelName.setForeground(Color.PINK);
         panel.add(levelName, BorderLayout.NORTH);
 
-        // Create and add lesson text area in the center
-        JTextArea lessonText = new JTextArea();
-        lessonText.setText(currentLevel.getLesson());
+        // Textarea in the center
+        JTextArea lessonText = new JTextArea(currentLevel.getLesson());
         lessonText.setFont(new Font("Space Mono", Font.PLAIN, 20));
         lessonText.setLineWrap(true);
         lessonText.setWrapStyleWord(true);
         lessonText.setEditable(false);
-        lessonText.setForeground(Color.black);
-        JScrollPane scrollPane = new JScrollPane(lessonText);
-        panel.add(scrollPane, BorderLayout.CENTER);
+        lessonText.setForeground(Color.white);
+        lessonText.setOpaque(false);
 
-        // Add 'Next' button at the bottom
+        JScrollPane scrollPane = new JScrollPane(lessonText);
+        scrollPane.setPreferredSize(new Dimension(800, 800)); // control text area dimensions
+        scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.setBorder(null);
+
+        JPanel scrollPanePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        scrollPanePanel.add(scrollPane);
+        scrollPanePanel.setOpaque(false);
+        panel.add(scrollPanePanel, BorderLayout.CENTER);
+
+        // Next button
         JButton nextButton = new JButton("Next");
+        nextButton.setPreferredSize(new Dimension(200, 40)); // control button dimensions
         nextButton.setFont(new Font("Space Mono", Font.PLAIN, 20));
-        nextButton.addActionListener(e -> {
-            nextPressed = true;
-            displayLevel(currentLevel, questions);
-            dispose();
-        });
-        panel.add(nextButton, BorderLayout.SOUTH);
+        nextButton.addActionListener(e -> displayQuestion(currentLevel));
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(nextButton);
+        buttonPanel.setOpaque(false);
+        panel.add(buttonPanel, BorderLayout.SOUTH);
 
         panel.revalidate();
         panel.repaint();
     }
+
+
     public void displayLevel(Level currLevel, List<Question> questionSet) {
+
         if (questionSet.isEmpty()) return;
 
         this.currentLevel = currLevel;
-        this.questions = questionSet; // Store the list of questions
-        this.currentQuestionIndex = 0; // Start from the first question
+        this.questions = questionSet; // store the list of questions
+        this.currentQuestionIndex = 0; // start from the first question
         this.selectedAnswerIndex = -1; // set default for no selection
 
-        //while(!nextPressed){displayLesson();}
-        displayQuestion(currLevel); // Display the first question
-
+        displayLesson();
     }
 
     private void displayQuestion(Level currLevel) {
@@ -114,8 +128,8 @@ public class GameDisplay extends JFrame {
 
         Question currentQuestion = questions.get(currentQuestionIndex);
 
-        panel.removeAll(); // Clear the panel for the new question
-        panel.setLayout(new GridLayout(7, 1, 10, 10)); // Reset the layout if needed
+        panel.removeAll(); // clear the panel for the new question
+        panel.setLayout(new GridLayout(7, 1, 10, 10)); // reset layout
 
         addComponentsToPanel(currLevel);
 
@@ -128,7 +142,7 @@ public class GameDisplay extends JFrame {
             JOptionPane.showMessageDialog(this, "Please select an answer before proceeding.", "No Selection", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        currentQuestionIndex++; // Move to the next question
+        currentQuestionIndex++; // move to the next question
         displayQuestion(currentLevel);
     }
 
@@ -150,7 +164,7 @@ public class GameDisplay extends JFrame {
     private void addTitleToPanel(String titleText) {
         JLabel title = new JLabel(titleText, JLabel.CENTER);
         title.setFont(new Font("Space Mono", Font.BOLD, 30));
-        title.setForeground(Color.white);
+        title.setForeground(PINK);
         panel.add(title);
     }
 
@@ -177,7 +191,9 @@ public class GameDisplay extends JFrame {
             }
         });
 
-        optionButtons[index] = button; // Store the button in the array
+        selectedAnswerIndex = -1;
+
+        optionButtons[index] = button; // store the button in the array
         panel.add(button);
     }
 
@@ -193,6 +209,8 @@ public class GameDisplay extends JFrame {
 
     private void nextButtonAction(ActionEvent e) {
         Question currentQuestion = questions.get(currentQuestionIndex);
+
+        System.out.println(selectedAnswerIndex);
 
         if (gameState == 0) {
             if (selectedAnswerIndex == -1) {
@@ -238,7 +256,7 @@ public class GameDisplay extends JFrame {
                 button.setForeground(Color.BLUE);
             } else if ((question.isCorrectAnswer(i))) {
                 // wrong answer: show correct
-                button.setForeground(Color.RED);
+                button.setForeground(PINK);
             } else {
                 // default button
                 button.setBackground(UIManager.getColor("Button.background")); // Default button color
