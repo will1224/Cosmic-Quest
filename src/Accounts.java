@@ -33,19 +33,19 @@ public class Accounts {
         /**Try-catch block to catch IO and parsing exceptions.*/
         try {
             /**Obtain the data file from the current directory.*/
-            File accountsFile = new File("accountsdata.json");
+            File accountsFile = new File("src/accountsdata.json");
             /**Set the list of accounts to be empty.*/
             accounts = new JSONArray();
             /**Check if the accounts file exists.*/
             if (accountsFile.createNewFile()) {
                 /**Write an empty JSONArray to the file.*/
-                FileWriter fw = new FileWriter("accountsdata.json");
+                FileWriter fw = new FileWriter("src/accountsdata.json");
                 fw.write(accounts.toJSONString());
                 fw.close();
             }
             else {
                 /**Accounts file already exists, so read in data from the file.*/
-                JSONArray temp = (JSONArray) new JSONParser().parse(new FileReader("accountsdata.json"));
+                JSONArray temp = (JSONArray) new JSONParser().parse(new FileReader("src/accountsdata.json"));
                 /**Add each account into the list of accounts.*/
                 for (int i = 0; i < temp.size(); i++) {
                     accounts.add((JSONObject) temp.get(i));
@@ -173,7 +173,7 @@ public class Accounts {
         /**Try-catch block to catch IOExceptions from file writing.*/
         try {
             //Overwrites the contents of the data file with the updated account data.
-            FileWriter fw = new FileWriter("accountsdata.json");
+            FileWriter fw = new FileWriter("src/accountsdata.json");
             fw.write(accounts.toJSONString());
             fw.close();
         }
@@ -251,7 +251,7 @@ public class Accounts {
         /**Try-catch to catch IOExceptions*/
         try {
             /**Writes the updated account data to the data file.*/
-            FileWriter fw = new FileWriter("accountsdata.json");
+            FileWriter fw = new FileWriter("src/accountsdata.json");
             fw.write(accounts.toJSONString());
             fw.close();
         }
