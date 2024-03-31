@@ -123,6 +123,7 @@ public class MainMenuInstructor implements ActionListener {
                     throw new RuntimeException(x);
                 }
                 frame.setVisible(true);
+
             });
         }
     }
