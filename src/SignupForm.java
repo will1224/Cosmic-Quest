@@ -35,6 +35,7 @@ public class SignupForm implements ActionListener {
      */
     public SignupForm(Accounts acc) {
         accountDatabase = acc;
+        this.accounts = accounts;
 
         signUpPage.setExtendedState(JFrame.MAXIMIZED_BOTH);
         signUpPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -137,6 +138,8 @@ public class SignupForm implements ActionListener {
                 msg.setText("Created account successfully!");
                 signUpPage.add(msg);
                 signUpPage.dispose();
+                Accounts accounts = this.accountDatabase;
+                @SuppressWarnings("unused")
                 MainMenu mainMenu = new MainMenu(accounts);
             } else {
                 msg.setForeground(Color.red);
