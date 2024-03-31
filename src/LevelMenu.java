@@ -161,6 +161,7 @@ public class LevelMenu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         System.out.println(command + " button pressed");
+        GameControl game = new GameControl(accounts, true); //TRUE IS HARDCODED RN
 
         if ("Return to Main Menu".equals(command)) {
             frame.dispose();

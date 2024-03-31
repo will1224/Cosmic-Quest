@@ -9,13 +9,18 @@ public class GameControl {
         //It must be extracted, and then placed into the LevelProgress(JSONArray progress) constructor for the getter/setter methods to be utilized.
         private LevelProgress progress;
         private Level currLevel;
+        private GameDisplay d;
+
     public GameControl(Accounts account, boolean newgame) {
         accounts = account;
         clearProgress(account);
         progress = new LevelProgress((JSONArray) accounts.getCurrentAccount().get("progress"));
         //With the progress loaded into the LevelProgress object, class methods such as obtaining the current level can be done properly.
         this.currLevel = new Level(progress.getCurrentLevel());
+        d = new GameDisplay();
     }
+
+
     public GameControl(Accounts account) {
         accounts = account;
         //Progress is extracted from the user JSONObject by grabbing the "progress" key (typecast is done to avoid errors).
@@ -23,6 +28,8 @@ public class GameControl {
         //With the progress loaded into the LevelProgress object, class methods such as obtaining the current level can be done properly.
         this.currLevel = new Level(progress.getCurrentLevel());
     }
+
+
     private void clearProgress(Accounts account){
         LevelProgress progress = new LevelProgress();
         accounts.updateUserProgress(accounts.getCurrentAccount().get("username").toString(), progress.getProgress());
