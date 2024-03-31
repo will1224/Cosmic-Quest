@@ -111,11 +111,17 @@ public class mainMenu implements ActionListener {
             menu.dispose(); // Close the application
         } else if (e.getSource() == newGame) {
             menu.dispose(); // Example: Close the main menu and start a new game
+            GameControl game = new GameControl(accounts, true);
+            game.startGame();
+        } else if (e.getSource() == continueGame) {
+            menu.dispose();
+            GameControl game = new GameControl(accounts);
+            game.startGame();
         } else if (e.getSource() == options) {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
             PlayerScore userScore = accounts.getPlayerScore(accounts.getCurrentAccount().get("username").toString());
-            new ScoreBoard(menu, userScore.getPlayerName(), userScore.getScore(), "images/jen.jpeg").setVisible(true);
+            new ScoreBoard(menu, userScore.getPlayerName(), userScore.getScore()).setVisible(true);
         }
     }
 }
