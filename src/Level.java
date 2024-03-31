@@ -43,7 +43,7 @@ public class Level {
      * @see parseQuestions
      */
     private List<Question> readQuestions() {
-        String FILE = "question.json";
+        String FILE = "src/question.json";
 
         try {
             /**make json string from file*/

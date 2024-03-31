@@ -173,7 +173,7 @@ public class Accounts {
         /**Try-catch block to catch IOExceptions from file writing.*/
         try {
             //Overwrites the contents of the data file with the updated account data.
-            FileWriter fw = new FileWriter("accountsdata.json");
+            FileWriter fw = new FileWriter("src/accountsdata.json");
             fw.write(accounts.toJSONString());
             fw.close();
         }
@@ -251,7 +251,7 @@ public class Accounts {
         /**Try-catch to catch IOExceptions*/
         try {
             /**Writes the updated account data to the data file.*/
-            FileWriter fw = new FileWriter("accountsdata.json");
+            FileWriter fw = new FileWriter("src/accountsdata.json");
             fw.write(accounts.toJSONString());
             fw.close();
         }
