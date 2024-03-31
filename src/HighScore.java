@@ -39,7 +39,7 @@ public class HighScore extends JFrame {
     }
 
     private void initScoresTable() {
-        String[] columnNames = { "Name", "Score" };
+        String[] columnNames = { "Username", "Score" };
         tableModel = new DefaultTableModel(columnNames, 0);
         scoresTable = new JTable(tableModel);
 
@@ -65,40 +65,38 @@ public class HighScore extends JFrame {
         JTableHeader header = scoresTable.getTableHeader();
         header.setOpaque(false);
         header.setBackground(new Color(0, 0, 0, 122));
-        header.setForeground(Color.BLACK); // Example customization
-
-        header.setDefaultRenderer(new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value,
-                    boolean isSelected, boolean hasFocus, int row, int column) {
-                JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row,
-                        column);
-                label.setOpaque(false);
-                label.setBackground(new Color(0, 0, 0, 122));
-                label.setForeground(Color.BLACK); // Set the font color
-                label.setFont(new Font("Serif", Font.BOLD, 16)); // Set the font and size
-                return label;
-            }
-        });
+        header.setForeground(Color.BLACK);
+    
+        DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+        headerRenderer.setHorizontalAlignment(JLabel.CENTER); // Center text in header
+        headerRenderer.setOpaque(false);
+        headerRenderer.setBackground(new Color(0, 0, 0, 122));
+        headerRenderer.setForeground(Color.BLACK);
+        headerRenderer.setFont(new Font("Arial", Font.BOLD, 20));
+    
+        header.setDefaultRenderer(headerRenderer);
     }
-
+    
     private void customizeTable() {
         scoresTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
                                                            boolean isSelected, boolean hasFocus, int row, int column) {
                 Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                ((JLabel) component).setHorizontalAlignment(JLabel.CENTER); // Center text in cells
+    
                 if (isSelected) {
                     component.setBackground(table.getSelectionBackground());
                 } else {
                     component.setBackground(new Color(0, 0, 0, 0)); // Transparent background for cells
                 }
-                component.setForeground(Color.WHITE); // Example customization
-                component.setFont(new Font("Arial", Font.PLAIN, 14)); // Example customization
+                component.setForeground(Color.WHITE);
+                component.setFont(new Font("Arial", Font.PLAIN, 14));
                 return component;
             }
         });
     }
+    
     
     private void populateScoresTable(List<PlayerScore> scores) {
         // Clear existing table data

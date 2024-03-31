@@ -36,7 +36,6 @@ public class SignupForm implements ActionListener {
     public SignupForm(Accounts acc) {
         accountDatabase = acc;
 
-        signUpPage.setExtendedState(JFrame.MAXIMIZED_BOTH);
         signUpPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         /** Set background image */
@@ -114,7 +113,10 @@ public class SignupForm implements ActionListener {
         createAccountButton.addActionListener(this);
         signUpPage.getRootPane().setDefaultButton(createAccountButton);
 
-        signUpPage.pack();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        signUpPage.setSize(screenSize.width, screenSize.height);
+        
+        signUpPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         signUpPage.setVisible(true);
     }
 
