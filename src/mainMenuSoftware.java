@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
 
-public class mainMenuSoftware implements ActionListener {
+public class MainMenuSoftware implements ActionListener {
     private JFrame menu;
     private JTextField title;
     private JButton newGame;
@@ -18,8 +18,7 @@ public class mainMenuSoftware implements ActionListener {
     private JButton software;
     private Accounts accounts;
 
-    public mainMenuSoftware(Accounts accounts) {
-        this.accounts = accounts;
+    public MainMenuSoftware() {
         menu = new JFrame("Cosmic Quest: Stellar Treasures");
         java.net.URL menuBackgroundURL = getClass().getResource("/images/mainmenuBGD.png");
         if (menuBackgroundURL != null) {
@@ -114,16 +113,16 @@ public class mainMenuSoftware implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == selectLevel) {
             menu.dispose(); // Close the main menu
-            new levelMenu(accounts); // Open the level menu
+            new LevelMenu(); // Open the level menu
         } else if (e.getSource() == exitGame) {
             menu.dispose();
-            new loginForm(null); // Close the application
+            new LoginForm(null); // Close the application
         } else if (e.getSource() == newGame) {
             menu.dispose(); // Example: Close the main menu and start a new game
         } else if (e.getSource() == options) {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
-            new ScoreBoard(menu, "Jennifer Cao", 1000).setVisible(true);
+            new ScoreBoard(menu, "developer", 0).setVisible(true);
         } else if (e.getSource() == software) {
             try {
                 Desktop desktop = Desktop.getDesktop();

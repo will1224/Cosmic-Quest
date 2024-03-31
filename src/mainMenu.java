@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class mainMenu implements ActionListener {
+public class MainMenu implements ActionListener {
     private JFrame menu;
     private JTextField title;
     private JButton newGame;
@@ -15,8 +15,7 @@ public class mainMenu implements ActionListener {
     private JButton exitGame;
     private Accounts accounts;
 
-    public mainMenu(Accounts account) {
-        accounts = account;
+    public MainMenu() {
         menu = new JFrame("Cosmic Quest: Stellar Treasures");
         java.net.URL menuBackgroundURL = getClass().getResource("/images/mainmenuBGD.png");
         if (menuBackgroundURL != null) {
@@ -106,9 +105,10 @@ public class mainMenu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == selectLevel) {
             menu.dispose(); // Close the main menu
-            new levelMenu(accounts); // Open the level menu
+            new LevelMenu(); // Open the level menu
         } else if (e.getSource() == exitGame) {
-            menu.dispose(); // Close the application
+            menu.dispose();
+            new LoginForm(null);
         } else if (e.getSource() == newGame) {
             menu.dispose(); // Example: Close the main menu and start a new game
         } else if (e.getSource() == options) {

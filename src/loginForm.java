@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class loginForm implements ActionListener {
+public class LoginForm implements ActionListener {
     private JFrame loginPage = new JFrame("Cosmic Quest: Stellar Treasures");
     private JButton signUpButton = new JButton("Sign Up");
     private JButton loginButton = new JButton("Log In");
@@ -18,7 +18,7 @@ public class loginForm implements ActionListener {
 
     Accounts accountDatabase;
 
-    public loginForm(Accounts acc){
+    public LoginForm(Accounts acc){
         accountDatabase = acc;
 
         loginPage.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -112,17 +112,17 @@ public class loginForm implements ActionListener {
                 loginPage.dispose(); // Close the login window
                 
                 // Check username and open the corresponding main menu
-                if (username.toLowerCase().equals("education")) {
-                    mainMenuInstructor instructorMenu = new mainMenuInstructor(accountDatabase);
+                if (username.toLowerCase().contains("education")) {
+                    MainMenuInstructor instructorMenu = new MainMenuInstructor();
                 } else if (username.toLowerCase().contains("developer")) {
-                    mainMenuSoftware softwareMenu = new mainMenuSoftware(accountDatabase);
+                    MainMenuSoftware softwareMenu = new MainMenuSoftware();
                 } else {
-                    mainMenu userMenu = new mainMenu(accountDatabase);
+                    MainMenu userMenu = new MainMenu();
                 }
             }
         } else if (e.getSource() == signUpButton) {
             loginPage.dispose();
-            signupForm signup = new signupForm(accountDatabase);
+            SignupForm signup = new SignupForm(accountDatabase);
         }
     }
 
