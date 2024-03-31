@@ -152,7 +152,7 @@ public class Level {
 
 
     public String getLesson() {
-        String file = "lessons.json";
+        String file = "src/lessons.json";
         try {
             Object obj = new JSONParser().parse(new FileReader(file));
             JSONObject jsonObj = (JSONObject) obj;
