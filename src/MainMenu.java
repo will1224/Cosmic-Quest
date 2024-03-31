@@ -5,6 +5,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class creates the main menu for the Cosmic Quest: Stellar Treasures
+ * game.
+ * It initializes the game window and populates it with buttons for navigating
+ * to
+ * different parts of the game, such as starting a new game, continuing a
+ * previous game,
+ * selecting a level, viewing scores, adjusting options, and exiting the game.
+ * It utilizes a JFrame for the main menu window and JButton components for the
+ * user interactions.
+ * The class also manages action events triggered by button clicks to perform
+ * the corresponding actions.
+ * 
+ * @author Sophia Tong
+ */
 public class MainMenu implements ActionListener {
     private JFrame menu;
     private JTextField title;
@@ -16,6 +31,12 @@ public class MainMenu implements ActionListener {
     private JButton exitGame;
     private Accounts accounts;
 
+     /**
+     * Constructs the MainMenu and initializes the game's main menu interface.
+     * It sets up the layout, background image, buttons, and their action listeners.
+     * 
+     * @param accounts The Accounts instance for managing user accounts and data.
+     */
     public MainMenu(Accounts accounts) {
         this.accounts = accounts;
         menu = new JFrame("Cosmic Quest: Stellar Treasures");
@@ -76,11 +97,20 @@ public class MainMenu implements ActionListener {
         gbc.fill = GridBagConstraints.NONE;
         menu.add(buttonPanel, gbc);
 
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        menu.setSize(screenSize.width, screenSize.height);
         menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         menu.setVisible(true);
-        menu.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
+     /**
+     * Helper method to create a JButton with an image icon.
+     * It configures the button to have no border, no content area filled, 
+     * and no focus painted, and adds it as an action listener to this class.
+     * 
+     * @param imagePath The path to the image used as the button icon.
+     * @return A configured JButton with the specified image icon.
+     */
     private JButton createImageButton(String imagePath) {
         ImageIcon icon = new ImageIcon(imagePath);
         JButton button = new JButton(icon);
@@ -93,24 +123,26 @@ public class MainMenu implements ActionListener {
         return button;
     }
 
-    private JButton createButton(String text) {
-        JButton button = new JButton(text);
-        button.setAlignmentX(Component.CENTER_ALIGNMENT); // Center the button
-        button.setPreferredSize(new Dimension(200, 60)); // Slightly adjust if needed
-        button.setMaximumSize(new Dimension(200, 60)); // Keep them uniform
-        button.setFont(new Font("Arial", Font.BOLD, 18)); // Set a larger font size for button text
-        button.addActionListener(this); // Register the ActionListener
-        return button;
-    }
-
+    /**
+     * Handles action events triggered by button clicks in the main menu.
+     * Depending on which button is clicked, it performs the corresponding action, such as 
+     * opening a new game, continuing a game, opening the level menu, displaying the score board, 
+     * showing options, or exiting the game.
+     * 
+     * @param e The ActionEvent triggered by clicking a button.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (accounts == null) {
+            System.err.println("Accounts object is not initialized.");
+            return;
+        }
         if (e.getSource() == selectLevel) {
             menu.dispose(); // Close the main menu
             new LevelMenu(accounts); // Open the level menu
         } else if (e.getSource() == exitGame) {
             menu.dispose();
-            new LoginForm(null);
+            new LoginForm(accounts);
         } else if (e.getSource() == newGame) {
             menu.dispose(); // Example: Close the main menu and start a new game
             GameControl game = new GameControl(accounts, true);
@@ -126,9 +158,6 @@ public class MainMenu implements ActionListener {
             PlayerScore userScore = accounts.getPlayerScore(username);
             new ScoreBoard(menu, userScore.getPlayerName(), userScore.getScore()).setVisible(true);
         }
-    
-         
 
-        
     }
 }

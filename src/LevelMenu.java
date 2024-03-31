@@ -9,6 +9,22 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.image.BufferedImage;
 
+/**
+ * The {@code LevelMenu} class provides a graphical interface for users to
+ * select different levels or sections
+ * within the "Cosmic Quest: Stellar Treasures" game. It displays a series of
+ * buttons, each representing a different
+ * game level or section, such as planets or cosmic phenomena.
+ * <p>
+ * The menu is presented against a themed background, and each button is
+ * customized with an image representing its level.
+ * This class handles the initialization of the GUI components and responds to
+ * user actions by navigating to the selected
+ * level or returning to the main menu.
+ * </p>
+ *
+ * @author Sophia Tong
+ */
 public class LevelMenu implements ActionListener {
     private JFrame frame;
     private Accounts accounts;
@@ -67,6 +83,14 @@ public class LevelMenu implements ActionListener {
         frame.setVisible(true);
     }
 
+    /**
+     * Creates a button with a specified image and action command. This method reads the image from the given file path,
+     * resizes it to a fixed height while maintaining aspect ratio, and applies it to a new button.
+     * 
+     * @param imagePath The path to the image file for the button's icon.
+     * @param actionCommand The action command associated with the button, used to identify button presses.
+     * @return A {@code JButton} with the specified image and action command.
+     */
     private JButton createButtonWithImage(String imagePath, String actionCommand) {
         try {
             BufferedImage originalImage = ImageIO.read(new File(imagePath));
@@ -91,6 +115,14 @@ public class LevelMenu implements ActionListener {
         }
     }
 
+    /**
+     * Similar to {@code createButtonWithImage} but resizes the image based on a fixed width while maintaining
+     * aspect ratio. It's used for buttons where width is more critical than height.
+     * 
+     * @param imagePath The path to the image file for the button's icon.
+     * @param actionCommand The action command associated with the button.
+     * @return A {@code JButton} with the specified image and action command.
+     */
     private JButton createButtonWithImageWidth(String imagePath, String actionCommand) {
         try {
             BufferedImage originalImage = ImageIO.read(new File(imagePath));
@@ -114,6 +146,14 @@ public class LevelMenu implements ActionListener {
         }
     }
 
+    /**
+     * Specifically creates a back button with an image, resizing based on a fixed width. It allows users to return
+     * to the main menu. This method demonstrates how specific button types can be customized individually.
+     * 
+     * @param imagePath The path to the image file for the button's icon.
+     * @param actionCommand The action command indicating a return to the main menu.
+     * @return A back {@code JButton} customized with the specified image.
+     */
     private JButton createButtonWithImageBack(String imagePath, String actionCommand) {
         try {
             BufferedImage originalImage = ImageIO.read(new File(imagePath));
@@ -137,6 +177,14 @@ public class LevelMenu implements ActionListener {
         }
     }
 
+     /**
+     * Creates a button decorated with a logo image. This method is tailored for buttons that might not directly
+     * relate to level selection but are integral to the menu's visual identity.
+     * 
+     * @param imagePath The path to the logo image file.
+     * @param actionCommand The action command associated with the logo button.
+     * @return A logo {@code JButton} with the specified image.
+     */
     private JButton createButtonWithImageLogo(String imagePath, String actionCommand) {
         try {
             BufferedImage originalImage = ImageIO.read(new File(imagePath));
@@ -160,6 +208,13 @@ public class LevelMenu implements ActionListener {
         }
     }
 
+    /**
+     * Handles action events triggered by button presses within the {@code LevelMenu}. Depending on the action command
+     * of the pressed button, this method either navigates to a specific game level, returns to the main menu,
+     * or performs another action defined within the method's logic.
+     *
+     * @param e The {@code ActionEvent} triggered by interacting with a button.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();

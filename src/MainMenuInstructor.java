@@ -28,7 +28,8 @@ public class MainMenuInstructor implements ActionListener {
     /**
      * Constructs a MainMenuInstructor object and initializes the main menu interface.
      */
-    public MainMenuInstructor() {
+    public MainMenuInstructor(Accounts accounts) {
+        this.accounts = accounts;
         /** Initialize JFrame for main menu */
         menu = new JFrame("Cosmic Quest: Stellar Treasures");
         java.net.URL menuBackgroundURL = getClass().getResource("/images/mainmenuBGD.png");
@@ -90,17 +91,20 @@ public class MainMenuInstructor implements ActionListener {
         gbc.fill = GridBagConstraints.NONE;
         menu.add(buttonPanel, gbc);
 
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        menu.setSize(screenSize.width, screenSize.height);
         menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         menu.setVisible(true);
-        menu.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
-    /**
-    * Creates a JButton with an image icon and registers an ActionListener.
-    *
-    * @param imagePath The path to the image file.
-    * @return The created JButton.
-    */
+     /**
+     * Helper method to create a JButton with an image icon.
+     * It configures the button to have no border, no content area filled, 
+     * and no focus painted, and adds it as an action listener to this class.
+     * 
+     * @param imagePath The path to the image used as the button icon.
+     * @return A configured JButton with the specified image icon.
+     */
     private JButton createImageButton(String imagePath) {
         ImageIcon icon = new ImageIcon(imagePath);
         JButton button = new JButton(icon);
@@ -114,34 +118,25 @@ public class MainMenuInstructor implements ActionListener {
     }
 
     /**
-    * Creates a JButton with the specified text and registers an ActionListener.
-    *
-    * @param text The text to display on the button.
-    * @return The created JButton.
-    */
-    private JButton createButton(String text) {
-        JButton button = new JButton(text);
-        button.setAlignmentX(Component.CENTER_ALIGNMENT); /** Center the button */
-        button.setPreferredSize(new Dimension(200, 60)); /** Slightly adjust if needed */
-        button.setMaximumSize(new Dimension(200, 60)); /** Keep them uniform */
-        button.setFont(new Font("Arial", Font.BOLD, 18)); /** Set a larger font size for button text */
-        button.addActionListener(this); /** Register the ActionListener */
-        return button;
-    }
-
-    /**
-     * Responds to button clicks on the main menu.
-     *
-     * @param e The ActionEvent representing the button click event.
+     * Handles action events triggered by button clicks in the main menu.
+     * Depending on which button is clicked, it performs the corresponding action, such as 
+     * opening a new game, continuing a game, opening the level menu, displaying the score board, 
+     * showing options, or exiting the game.
+     * 
+     * @param e The ActionEvent triggered by clicking a button.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (accounts == null) {
+            System.err.println("Accounts object is not initialized.");
+            return;
+        }
         if (e.getSource() == selectLevel) {
             menu.dispose(); /** Close the main menu */
             new LevelMenu(accounts); /** Open the level menu */
         } else if (e.getSource() == exitGame) {
             menu.dispose();
-            new LoginForm(null);
+            new LoginForm(accounts);
         } else if (e.getSource() == newGame) {
             menu.dispose(); /** Example: Close the main menu and start a new game */
         } else if (e.getSource() == options) {
