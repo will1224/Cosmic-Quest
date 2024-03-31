@@ -40,18 +40,16 @@ public class GameControl {
         // make level
         currLevel = new Level(0);// 0 for now
         List<Question> questionSet = currLevel.getQuestions();
-
-        GameDisplay d = new GameDisplay();
+        GameDisplay d = new GameDisplay(accounts);
         d.displayLevel(currLevel, questionSet);
     }
 
-//    public static void main(String[] args) {
-//        //Accounts object must be created for login/signup to occur.
-//        Accounts accounts = new Accounts();
-//        //Account must be logged in (or new registration must be successful) for the getCurrentUser() method in Accounts.java to work properly.
-//        accounts.registerAccount("testing", "abc123");
-//        accounts.login("testing", "abc123");
-//        GameControl t = new GameControl(accounts.getCurrentAccount());
-//        t.startGame();
-//    }
+   public static void main(String[] args) {
+       //Accounts object must be created for login/signup to occur.
+       Accounts accounts = new Accounts();
+       //Account must be logged in (or new registration must be successful) for the getCurrentUser() method in Accounts.java to work properly.
+       accounts.login("testing", "abc123");
+       GameControl t = new GameControl(accounts);
+       t.startGame();
+   }
 }
