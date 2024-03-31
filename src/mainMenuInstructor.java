@@ -1,6 +1,9 @@
 package src;
 
 import javax.swing.*;
+
+import org.json.simple.parser.ParseException;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -113,7 +116,7 @@ public class mainMenuInstructor implements ActionListener {
         } else if (e.getSource() == options) {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
-            new HighScore();
+            
         }
     }
 }

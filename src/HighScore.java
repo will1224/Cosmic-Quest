@@ -13,7 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class HighScore extends JFrame {
-    private static final String DEFAULT_BACKGROUND_IMAGE_PATH = "images/background.jpg"; // Adjust as needed
+    private static final String DEFAULT_BACKGROUND_IMAGE_PATH = "images/gradient.png"; // Adjust as needed
 
     public HighScore() throws ParseException {
         setTitle("High Scores");

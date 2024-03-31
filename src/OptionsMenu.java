@@ -109,7 +109,7 @@ public class OptionsMenu extends JFrame {
 
         public BackgroundPanel() {
             try {
-                backgroundImage = new ImageIcon("images/gradientBGD.png").getImage();
+                backgroundImage = new ImageIcon("images/gradient.png").getImage();
             } catch (Exception e) {
                 e.printStackTrace();
             }
