@@ -11,13 +11,12 @@ public class GameControl {
         private Level currLevel;
         private GameDisplay d;
 
-    public GameControl(Accounts account, boolean newgame) {
-        accounts = account;
-        clearProgress(account);
+    public GameControl(Accounts acc, boolean newgame) {
+        accounts = acc;
+        clearProgress(acc);
         progress = new LevelProgress((JSONArray) accounts.getCurrentAccount().get("progress"));
         //With the progress loaded into the LevelProgress object, class methods such as obtaining the current level can be done properly.
         this.currLevel = new Level(progress.getCurrentLevel());
-        d = new GameDisplay(accounts);
     }
 
 
@@ -40,7 +39,7 @@ public class GameControl {
         // make level
         currLevel = new Level(0);// 0 for now
         List<Question> questionSet = currLevel.getQuestions();
-        GameDisplay d = new GameDisplay(accounts);
+        d = new GameDisplay(accounts);
         d.displayLevel(currLevel, questionSet);
     }
 
