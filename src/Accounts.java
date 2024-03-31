@@ -147,6 +147,9 @@ public class Accounts {
      * @return true if the account exists in the data file, false otherwise
      */
     public boolean accountExists(String username) {
+        if (username.equals("")) {
+            return false;
+        }
         /**Loop through the account data file.*/
         for (int i = 0; i < accounts.size(); i++) {
             //Check each account for the provided username.
