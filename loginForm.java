@@ -23,7 +23,7 @@ public class loginForm implements ActionListener {
         loginPage.setExtendedState(JFrame.MAXIMIZED_BOTH);
         loginPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
-        ImageIcon icon = new ImageIcon("images/loginBGD.png");
+        ImageIcon icon = new ImageIcon("images/login.png");
         BackgroundPanel backgroundPanel = new BackgroundPanel(icon.getImage());
         backgroundPanel.setLayout(new BorderLayout());
     
