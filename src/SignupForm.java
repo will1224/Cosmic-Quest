@@ -35,7 +35,6 @@ public class SignupForm implements ActionListener {
      */
     public SignupForm(Accounts acc) {
         accountDatabase = acc;
-        this.accounts = accounts;
 
         signUpPage.setExtendedState(JFrame.MAXIMIZED_BOTH);
         signUpPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -127,11 +126,15 @@ public class SignupForm implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent a) {
         if (a.getSource() == backButton) {
+            /** Dispose the signup page and open the login form */
             signUpPage.dispose();
             LoginForm loginPage = new LoginForm(accountDatabase);
         } else if (a.getSource() == createAccountButton) {
+            /** Attempt to register a new account */
             boolean succesfulCreation = accountDatabase.registerAccount(usernameField.getText(),
                     passwordField.getText());
+
+            /** If account creation is successful, display success message and open the main menu */
             if (succesfulCreation) {
                 msg.setForeground(Color.green);
                 msg.setFont(new Font(null, Font.BOLD, 15));
@@ -139,9 +142,9 @@ public class SignupForm implements ActionListener {
                 signUpPage.add(msg);
                 signUpPage.dispose();
                 Accounts accounts = this.accountDatabase;
-                @SuppressWarnings("unused")
                 MainMenu mainMenu = new MainMenu(accounts);
             } else {
+                // If account creation fails, display error message
                 msg.setForeground(Color.red);
                 msg.setText("An account with this username already exists. Please try to login instead.");
                 signUpPage.add(msg);
