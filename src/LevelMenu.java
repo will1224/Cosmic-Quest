@@ -66,8 +66,8 @@ public class LevelMenu implements ActionListener {
         JButton saturnButton = createButtonWithImageSaturn("images/saturn.png", "Saturn", 6);
         JButton uranusButton = createButtonWithImageWidth("images/uranus.png", "Uranus", 7);
         JButton returnButton = createButtonWithImageBack("images/backbtn.png", "Return to Main Menu");
-        JButton neptuneButton = createButtonWithImage("images/neptune.png", "Neptune", 9);
-        JButton blackHolesButton = createButtonWithImage("images/blackhole.png", "Black Holes", 10);
+        JButton neptuneButton = createButtonWithImage("images/neptune.png", "Neptune", 8);
+        JButton blackHolesButton = createButtonWithImage("images/blackhole.png", "Black Holes", 9);
         JLabel logo = new JLabel(new ImageIcon("images/logo.png"));
 
         // Add buttons to the background panel
@@ -132,7 +132,7 @@ public class LevelMenu implements ActionListener {
             button.addActionListener(this);
 
             // Optionally disable the button if the level is locked
-            //button.setEnabled(level <= unlockedUpTo());
+            button.setEnabled(level <= unlockedUpTo());
 
             return button;
         } catch (IOException e) {
