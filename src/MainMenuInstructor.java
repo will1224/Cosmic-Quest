@@ -32,7 +32,7 @@ public class MainMenuInstructor implements ActionListener {
         this.accounts = accounts;
         /** Initialize JFrame for main menu */
         menu = new JFrame("Cosmic Quest: Stellar Treasures");
-        java.net.URL menuBackgroundURL = getClass().getResource("/images/mainmenuBGD.png");
+        java.net.URL menuBackgroundURL = getClass().getResource("/images/menu.png");
 
         /** Set background image for the menu if available */
         if (menuBackgroundURL != null) {
