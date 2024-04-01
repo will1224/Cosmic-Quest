@@ -39,7 +39,14 @@ public class GameControl {
         List<Question> questionSet = currLevel.getQuestions();
 //        System.out.println(currLevel.getName()); // TEMP TESTER
         d = new GameDisplay(accounts);
-        d.displayLevel(currLevel, questionSet);
+        d.displayLevel(currLevel, questionSet, false);
+    }
+
+    public void playLevel(int levelId){
+        Level level = new Level(levelId);
+        List<Question> questionSet = level.getQuestions();
+        d = new GameDisplay(accounts);
+        d.displayLevel(level, questionSet, true);
     }
 
    public static void main(String[] args) {

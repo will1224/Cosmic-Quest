@@ -134,5 +134,4 @@ public class HighScore extends JFrame {
         }
         return userScores;
     }
-
 }

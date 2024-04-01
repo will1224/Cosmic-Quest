@@ -262,10 +262,14 @@ public class LevelMenu implements ActionListener {
         }
 
         // Assuming GameControl's constructor takes an int for selected
-        GameControl game = new GameControl(accounts, false);
-        game.startGame();
+        GameControl game = new GameControl(accounts);
+        game.playLevel(6);
     }
 
+    private int unlockedUpTo(){
+        LevelProgress progress = new LevelProgress(accounts.getProgress(accounts.getCurrentAccount()));
+        return progress.getCurrentLevel();
+    }
     //public static void main(String[] args) {
         //new LevelMenu(accounts);
     //}

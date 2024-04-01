@@ -37,6 +37,7 @@ public class GameDisplay extends JFrame {
     // colour constants
     private Color PINK = new Color(255, 104, 176);
     private Color GREEN = new Color(0, 180, 119);
+    private boolean isSingleLevel;
 
 
     // constructor
@@ -122,7 +123,51 @@ public class GameDisplay extends JFrame {
         nextButton.setPreferredSize(new Dimension(200, 40)); // control button dimensions
         nextButton.setFont(new Font("Space Mono", Font.PLAIN, 20));
         nextButton.addActionListener(e -> displayQuestion(currentLevel));
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(nextButton);
+        buttonPanel.setOpaque(false);
+        panel.add(buttonPanel, BorderLayout.SOUTH);
 
+        panel.revalidate();
+        panel.repaint();
+    }
+
+    public void displayLessonSingle() {
+        panel.removeAll();
+        panel.setLayout(new BorderLayout(10, 10));
+        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        // Title
+        JLabel levelName = new JLabel(currentLevel.getName(), SwingConstants.CENTER);
+        levelName.setFont(new Font("Space Mono", Font.BOLD, 30));
+        levelName.setForeground(Color.PINK);
+        panel.add(levelName, BorderLayout.NORTH);
+
+        // Textarea in the center
+        JTextArea lessonText = new JTextArea(currentLevel.getLesson());
+        lessonText.setFont(new Font("Space Mono", Font.PLAIN, 20));
+        lessonText.setLineWrap(true);
+        lessonText.setWrapStyleWord(true);
+        lessonText.setEditable(false);
+        lessonText.setForeground(Color.white);
+        lessonText.setOpaque(false);
+
+        JScrollPane scrollPane = new JScrollPane(lessonText);
+        scrollPane.setPreferredSize(new Dimension(800, 700)); // control text area dimensions
+        scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false);
+        scrollPane.setBorder(null);
+
+        JPanel scrollPanePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        scrollPanePanel.add(scrollPane);
+        scrollPanePanel.setOpaque(false);
+        panel.add(scrollPanePanel, BorderLayout.CENTER);
+
+        // Next button
+        JButton nextButton = new JButton("Next");
+        nextButton.setPreferredSize(new Dimension(200, 40)); // control button dimensions
+        nextButton.setFont(new Font("Space Mono", Font.PLAIN, 20));
+        nextButton.addActionListener(e -> displayQuestionSingle(currentLevel));
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.add(nextButton);
         buttonPanel.setOpaque(false);
@@ -133,17 +178,64 @@ public class GameDisplay extends JFrame {
     }
 
 
-    public void displayLevel(Level currLevel, List<Question> questionSet) {
+//    public void displayLevel(Level currLevel, List<Question> questionSet) {
+//
+//        if (questionSet.isEmpty()) return;
+//
+//        this.currentLevel = currLevel;
+//        this.questions = questionSet; // store the list of questions
+//        this.currentQuestionIndex = 0; // start from the first question
+//        this.selectedAnswerIndex = -1; // set default for no selection
+//        tempScore = 0;
+//
+//        displayLesson();
+//    }
+
+    public void displayLevel(Level currLevel, List<Question> questionSet, boolean fromLevelSelect) {
 
         if (questionSet.isEmpty()) return;
-
+        this.isSingleLevel = fromLevelSelect;
         this.currentLevel = currLevel;
         this.questions = questionSet; // store the list of questions
         this.currentQuestionIndex = 0; // start from the first question
         this.selectedAnswerIndex = -1; // set default for no selection
         tempScore = 0;
+        if (fromLevelSelect){
+            displayLessonSingle();
+        }else {
+            displayLesson();
+        }
+    }
 
-        displayLesson();
+    private void displayQuestionSingle(Level currLevel) {
+        gameState = 0;
+
+        if (currentQuestionIndex >= questions.size()) {
+            if(tempScore != 5) {
+                JOptionPane.showMessageDialog(this, "You have not answered all questions right, please try again", "End of Questions", JOptionPane.INFORMATION_MESSAGE);
+//                LevelProgress progress = new LevelProgress((JSONArray) accounts.getCurrentAccount().get("progress"));
+//                if(tempScore > progress.getLevelScore(progress.getCurrentLevel())) {
+//                    updateScore(tempScore);
+//                }
+//                tempScore = 0;
+                questions = currLevel.getQuestions();
+                displayLevel(currLevel, questions, true);
+            }else{
+                JOptionPane.showMessageDialog(this, "You've completed all the questions!", "End of Questions", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+                return;
+            }
+        }else {
+            Question currentQuestion = questions.get(currentQuestionIndex);
+
+            panel.removeAll(); // clear the panel for the new question
+            panel.setLayout(new GridLayout(7, 1, 10, 10)); // reset layout
+
+            addComponentsToPanel(currLevel);
+
+            revalidate();
+            repaint();
+        }
     }
 
     private void displayQuestion(Level currLevel) {
@@ -158,7 +250,7 @@ public class GameDisplay extends JFrame {
                 }
                 tempScore = 0;
                 questions = currLevel.getQuestions();
-                displayLevel(currLevel, questions);
+                displayLevel(currLevel, questions, false);
             }else{
                 JOptionPane.showMessageDialog(this, "You've completed all the questions!", "End of Questions", JOptionPane.INFORMATION_MESSAGE);
                 updateScore(5);
@@ -168,7 +260,7 @@ public class GameDisplay extends JFrame {
                 progress.setCurrentLevelStatus(progress.getCurrentLevel(), false);
                 accounts.updateUserProgress(accounts.getCurrentAccount().get("username").toString(), progress.getProgress());
                 currLevel = new Level(currLevel.getLevelID()+1);
-                displayLevel(currLevel, currLevel.getQuestions());
+                displayLevel(currLevel, currLevel.getQuestions(), false);
             }
         }else {
             Question currentQuestion = questions.get(currentQuestionIndex);
@@ -189,7 +281,11 @@ public class GameDisplay extends JFrame {
             return;
         }
         currentQuestionIndex++; // move to the next question
-        displayQuestion(currentLevel);
+        if(isSingleLevel){
+            displayQuestionSingle(currentLevel);
+        }else {
+            displayQuestion(currentLevel);
+        }
     }
 
     private void addComponentsToPanel(Level currLevel) {
