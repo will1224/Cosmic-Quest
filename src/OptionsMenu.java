@@ -35,23 +35,22 @@ public class OptionsMenu extends JFrame {
         setTitle("Cosmic Quest: Stellar Treasures - Options");
         setSize(400, 300);
         setLocationRelativeTo(null);
-        // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Set the background image
+        /** Set the background image */
         setContentPane(new BackgroundPanel());
 
         JPanel optionsPanel = new JPanel();
         optionsPanel.setLayout(new GridLayout(5, 1));
-        optionsPanel.setOpaque(false); // Make the panel transparent
+        optionsPanel.setOpaque(false); /** Make the panel transparent */
 
-        // Sound Section
+        /** Sound Section */
         optionsPanel.add(createSoundPanel());
 
-        // Display Section
+        /** Display Section */
         optionsPanel.add(createDisplayPanel());
 
-        // Return Button
+        /** Return Button */
         JButton returnButton = new JButton("Return to main menu");
         returnButton.setForeground(Color.WHITE); // Set text color to white
         returnButton.addActionListener(e -> dispose());
@@ -73,21 +72,21 @@ public class OptionsMenu extends JFrame {
         JPanel soundPanel = new JPanel(new GridLayout(4, 1));
         soundPanel.setOpaque(false); // Make the panel transparent
 
-        // Heading "Sound" with larger font
+        /** Heading "Sound" with larger font */
         headingSound = new JLabel("Sound");
         headingSound.setFont(new Font("Arial", Font.BOLD, 16));
         headingSound.setForeground(Color.WHITE); // Set text color to white
         soundPanel.add(headingSound);
 
-        // Master Sound Slider
+        /** Master Sound Slider */
         masterSoundSlider = new JSlider(0, 100, 50);
         soundPanel.add(createLabeledSlider(masterSoundSlider, "Master:"));
 
-        // Sound Effects Slider
+        /** Sound Effects Slider */
         soundEffectsSlider = new JSlider(0, 100, 50);
         soundPanel.add(createLabeledSlider(soundEffectsSlider, "Sound Effects:"));
 
-        // Music Slider
+        /** Music Slider */
         musicSlider = new JSlider(0, 100, 50);
         soundPanel.add(createLabeledSlider(musicSlider, "Music:"));
 
@@ -104,13 +103,13 @@ public class OptionsMenu extends JFrame {
         JPanel displayPanel = new JPanel(new GridLayout(2, 1));
         displayPanel.setOpaque(false); // Make the panel transparent
 
-        // Heading "Display" with larger font
+        /** Heading "Display" with larger font */
         headingDisplay = new JLabel("Display");
         headingDisplay.setFont(new Font("Arial", Font.BOLD, 16));
         headingDisplay.setForeground(Color.WHITE); // Set text color to white
         displayPanel.add(headingDisplay);
 
-        // Brightness Slider
+        /** Brightness Slider */
         brightnessSlider = new JSlider(0, 100, 50);
         displayPanel.add(createLabeledSlider(brightnessSlider, "Brightness:"));
 
