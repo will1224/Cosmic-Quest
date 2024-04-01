@@ -63,7 +63,7 @@ public class LevelMenu implements ActionListener {
         JButton earthButton = createButtonWithImage("images/earth.png", "Earth", 3);
         JButton marsButton = createButtonWithImage("images/mars.png", "Mars", 4);
         JButton jupiterButton = createButtonWithImage("images/jupiter.png", "Jupiter", 5);
-        JButton saturnButton = createButtonWithImage("images/saturn.png", "Saturn", 6);
+        JButton saturnButton = createButtonWithImageSaturn("images/saturn.png", "Saturn", 6);
         JButton uranusButton = createButtonWithImageWidth("images/uranus.png", "Uranus", 7);
         JButton returnButton = createButtonWithImageBack("images/backbtn.png", "Return to Main Menu");
         JButton neptuneButton = createButtonWithImage("images/neptune.png", "Neptune", 9);
@@ -110,7 +110,59 @@ public class LevelMenu implements ActionListener {
             int originalWidth = originalImage.getWidth(null);
             int originalHeight = originalImage.getHeight(null);
             double aspectRatio = (double) originalHeight / (double) originalWidth;
-            int newWidth = 190; // Width is constant for all buttons for consistency
+            int newWidth = 200; // Width is constant for all buttons for consistency
+            int newHeight = (int) Math.round(newWidth * aspectRatio);
+            BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = resizedImage.createGraphics();
+            g2d.drawImage(originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH), 0, 0, null);
+            g2d.dispose();
+
+            // Check if the level is unlocked
+            if (level > unlockedUpTo()) {
+                // Apply a grayscale filter to the image if the level is locked
+                ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
+                op.filter(resizedImage, resizedImage);
+            }
+
+            JButton button = new JButton(new ImageIcon(resizedImage));
+            button.setBorderPainted(false);
+            button.setFocusPainted(false);
+            button.setContentAreaFilled(false);
+            button.setActionCommand(actionCommand);
+            button.addActionListener(this);
+
+            // Optionally disable the button if the level is locked
+            button.setEnabled(level <= unlockedUpTo());
+
+            return button;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new JButton(actionCommand);
+        }
+    }
+    
+
+    /**
+     * Similar to {@code createButtonWithImage}, but specifically optimized for
+     * buttons where width is a critical factor.
+     * This method is typically used for special cases where button width needs to
+     * be consistent across different screen sizes.
+     *
+     * @param imagePath     the path to the image file for the button's icon.
+     * @param actionCommand the action command associated with the button.
+     * @param level         the game level the button represents, used to determine
+     *                      if the level is unlocked.
+     * @return a {@code JButton} with the specified image and action command, with a
+     *         fixed width and aspect-ratio-maintained height.
+     * @throws IOException if an error occurs while reading the image file.
+     */
+    private JButton createButtonWithImageWidth(String imagePath, String actionCommand, int level) {
+        try {
+            BufferedImage originalImage = ImageIO.read(new File(imagePath));
+            int originalWidth = originalImage.getWidth(null);
+            int originalHeight = originalImage.getHeight(null);
+            double aspectRatio = (double) originalHeight / (double) originalWidth;
+            int newWidth = 200; // Width is constant for all buttons for consistency
             int newHeight = (int) Math.round(newWidth * aspectRatio);
             BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2d = resizedImage.createGraphics();
@@ -143,9 +195,7 @@ public class LevelMenu implements ActionListener {
 
     /**
      * Similar to {@code createButtonWithImage}, but specifically optimized for
-     * buttons where width is a critical factor.
-     * This method is typically used for special cases where button width needs to
-     * be consistent across different screen sizes.
+     * Saturn to accomodate it's rings.
      *
      * @param imagePath     the path to the image file for the button's icon.
      * @param actionCommand the action command associated with the button.
@@ -155,13 +205,13 @@ public class LevelMenu implements ActionListener {
      *         fixed width and aspect-ratio-maintained height.
      * @throws IOException if an error occurs while reading the image file.
      */
-    private JButton createButtonWithImageWidth(String imagePath, String actionCommand, int level) {
+    private JButton createButtonWithImageSaturn(String imagePath, String actionCommand, int level) {
         try {
             BufferedImage originalImage = ImageIO.read(new File(imagePath));
             int originalWidth = originalImage.getWidth(null);
             int originalHeight = originalImage.getHeight(null);
             double aspectRatio = (double) originalHeight / (double) originalWidth;
-            int newWidth = 200; // Width is constant for all buttons for consistency
+            int newWidth = 352; // Width is constant for all buttons for consistency
             int newHeight = (int) Math.round(newWidth * aspectRatio);
             BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2d = resizedImage.createGraphics();
