@@ -175,7 +175,6 @@ public class GameDisplay extends JFrame {
         lessonText.setOpaque(false);
 
         JScrollPane scrollPane = new JScrollPane(lessonText);
-        //scrollPane.setPreferredSize(new Dimension(800, 700)); // control text area dimensions
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setBorder(null);
@@ -221,15 +220,14 @@ public class GameDisplay extends JFrame {
         lessonText.setOpaque(false);
 
         JScrollPane scrollPane = new JScrollPane(lessonText);
-        scrollPane.setPreferredSize(new Dimension(800, 700)); // control text area dimensions
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setBorder(null);
 
-        JPanel scrollPanePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        scrollPanePanel.add(scrollPane);
-        scrollPanePanel.setOpaque(false);
-        panel.add(scrollPanePanel, BorderLayout.CENTER);
+        Box box = Box.createHorizontalBox();
+        box.add(Box.createHorizontalGlue()); // add left spacing
+        box.add(scrollPane);
+        box.add(Box.createHorizontalGlue()); // add right spacing
 
         // Next button
         JButton nextButton = new JButton("Next");
