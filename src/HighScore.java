@@ -141,11 +141,8 @@ public class HighScore extends JFrame {
     private void populateScoresTable(List<PlayerScore> scores) {
         /** Clear existing table data */
         tableModel.setRowCount(0);
-
-        /** Sort scores in descending order
+        /**sort the scores in descending order */
         scores.sort(Comparator.comparingInt(PlayerScore::getScore).reversed());
-
-        /** Add scores to the table */
         for (PlayerScore score : scores) {
             tableModel.addRow(new Object[] { score.getPlayerName(), score.getScore() });
         }
