@@ -10,18 +10,9 @@ import java.io.IOException;
 import java.awt.image.BufferedImage;
 
 /**
- * The {@code LevelMenu} class provides a graphical interface for users to
- * select different levels or sections
- * within the "Cosmic Quest: Stellar Treasures" game. It displays a series of
- * buttons, each representing a different
- * game level or section, such as planets or cosmic phenomena.
- * <p>
- * The menu is presented against a themed background, and each button is
- * customized with an image representing its level.
- * This class handles the initialization of the GUI components and responds to
- * user actions by navigating to the selected
- * level or returning to the main menu.
- * </p>
+ * The LevelMenuSpecial class provides a graphical interface for the instructors and the developers
+ * This page will have all the planets already unlocked which is a special feature uniques to the 
+ * instructor and developer.
  *
  * @author Sophia Tong
  */
@@ -42,7 +33,7 @@ public class LevelMenuSpecial implements ActionListener {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 try {
-                    BufferedImage backgroundImage = ImageIO.read(new File("images/space.jpg"));
+                    BufferedImage backgroundImage = ImageIO.read(new File("images/space.png"));
                     Image scaledImage = backgroundImage.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
                     g.drawImage(scaledImage, 0, 0, this);
                 } catch (IOException e) {

@@ -39,7 +39,7 @@ public class SignupForm implements ActionListener {
         signUpPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         /** Set background image */
-        ImageIcon icon = new ImageIcon("images/login.png");
+        ImageIcon icon = new ImageIcon("images/space.png");
         BackgroundPanel backgroundPanel = new BackgroundPanel(icon.getImage());
         backgroundPanel.setLayout(new BorderLayout());
 
