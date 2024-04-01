@@ -31,7 +31,7 @@ public class TestHighScore {
         accounts = new Accounts();
         restore = accounts.getAccounts();
         try {
-            //Overwrite data file to run tests.
+            /** Overwrite data file to run tests. */
             FileWriter fw = new FileWriter("accountsdata.json");
             fw.write(new JSONArray().toJSONString());
             fw.close();
@@ -39,19 +39,19 @@ public class TestHighScore {
         catch (IOException e) {
             e.printStackTrace();
         }
-        //Keep a copy of the blank data file on record within the testing class.
+        /**Keep a copy of the blank data file on record within the testing class.*/
         accounts = new Accounts();
-        //Register 3 accounts.
+        /**Register 3 accounts.*/
         accounts.registerAccount("test-ing123", "abc123");
         accounts.registerAccount("test-ing456", "def456");
         accounts.registerAccount("test-ing789", "ghi789");
 
-        //Create new progress.
+        /**Create new progress.*/
         LevelProgress progress1 = new LevelProgress();
         LevelProgress progress2 = new LevelProgress();
         LevelProgress progress3 = new LevelProgress();
 
-        //Update level scores.
+        /**Update level scores.*/
         progress1.setLevelScore(0, 5);
         progress1.setLevelScore(6,1);
 
@@ -79,7 +79,7 @@ public class TestHighScore {
             e.printStackTrace();
         }
 
-        //Restore the previously stored data in the testing file.
+        /**Restore the previously stored data in the testing file.*/
         try {
             FileWriter fw = new FileWriter("accountsdata.json");
             fw.write(restore.toJSONString());

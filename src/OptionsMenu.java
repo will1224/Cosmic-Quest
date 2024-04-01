@@ -35,23 +35,22 @@ public class OptionsMenu extends JFrame {
         setTitle("Cosmic Quest: Stellar Treasures - Options");
         setSize(400, 300);
         setLocationRelativeTo(null);
-        // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Set the background image
+        /** Set the background image */
         setContentPane(new BackgroundPanel());
 
         JPanel optionsPanel = new JPanel();
         optionsPanel.setLayout(new GridLayout(5, 1));
-        optionsPanel.setOpaque(false); // Make the panel transparent
+        optionsPanel.setOpaque(false); /** Make the panel transparent */
 
-        // Sound Section
+        /** Sound Section */
         optionsPanel.add(createSoundPanel());
 
-        // Display Section
+        /** Display Section */
         optionsPanel.add(createDisplayPanel());
 
-        // Return Button
+        /** Return Button */
         JButton returnButton = new JButton("Return to main menu");
         returnButton.setForeground(Color.WHITE); // Set text color to white
         returnButton.addActionListener(e -> dispose());
@@ -73,21 +72,21 @@ public class OptionsMenu extends JFrame {
         JPanel soundPanel = new JPanel(new GridLayout(4, 1));
         soundPanel.setOpaque(false); // Make the panel transparent
 
-        // Heading "Sound" with larger font
+        /** Heading "Sound" with larger font */
         headingSound = new JLabel("Sound");
         headingSound.setFont(new Font("Arial", Font.BOLD, 16));
         headingSound.setForeground(Color.WHITE); // Set text color to white
         soundPanel.add(headingSound);
 
-        // Master Sound Slider
+        /** Master Sound Slider */
         masterSoundSlider = new JSlider(0, 100, 50);
         soundPanel.add(createLabeledSlider(masterSoundSlider, "Master:"));
 
-        // Sound Effects Slider
+        /** Sound Effects Slider */
         soundEffectsSlider = new JSlider(0, 100, 50);
         soundPanel.add(createLabeledSlider(soundEffectsSlider, "Sound Effects:"));
 
-        // Music Slider
+        /** Music Slider */
         musicSlider = new JSlider(0, 100, 50);
         soundPanel.add(createLabeledSlider(musicSlider, "Music:"));
 
@@ -104,13 +103,13 @@ public class OptionsMenu extends JFrame {
         JPanel displayPanel = new JPanel(new GridLayout(2, 1));
         displayPanel.setOpaque(false); // Make the panel transparent
 
-        // Heading "Display" with larger font
+        /** Heading "Display" with larger font */
         headingDisplay = new JLabel("Display");
         headingDisplay.setFont(new Font("Arial", Font.BOLD, 16));
         headingDisplay.setForeground(Color.WHITE); // Set text color to white
         displayPanel.add(headingDisplay);
 
-        // Brightness Slider
+        /** Brightness Slider */
         brightnessSlider = new JSlider(0, 100, 50);
         displayPanel.add(createLabeledSlider(brightnessSlider, "Brightness:"));
 
@@ -127,23 +126,23 @@ public class OptionsMenu extends JFrame {
      */
     private JPanel createLabeledSlider(JSlider slider, String label) {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setOpaque(false); // Make the panel transparent
+        panel.setOpaque(false); /** Make the panel transparent */
         JLabel labelComponent = new JLabel(label);
-        labelComponent.setForeground(Color.WHITE); // Set text color to white
+        labelComponent.setForeground(Color.WHITE); /** Set text color to white */
 
-        // Set slider properties to make it appear white
-        slider.setForeground(Color.WHITE); // Changes the color of the ticks and numbers
+        /** Set slider properties to make it appear white */
+        slider.setForeground(Color.WHITE); /** Changes the color of the ticks and numbers */
         slider.setUI(new BasicSliderUI(slider));
-        slider.setOpaque(false); // Makes the slider background transparent
+        slider.setOpaque(false); /** Makes the slider background transparent */
 
-        UIManager.put("Slider.thumbWidth", 10); // Example of changing thumb width, might not take effect here
+        UIManager.put("Slider.thumbWidth", 10); /** Example of changing thumb width, might not take effect here */
 
         panel.add(labelComponent, BorderLayout.WEST);
         panel.add(slider, BorderLayout.CENTER);
         return panel;
     }
 
-      /**
+    /**
      * Inner class to create a custom JPanel with a background image.
      * It overrides the paintComponent method to draw the image as the panel's background.
      */

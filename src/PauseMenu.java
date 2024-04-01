@@ -28,25 +28,25 @@ public class PauseMenu extends JFrame implements ActionListener {
         setTitle("Cosmic Quest: Stellar Treasures");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
-        setSize(1000, 1000); // You can adjust the size as needed
-        setLocationRelativeTo(null); // Center on screen
+        setSize(1000, 1000); /** You can adjust the size as needed */
+        setLocationRelativeTo(null); /** Center on screen */
 
-        // Use the custom background panel
+        /** Use the custom background panel */
         BackgroundPanel backgroundPanel = new BackgroundPanel(new ImageIcon("images/pause.png").getImage());
         backgroundPanel.setLayout(new BorderLayout());
-        setContentPane(backgroundPanel); // Set the background panel as the main content pane
+        setContentPane(backgroundPanel); /** Set the background panel as the main content pane */
 
-        // Button panel for aligning buttons vertically
+        /** Button panel for aligning buttons vertically */
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
         buttonPanel.setOpaque(false); // Make the panel transparent
 
-        // Add padding around the button panel
+        /** Add padding around the button panel */
         JPanel containerPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0));
         containerPanel.setOpaque(false); // Make container panel transparent
         containerPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 100)); // Top, Left, Bottom, Right padding
 
-        // Create buttons with images
+        /** Create buttons with images */
         resumeButton = createImageButton("images/continue.png");
         optionsButton = createImageButton("images/options.png");
 
@@ -55,7 +55,7 @@ public class PauseMenu extends JFrame implements ActionListener {
         buttonPanel.add(Box.createVerticalStrut(80));
         buttonPanel.add(optionsButton);
 
-        // Add the button panel to the container panel to apply padding
+        /** Add the button panel to the container panel to apply padding */
         containerPanel.add(buttonPanel);
 
         backgroundPanel.add(containerPanel, BorderLayout.EAST);
@@ -114,7 +114,7 @@ public class PauseMenu extends JFrame implements ActionListener {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            // Draw the image as the background
+            /** Draw the image as the background */
             g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
         }
     }

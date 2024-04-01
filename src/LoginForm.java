@@ -57,13 +57,13 @@ public class LoginForm implements ActionListener {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(10, 50, 10, 50);
 
-        // Set font for titles to be a bit bigger
+        /** Set font for titles to be a bit bigger */
         Font labelFont = new Font("Arial", Font.BOLD, 18);
         usernameLabel.setFont(labelFont);
         passwordLabel.setFont(labelFont);
         gbc.insets = new Insets(10, 50, 15, 50);
 
-        // Font settings for text fields
+        /** Font settings for text fields */
         Font textFieldFont = new Font("Arial", Font.PLAIN, 24);
         usernameField.setFont(textFieldFont);
         passwordField.setFont(textFieldFont);
@@ -84,9 +84,9 @@ public class LoginForm implements ActionListener {
         formPanel.add(passwordLabel, gbc);
         formPanel.add(passwordField, gbc);
 
-        // Adjust constraints for the message label
-        gbc.insets = new Insets(5, 50, 0, 50); // Reduce top padding for the message
-        formPanel.add(msg, gbc); // Add the message label directly under the password field
+        /** Adjust constraints for the message label */
+        gbc.insets = new Insets(5, 50, 0, 50); /** Reduce top padding for the message */
+        formPanel.add(msg, gbc); /** Add the message label directly under the password field */
 
         JPanel buttonPanel = new JPanel(new FlowLayout());
         buttonPanel.setOpaque(false);
@@ -134,15 +134,15 @@ public class LoginForm implements ActionListener {
             } else {
                 msg.setForeground(Color.green);
                 msg.setText("Login successful");
-                loginPage.dispose(); // Close the login window
+                loginPage.dispose(); /** Close the login window */
 
-                // Check username and open the corresponding main menu
+                /** Check username and open the corresponding main menu*/
                 if (username.toLowerCase().contains("education")) {
                     MainMenuInstructor instructorMenu = new MainMenuInstructor(accountDatabase);
                 } else if (username.toLowerCase().contains("developer")) {
                     MainMenuSoftware softwareMenu = new MainMenuSoftware(accountDatabase);
                 } else {
-                    Accounts accounts = this.accountDatabase; // Use the existing Accounts object
+                    Accounts accounts = this.accountDatabase; /** Use the existing Accounts object */
                     MainMenu mainMenu = new MainMenu(accounts);
                 }
             }

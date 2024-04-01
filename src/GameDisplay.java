@@ -175,16 +175,17 @@ public class GameDisplay extends JFrame {
         lessonText.setOpaque(false);
 
         JScrollPane scrollPane = new JScrollPane(lessonText);
-        scrollPane.setPreferredSize(new Dimension(800, 700)); // control text area dimensions
+        //scrollPane.setPreferredSize(new Dimension(800, 700)); // control text area dimensions
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setBorder(null);
 
-        JPanel scrollPanePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        scrollPanePanel.add(scrollPane);
-        scrollPanePanel.setOpaque(false);
-        panel.add(scrollPanePanel, BorderLayout.CENTER);
+        Box box = Box.createHorizontalBox();
+        box.add(Box.createHorizontalGlue()); // add left spacing
+        box.add(scrollPane);
+        box.add(Box.createHorizontalGlue()); // add right spacing
 
+        panel.add(box, BorderLayout.CENTER); // Add the box to the main panel
         // Next button
         JButton nextButton = new JButton("Next");
         nextButton.setPreferredSize(new Dimension(200, 40)); // control button dimensions
@@ -288,7 +289,6 @@ public class GameDisplay extends JFrame {
                 String x = Integer.toString(tempScore);
                 JOptionPane.showMessageDialog(this, "You've completed all the questions!\n" + "Level Score: " + x, "End of Questions", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
-                return;
             }
         }else {
             Question currentQuestion = questions.get(currentQuestionIndex);

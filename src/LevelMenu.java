@@ -29,9 +29,7 @@ public class LevelMenu implements ActionListener {
      * Constructs a LevelMenu instance, initializing the user interface with buttons
      * for each game level and setting up action listeners.
      * 
-     * @param accounts The accounts information, used for tracking level progress
-     *                 and
-     *                 unlocking levels based on player achievements.
+     * @param accounts The accounts information, used for tracking level progress and unlocking levels based on player achievements.
      */
     public LevelMenu(Accounts accounts) {
 
@@ -56,7 +54,7 @@ public class LevelMenu implements ActionListener {
         };
         frame.setContentPane(backgroundPanel);
 
-        // Manually create each button with its own image
+        /** Manually create each button with its own image */
         JButton sunButton = createButtonWithImage("images/sun.png", "The Sun", 0);
         JButton mercuryButton = createButtonWithImage("images/mercury.png", "Mercury", 1);
         JButton venusButton = createButtonWithImage("images/venus.png", "Venus", 2);
@@ -70,7 +68,7 @@ public class LevelMenu implements ActionListener {
         JButton blackHolesButton = createButtonWithImage("images/blackhole.png", "Black Holes", 9);
         JLabel logo = new JLabel(new ImageIcon("images/logo.png"));
 
-        // Add buttons to the background panel
+        /** Add buttons to the background panel */
         backgroundPanel.add(sunButton);
         backgroundPanel.add(mercuryButton);
         backgroundPanel.add(venusButton);
@@ -117,9 +115,9 @@ public class LevelMenu implements ActionListener {
             g2d.drawImage(originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH), 0, 0, null);
             g2d.dispose();
 
-            // Check if the level is unlocked
+            /** Check if the level is unlocked */
             if (level > unlockedUpTo()) {
-                // Apply a grayscale filter to the image if the level is locked
+                /** Apply a grayscale filter to the image if the level is locked */
                 ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
                 op.filter(resizedImage, resizedImage);
             }
@@ -131,7 +129,7 @@ public class LevelMenu implements ActionListener {
             button.setActionCommand(actionCommand);
             button.addActionListener(this);
 
-            // Optionally disable the button if the level is locked
+            /** Optionally disable the button if the level is locked */
             button.setEnabled(level <= unlockedUpTo());
 
             return button;
@@ -169,9 +167,9 @@ public class LevelMenu implements ActionListener {
             g2d.drawImage(originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH), 0, 0, null);
             g2d.dispose();
 
-            // Check if the level is unlocked
+            /** Check if the level is unlocked */
             if (level > unlockedUpTo()) {
-                // Apply a grayscale filter to the image if the level is locked
+                /** Apply a grayscale filter to the image if the level is locked */
                 ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
                 op.filter(resizedImage, resizedImage);
             }
@@ -183,7 +181,7 @@ public class LevelMenu implements ActionListener {
             button.setActionCommand(actionCommand);
             button.addActionListener(this);
 
-            // Optionally disable the button if the level is locked
+            /** Optionally disable the button if the level is locked */
             button.setEnabled(level <= unlockedUpTo());
 
             return button;
@@ -218,9 +216,9 @@ public class LevelMenu implements ActionListener {
             g2d.drawImage(originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH), 0, 0, null);
             g2d.dispose();
 
-            // Check if the level is unlocked
+            /** Check if the level is unlocked */
             if (level > unlockedUpTo()) {
-                // Apply a grayscale filter to the image if the level is locked
+                /** Apply a grayscale filter to the image if the level is locked */
                 ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
                 op.filter(resizedImage, resizedImage);
             }
@@ -232,7 +230,7 @@ public class LevelMenu implements ActionListener {
             button.setActionCommand(actionCommand);
             button.addActionListener(this);
 
-            // Optionally disable the button if the level is locked
+            /** Optionally disable the button if the level is locked */
             button.setEnabled(level <= unlockedUpTo());
 
             return button;
@@ -286,10 +284,10 @@ public class LevelMenu implements ActionListener {
         String command = e.getActionCommand();
         System.out.println(command + " button pressed");
 
-        // default
+        /** default */
         int selected = 0;
 
-        // Assign selected based on the command
+        /** Assign selected based on the command */
         switch (command) {
             case "The Sun":
                 selected = 0;
@@ -323,11 +321,11 @@ public class LevelMenu implements ActionListener {
                 break;
             case "Return to Main Menu":
                 frame.dispose();
-                // MainMenu mainMenu = new MainMenu(accounts);
-                return; // Exit the method to prevent further execution
+                /** MainMenu mainMenu = new MainMenu(accounts); */
+                return; /** Exit the method to prevent further execution */
         }
 
-        // Assuming GameControl's constructor takes an int for selected
+        /** Assuming GameControl's constructor takes an int for selected */
         GameControl game = new GameControl(accounts);
         game.playLevel(selected);
     }
