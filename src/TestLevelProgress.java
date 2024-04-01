@@ -7,7 +7,7 @@ import org.json.simple.JSONObject;
 
 
 /**
- * Class tests the key logical components in {@link src.LevelProgress.java}.
+ * Class tests the key logical components in {@link LevelProgress}.
  * 
  * @version 1.0.0
  * @author Ho Lun (Geoffrey) Kong

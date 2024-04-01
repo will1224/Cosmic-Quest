@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.junit.*;
 
 /**
- * Class tests the key logical components in Accounts.java.
+ * Class tests the key logical components in {@link Accounts}.
  * 
  * @version 1.0.0
  * @author Ho Lun (Geoffrey) Kong
