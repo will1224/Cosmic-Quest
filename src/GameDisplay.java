@@ -285,7 +285,6 @@ public class GameDisplay extends JFrame {
                 String x = Integer.toString(tempScore);
                 JOptionPane.showMessageDialog(this, "You've completed all the questions!\n" + "Level Score: " + x, "End of Questions", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
-                return;
             }
         }else {
             Question currentQuestion = questions.get(currentQuestionIndex);
