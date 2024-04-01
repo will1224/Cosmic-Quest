@@ -276,16 +276,14 @@ public class GameDisplay extends JFrame {
 
         if (currentQuestionIndex >= questions.size()) {
             if(tempScore != 5) {
-                JOptionPane.showMessageDialog(this, "You have not answered all questions right, please try again", "End of Questions", JOptionPane.INFORMATION_MESSAGE);
-//                LevelProgress progress = new LevelProgress((JSONArray) accounts.getCurrentAccount().get("progress"));
-//                if(tempScore > progress.getLevelScore(progress.getCurrentLevel())) {
-//                    updateScore(tempScore);
-//                }
-//                tempScore = 0;
+                String x = Integer.toString(tempScore);
+                JOptionPane.showMessageDialog(this, "You have not answered all questions right, please try again\n" + "Level Score: " + x, "End of Questions", JOptionPane.INFORMATION_MESSAGE);
+                tempScore = 0;
                 questions = currLevel.getQuestions();
                 displayLevel(currLevel, questions, true);
             }else{
-                JOptionPane.showMessageDialog(this, "You've completed all the questions!", "End of Questions", JOptionPane.INFORMATION_MESSAGE);
+                String x = Integer.toString(tempScore);
+                JOptionPane.showMessageDialog(this, "You've completed all the questions!\n" + "Level Score: " + x, "End of Questions", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
                 return;
             }
@@ -307,7 +305,8 @@ public class GameDisplay extends JFrame {
 
         if (currentQuestionIndex >= questions.size()) {
             if(tempScore != 5) {
-                JOptionPane.showMessageDialog(this, "You have not answered all questions right, please try again", "End of Questions", JOptionPane.INFORMATION_MESSAGE);
+                String x = Integer.toString(tempScore);
+                JOptionPane.showMessageDialog(this, "You have not answered all questions right, please try again\n" + "Level Score: " + x, "End of Questions", JOptionPane.INFORMATION_MESSAGE);
                 LevelProgress progress = new LevelProgress((JSONArray) accounts.getCurrentAccount().get("progress"));
                 if(tempScore > progress.getLevelScore(progress.getCurrentLevel())) {
                     updateScore(tempScore);
@@ -316,7 +315,8 @@ public class GameDisplay extends JFrame {
                 questions = currLevel.getQuestions();
                 displayLevel(currLevel, questions, false);
             }else{
-                JOptionPane.showMessageDialog(this, "You've completed all the questions!", "End of Questions", JOptionPane.INFORMATION_MESSAGE);
+                String x = Integer.toString(tempScore);
+                JOptionPane.showMessageDialog(this, "You've completed all the questions!\n" + "Level Score: "+x, "End of Questions", JOptionPane.INFORMATION_MESSAGE);
                 updateScore(5);
                 LevelProgress progress = new LevelProgress((JSONArray) accounts.getCurrentAccount().get("progress"));
                 progress.setUnlockedStatus(progress.getCurrentLevel()+1, true);
