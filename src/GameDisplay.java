@@ -6,6 +6,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -20,7 +22,6 @@ public class GameDisplay extends JFrame {
     private List<Question> questions; // List of questions for the current level
     private int currentQuestionIndex; // Index of the current question in the list
     private Level currentLevel;
-    private Image scaledBackgroundImage;
     private JPanel panel;
     private int gameState; // 0 = question mode
     private int tempScore;
@@ -32,7 +33,10 @@ public class GameDisplay extends JFrame {
     private JTextArea lesson;
     private JButton next;
     private boolean nextPressed;
+    
+    //for navigations
     private JButton backButton;
+    private JButton pauseButton;
 
     // colour constants
     private Color PINK = new Color(255, 104, 176);
@@ -62,8 +66,70 @@ public class GameDisplay extends JFrame {
         add(panel, BorderLayout.CENTER); // add the panel to the center
 
         panel.setVisible(true);
+        panel.setFocusable(true);
+        panel.requestFocusInWindow();
+
         tempScore = 0;
         accounts = a;
+
+        pauseButton = new JButton(new ImageIcon("images/pauseicon.png"));
+        pauseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new PauseMenu();
+            }
+        });
+        pauseButton.setBorderPainted(false);
+        pauseButton.setContentAreaFilled(false);
+        pauseButton.setFocusPainted(false);
+
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(pauseButton, BorderLayout.EAST); 
+        topPanel.setOpaque(false); 
+        add(topPanel, BorderLayout.NORTH);
+        panel.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                // Not used here
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+                System.out.println("KEY PRESSED");
+
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_1:
+                        System.out.println(0);
+                        selectedAnswerIndex = 0;
+                        updateSelected();
+                        break;
+                    case KeyEvent.VK_2:
+                        System.out.println(1);
+                        selectedAnswerIndex = 1;
+                        updateSelected();
+                        break;
+                    case KeyEvent.VK_3:
+                        System.out.println(2);
+                        selectedAnswerIndex = 2;
+                        updateSelected();
+                        break;
+                    case KeyEvent.VK_4:
+                        System.out.println(3);
+                        selectedAnswerIndex = 3;
+                        updateSelected();
+                        break;
+                    case KeyEvent.VK_ENTER:
+                        nextAction(); // Assumes this method advances to the next question or action
+                        break;
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                // Not used here
+            }
+        });
 
         backButton = new JButton("Back");
         backButton.setFont(new Font("Space Mono", Font.PLAIN, 20));
@@ -82,10 +148,8 @@ public class GameDisplay extends JFrame {
         // Add the bottom panel to the main frame
         add(bottomPanel, BorderLayout.SOUTH);
 
-
         setVisible(true);
     }
-
 
     public void displayLesson() {
         panel.removeAll();
@@ -350,8 +414,11 @@ public class GameDisplay extends JFrame {
     }
 
     private void nextButtonAction(ActionEvent e) {
-        Question currentQuestion = questions.get(currentQuestionIndex);
+        nextAction();
+    }
 
+    private void nextAction() {
+        Question currentQuestion = questions.get(currentQuestionIndex);
         System.out.println(selectedAnswerIndex);
 
         if (gameState == 0) {
@@ -366,6 +433,8 @@ public class GameDisplay extends JFrame {
     }
 
     private void updateSelected() {
+        // select option if keys are pressed
+
         for (int i = 0; i < optionButtons.length; i++) {
             JButton button = optionButtons[i];
             if (button == null) continue;
@@ -385,7 +454,7 @@ public class GameDisplay extends JFrame {
 
         for (int i = 0; i < optionButtons.length; i++) {
             JButton button = optionButtons[i];
-            if (button == null) continue; // Skip if the button hasn't been initialized yet
+            if (button == null) continue; // skip if the button hasn't been initialized yet
 
             // change colour for correct answer
             if (i == selectedAnswerIndex && (question.isCorrectAnswer(selectedAnswerIndex))) {

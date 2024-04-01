@@ -310,15 +310,4 @@ public class Accounts {
         }
         return new PlayerScore(username, score);
     }
-
-    /**
-     * Main method for testing.
-     *
-     * @param args Command line arguments.
-     */
-    public static void main(String[] args) {
-        Accounts accounts = new Accounts();
-        JSONArray testing = accounts.getAccounts();
-        System.out.println(testing);
-    }
 }
