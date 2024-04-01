@@ -42,15 +42,15 @@ public class HighScore extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Load the default background image directly from file path
+        /** Load the default background image directly from file path */
         BackgroundPanel backgroundPanel = new BackgroundPanel(new ImageIcon("images/gradient.png").getImage());
         backgroundPanel.setLayout(new BorderLayout());
         setContentPane(backgroundPanel);
 
-        // Initialize the scores table
+        /** Initialize the scores table */
         initScoresTable();
 
-        // Get scores from database and populate the table
+        /** Get scores from database and populate the table */
         List<PlayerScore> scores = getScoresFromDatabase();
         populateScoresTable(scores);
     }
@@ -66,20 +66,20 @@ public class HighScore extends JFrame {
         tableModel = new DefaultTableModel(columnNames, 0);
         scoresTable = new JTable(tableModel);
 
-        // Make the table and its scroll pane transparent
-        scoresTable.setOpaque(false); // Make the JTable transparent
-        ((DefaultTableCellRenderer) scoresTable.getDefaultRenderer(Object.class)).setOpaque(false); // Make default cell
-                                                                                                    // renderer
-                                                                                                    // non-opaque
+        /** Make the table and its scroll pane transparent */
+        scoresTable.setOpaque(false); /** Make the JTable transparent */
+        ((DefaultTableCellRenderer) scoresTable.getDefaultRenderer(Object.class)).setOpaque(false); /** Make default cell */
+                                                                                                    /** renderer */
+                                                                                                    /** non-opaque */
 
-        // Customize header and cell appearance
+        /** Customize header and cell appearance */
         customizeHeader();
         customizeTable();
 
         JScrollPane scrollPane = new JScrollPane(scoresTable);
-        scrollPane.setOpaque(false); // Make JScrollPane non-opaque
-        scrollPane.getViewport().setOpaque(false); // Make the viewport non-opaque
-        scrollPane.setBorder(null); // Optionally remove the border
+        scrollPane.setOpaque(false); /** Make JScrollPane non-opaque */
+        scrollPane.getViewport().setOpaque(false); /** Make the viewport non-opaque */
+        scrollPane.setBorder(null); /** Optionally remove the border */
 
         getContentPane().add(scrollPane, BorderLayout.CENTER);
     }
@@ -95,7 +95,7 @@ public class HighScore extends JFrame {
         header.setForeground(Color.BLACK);
 
         DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
-        headerRenderer.setHorizontalAlignment(JLabel.CENTER); // Center text in header
+        headerRenderer.setHorizontalAlignment(JLabel.CENTER); /** Center text in header */
         headerRenderer.setOpaque(false);
         headerRenderer.setBackground(new Color(0, 0, 0, 122));
         headerRenderer.setForeground(Color.BLACK);
@@ -117,12 +117,12 @@ public class HighScore extends JFrame {
                     boolean isSelected, boolean hasFocus, int row, int column) {
                 Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row,
                         column);
-                ((JLabel) component).setHorizontalAlignment(JLabel.CENTER); // Center text in cells
+                ((JLabel) component).setHorizontalAlignment(JLabel.CENTER); /** Center text in cells */
 
                 if (isSelected) {
                     component.setBackground(table.getSelectionBackground());
                 } else {
-                    component.setBackground(new Color(0, 0, 0, 0)); // Transparent background for cells
+                    component.setBackground(new Color(0, 0, 0, 0)); /** Transparent background for cells */
                 }
                 component.setForeground(Color.WHITE);
                 component.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -139,13 +139,13 @@ public class HighScore extends JFrame {
      * @param scores The list of player scores to populate the table with.
      */
     private void populateScoresTable(List<PlayerScore> scores) {
-        // Clear existing table data
+        /** Clear existing table data */
         tableModel.setRowCount(0);
 
-        // Sort scores in descending order
+        /** Sort scores in descending order
         scores.sort(Comparator.comparingInt(PlayerScore::getScore).reversed());
 
-        // Add scores to the table
+        /** Add scores to the table */
         for (PlayerScore score : scores) {
             tableModel.addRow(new Object[] { score.getPlayerName(), score.getScore() });
         }

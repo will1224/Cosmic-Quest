@@ -164,7 +164,6 @@ public class Level {
                 JSONObject lesson = (JSONObject) element;
                 String levelNum = Integer.toString(levelID);
                 if (lesson.get("levelId").toString().equals(levelNum)) {
-//                    System.out.println((String) lesson.get("info"));
                     return (String) lesson.get("info");
                 }
             }
