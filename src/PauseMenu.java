@@ -18,7 +18,7 @@ public class PauseMenu extends JFrame implements ActionListener {
         setLocationRelativeTo(null); // Center on screen
 
         // Use the custom background panel
-        BackgroundPanel backgroundPanel = new BackgroundPanel(new ImageIcon("images/pauseBGD.png").getImage());
+        BackgroundPanel backgroundPanel = new BackgroundPanel(new ImageIcon("images/pause.png").getImage());
         backgroundPanel.setLayout(new BorderLayout());
         setContentPane(backgroundPanel); // Set the background panel as the main content pane
 
@@ -33,10 +33,10 @@ public class PauseMenu extends JFrame implements ActionListener {
         containerPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 100)); // Top, Left, Bottom, Right padding
 
         // Create buttons with images
-        resumeButton = createImageButton("images/contBTN.png");
-        optionsButton = createImageButton("images/optionsBTN.png");
-        returnButton = createImageButton("images/menuBTN.png");
-        exitButton = createImageButton("images/exitBTN.png");
+        resumeButton = createImageButton("images/continue.png");
+        optionsButton = createImageButton("images/options.png");
+        returnButton = createImageButton("images/menu.png");
+        exitButton = createImageButton("images/exit.png");
 
         // Adding buttons to the panel with 30 pixels space underneath each
         buttonPanel.add(Box.createVerticalStrut(80)); // Space underneath resumeButton

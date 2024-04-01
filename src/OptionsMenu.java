@@ -15,6 +15,7 @@ import java.awt.*;
  * customizing game settings to enhance user experience.
  * 
  * @author Sophia Tong
+ * @version 1.0
  */
 public class OptionsMenu extends JFrame {
     private JSlider masterSoundSlider;

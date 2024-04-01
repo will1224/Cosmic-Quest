@@ -28,6 +28,7 @@ import java.awt.image.BufferedImage;
 public class LevelMenu implements ActionListener {
     private JFrame frame;
     private Accounts accounts;
+    private JButton[] levelButtons;
 
     public LevelMenu(Accounts accounts) {
 
@@ -50,6 +51,7 @@ public class LevelMenu implements ActionListener {
                 }
             }
         };
+        
         frame.setContentPane(backgroundPanel);
 
         // Manually create each button with its own image
@@ -81,6 +83,7 @@ public class LevelMenu implements ActionListener {
         backgroundPanel.add(logo);
 
         frame.setVisible(true);
+
     }
 
     /**
@@ -257,17 +260,12 @@ public class LevelMenu implements ActionListener {
                 break;
             case "Return to Main Menu":
                 frame.dispose();
-                //MainMenu mainMenu = new MainMenu(accounts);
                 return; // Exit the method to prevent further execution
         }
 
         // Assuming GameControl's constructor takes an int for selected
-        GameControl game = new GameControl(accounts, false);
+        GameControl game = new GameControl(accounts);
         game.startGame();
     }
-
-    //public static void main(String[] args) {
-        //new LevelMenu(accounts);
-    //}
 
 }

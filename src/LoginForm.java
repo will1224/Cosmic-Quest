@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
  * </p>
  * 
  * @author Sophia Tong
+ * @version 1.0
  */
 public class LoginForm implements ActionListener {
     private JFrame loginPage = new JFrame("Cosmic Quest: Stellar Treasures");
