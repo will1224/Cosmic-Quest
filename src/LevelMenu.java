@@ -66,7 +66,7 @@ public class LevelMenu implements ActionListener {
         JButton returnButton = createButtonWithImageBack("images/backbtn.png", "Return to Main Menu");
         JButton neptuneButton = createButtonWithImage("images/neptune.png", "Neptune", 9);
         JButton blackHolesButton = createButtonWithImage("images/blackhole.png", "Black Holes", 10);
-        JButton logo = createButtonWithImageLogo("images/logo.png", "logo");
+        JLabel logo = new JLabel(new ImageIcon("images/logo.png"));
 
         // Add buttons to the background panel
         backgroundPanel.add(sunButton);
@@ -195,38 +195,6 @@ public class LevelMenu implements ActionListener {
             int originalWidth = originalImage.getWidth(null);
             int originalHeight = originalImage.getHeight(null);
             int newWidth = 280;
-            double aspectRatio = (double) originalHeight / (double) originalWidth;
-            int newHeight = (int) Math.round(newWidth * aspectRatio);
-            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-
-            JButton button = new JButton(new ImageIcon(resizedImage));
-            button.setBorderPainted(false);
-            button.setFocusPainted(false);
-            button.setContentAreaFilled(false);
-            button.setActionCommand(actionCommand);
-            button.addActionListener(this);
-            return button;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new JButton(actionCommand);
-        }
-    }
-
-    /**
-     * Creates a button decorated with a logo image. This method is tailored for
-     * buttons that might not directly
-     * relate to level selection but are integral to the menu's visual identity.
-     * 
-     * @param imagePath     The path to the logo image file.
-     * @param actionCommand The action command associated with the logo button.
-     * @return A logo {@code JButton} with the specified image.
-     */
-    private JButton createButtonWithImageLogo(String imagePath, String actionCommand) {
-        try {
-            BufferedImage originalImage = ImageIO.read(new File(imagePath));
-            int originalWidth = originalImage.getWidth(null);
-            int originalHeight = originalImage.getHeight(null);
-            int newWidth = 270;
             double aspectRatio = (double) originalHeight / (double) originalWidth;
             int newHeight = (int) Math.round(newWidth * aspectRatio);
             Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
