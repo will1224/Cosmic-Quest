@@ -286,13 +286,13 @@
 
     {
         "questionID": 30,
-        "questionStr": "How many moons does Mars have?",
+        "questionStr": "What is Mars' atmosphere primarily composed of??",
         "answer": 0,
         "answerList": 
-        ["Two, Phobos and Deimos", 
-        "Two, Bob and Joe", 
-        "One, Titan", 
-        "None"]
+        ["Oxygen", 
+        "Nitrogen", 
+        "Carbon dioxide", 
+        "Methane"]
     },
 
     {
@@ -374,13 +374,13 @@
 
     {
         "questionID": 38,
-        "questionStr": "What is Jupiter mostly made of?",
-        "answer": 0,
+        "questionStr": "Can Jupiter become a star?",
+        "answer": 1,
         "answerList": 
-        ["Oxygen and nitrogen", 
-        "Carbon dioxide", 
-        "Methane", 
-        "Hydrogen and helium"]
+        ["Yes, it has the potential to ignite into a star", 
+        "No, it doesn't have enough mass to start nuclear fusion", 
+        "Yes, but only under extreme conditions", 
+        "No, it's already a star"]
     },
 
     {
