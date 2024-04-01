@@ -136,7 +136,7 @@ public class MainMenuSoftware implements ActionListener {
             return;
         }
         if (e.getSource() == selectLevel) {
-            new LevelMenu(accounts); // Open the level menu
+            new LevelMenuSpecial(accounts); // Open the level menu
         } else if (e.getSource() == exitGame) {
             menu.dispose();
             new LoginForm(accounts); // Close the application

@@ -32,7 +32,10 @@ public class GameDisplay extends JFrame {
     private JTextArea lesson;
     private JButton next;
     private boolean nextPressed;
+    
+    //for navigations
     private JButton backButton;
+    private JButton pauseButton;
 
     // colour constants
     private Color PINK = new Color(255, 104, 176);
@@ -64,6 +67,22 @@ public class GameDisplay extends JFrame {
         panel.setVisible(true);
         tempScore = 0;
         accounts = a;
+
+        pauseButton = new JButton(new ImageIcon("images/pauseicon.png"));
+        pauseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new PauseMenu();
+            }
+        });
+        pauseButton.setBorderPainted(false);
+        pauseButton.setContentAreaFilled(false);
+        pauseButton.setFocusPainted(false);
+
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(pauseButton, BorderLayout.EAST); 
+        topPanel.setOpaque(false); 
+        add(topPanel, BorderLayout.NORTH);
 
         backButton = new JButton("Back");
         backButton.setFont(new Font("Space Mono", Font.PLAIN, 20));
