@@ -185,6 +185,8 @@ public class GameDisplay extends JFrame {
         box.add(Box.createHorizontalGlue()); // add right spacing
 
         panel.add(box, BorderLayout.CENTER); // Add the box to the main panel
+
+
         // Next button
         JButton nextButton = new JButton("Next");
         nextButton.setPreferredSize(new Dimension(200, 40)); // control button dimensions
@@ -228,6 +230,8 @@ public class GameDisplay extends JFrame {
         box.add(Box.createHorizontalGlue()); // add left spacing
         box.add(scrollPane);
         box.add(Box.createHorizontalGlue()); // add right spacing
+
+        panel.add(box, BorderLayout.CENTER); // Add the box to the main panel
 
         // Next button
         JButton nextButton = new JButton("Next");
