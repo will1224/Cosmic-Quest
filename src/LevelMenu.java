@@ -2,12 +2,14 @@ package src;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.color.ColorSpace;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorConvertOp;
 
 /**
  * The {@code LevelMenu} class provides a graphical interface for users to
@@ -53,17 +55,17 @@ public class LevelMenu implements ActionListener {
         frame.setContentPane(backgroundPanel);
 
         // Manually create each button with its own image
-        JButton sunButton = createButtonWithImage("images/sun.png", "The Sun");
-        JButton mercuryButton = createButtonWithImage("images/mercury.png", "Mercury");
-        JButton venusButton = createButtonWithImage("images/venus.png", "Venus");
-        JButton earthButton = createButtonWithImage("images/earth.png", "Earth");
-        JButton marsButton = createButtonWithImage("images/mars.png", "Mars");
-        JButton jupiterButton = createButtonWithImage("images/jupiter.png", "Jupiter");
-        JButton saturnButton = createButtonWithImage("images/saturn.png", "Saturn");
-        JButton uranusButton = createButtonWithImageWidth("images/uranus.png", "Uranus");
+        JButton sunButton = createButtonWithImage("images/sun.png", "The Sun", 0);
+        JButton mercuryButton = createButtonWithImage("images/mercury.png", "Mercury", 1);
+        JButton venusButton = createButtonWithImage("images/venus.png", "Venus", 2);
+        JButton earthButton = createButtonWithImage("images/earth.png", "Earth", 3);
+        JButton marsButton = createButtonWithImage("images/mars.png", "Mars", 4);
+        JButton jupiterButton = createButtonWithImage("images/jupiter.png", "Jupiter", 5);
+        JButton saturnButton = createButtonWithImage("images/saturn.png", "Saturn", 6);
+        JButton uranusButton = createButtonWithImageWidth("images/uranus.png", "Uranus", 7);
         JButton returnButton = createButtonWithImageBack("images/backbtn.png", "Return to Main Menu");
-        JButton neptuneButton = createButtonWithImage("images/neptune.png", "Neptune");
-        JButton blackHolesButton = createButtonWithImage("images/blackhole.png", "Black Holes");
+        JButton neptuneButton = createButtonWithImage("images/neptune.png", "Neptune", 9);
+        JButton blackHolesButton = createButtonWithImage("images/blackhole.png", "Black Holes", 10);
         JButton logo = createButtonWithImageLogo("images/logo.png", "logo");
 
         // Add buttons to the background panel
@@ -84,23 +86,35 @@ public class LevelMenu implements ActionListener {
     }
 
     /**
-     * Creates a button with a specified image and action command. This method reads the image from the given file path,
-     * resizes it to a fixed height while maintaining aspect ratio, and applies it to a new button.
+     * Creates a button with a specified image and action command. This method reads
+     * the image from the given file path,
+     * resizes it to a fixed height while maintaining aspect ratio, and applies it
+     * to a new button.
      * 
-     * @param imagePath The path to the image file for the button's icon.
-     * @param actionCommand The action command associated with the button, used to identify button presses.
+     * @param imagePath     The path to the image file for the button's icon.
+     * @param actionCommand The action command associated with the button, used to
+     *                      identify button presses.
      * @return A {@code JButton} with the specified image and action command.
      */
-    private JButton createButtonWithImage(String imagePath, String actionCommand) {
+    private JButton createButtonWithImage(String imagePath, String actionCommand, int level) {
         try {
             BufferedImage originalImage = ImageIO.read(new File(imagePath));
             int originalWidth = originalImage.getWidth(null);
             int originalHeight = originalImage.getHeight(null);
-            int newHeight = 190;
+            double aspectRatio = (double) originalHeight / (double) originalWidth;
+            int newWidth = 190; // Width is constant for all buttons for consistency
+            int newHeight = (int) Math.round(newWidth * aspectRatio);
+            BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = resizedImage.createGraphics();
+            g2d.drawImage(originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH), 0, 0, null);
+            g2d.dispose();
 
-            double aspectRatio = (double) originalWidth / (double) originalHeight;
-            int newWidth = (int) Math.round(newHeight * aspectRatio);
-            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+            // Check if the level is unlocked
+            if (level > unlockedUpTo()) {
+                // Apply a grayscale filter to the image if the level is locked
+                ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
+                op.filter(resizedImage, resizedImage);
+            }
 
             JButton button = new JButton(new ImageIcon(resizedImage));
             button.setBorderPainted(false);
@@ -108,6 +122,10 @@ public class LevelMenu implements ActionListener {
             button.setContentAreaFilled(false);
             button.setActionCommand(actionCommand);
             button.addActionListener(this);
+
+            // Optionally disable the button if the level is locked
+            button.setEnabled(level <= unlockedUpTo());
+
             return button;
         } catch (IOException e) {
             e.printStackTrace();
@@ -116,22 +134,33 @@ public class LevelMenu implements ActionListener {
     }
 
     /**
-     * Similar to {@code createButtonWithImage} but resizes the image based on a fixed width while maintaining
+     * Similar to {@code createButtonWithImage} but resizes the image based on a
+     * fixed width while maintaining
      * aspect ratio. It's used for buttons where width is more critical than height.
      * 
-     * @param imagePath The path to the image file for the button's icon.
+     * @param imagePath     The path to the image file for the button's icon.
      * @param actionCommand The action command associated with the button.
      * @return A {@code JButton} with the specified image and action command.
      */
-    private JButton createButtonWithImageWidth(String imagePath, String actionCommand) {
+    private JButton createButtonWithImageWidth(String imagePath, String actionCommand, int level) {
         try {
             BufferedImage originalImage = ImageIO.read(new File(imagePath));
             int originalWidth = originalImage.getWidth(null);
             int originalHeight = originalImage.getHeight(null);
-            int newWidth = 200;
             double aspectRatio = (double) originalHeight / (double) originalWidth;
+            int newWidth = 200; // Width is constant for all buttons for consistency
             int newHeight = (int) Math.round(newWidth * aspectRatio);
-            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+            BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = resizedImage.createGraphics();
+            g2d.drawImage(originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH), 0, 0, null);
+            g2d.dispose();
+
+            // Check if the level is unlocked
+            if (level > unlockedUpTo()) {
+                // Apply a grayscale filter to the image if the level is locked
+                ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
+                op.filter(resizedImage, resizedImage);
+            }
 
             JButton button = new JButton(new ImageIcon(resizedImage));
             button.setBorderPainted(false);
@@ -139,6 +168,10 @@ public class LevelMenu implements ActionListener {
             button.setContentAreaFilled(false);
             button.setActionCommand(actionCommand);
             button.addActionListener(this);
+
+            // Optionally disable the button if the level is locked
+            button.setEnabled(level <= unlockedUpTo());
+
             return button;
         } catch (IOException e) {
             e.printStackTrace();
@@ -147,10 +180,12 @@ public class LevelMenu implements ActionListener {
     }
 
     /**
-     * Specifically creates a back button with an image, resizing based on a fixed width. It allows users to return
-     * to the main menu. This method demonstrates how specific button types can be customized individually.
+     * Specifically creates a back button with an image, resizing based on a fixed
+     * width. It allows users to return
+     * to the main menu. This method demonstrates how specific button types can be
+     * customized individually.
      * 
-     * @param imagePath The path to the image file for the button's icon.
+     * @param imagePath     The path to the image file for the button's icon.
      * @param actionCommand The action command indicating a return to the main menu.
      * @return A back {@code JButton} customized with the specified image.
      */
@@ -177,11 +212,12 @@ public class LevelMenu implements ActionListener {
         }
     }
 
-     /**
-     * Creates a button decorated with a logo image. This method is tailored for buttons that might not directly
+    /**
+     * Creates a button decorated with a logo image. This method is tailored for
+     * buttons that might not directly
      * relate to level selection but are integral to the menu's visual identity.
      * 
-     * @param imagePath The path to the logo image file.
+     * @param imagePath     The path to the logo image file.
      * @param actionCommand The action command associated with the logo button.
      * @return A logo {@code JButton} with the specified image.
      */
@@ -209,8 +245,10 @@ public class LevelMenu implements ActionListener {
     }
 
     /**
-     * Handles action events triggered by button presses within the {@code LevelMenu}. Depending on the action command
-     * of the pressed button, this method either navigates to a specific game level, returns to the main menu,
+     * Handles action events triggered by button presses within the
+     * {@code LevelMenu}. Depending on the action command
+     * of the pressed button, this method either navigates to a specific game level,
+     * returns to the main menu,
      * or performs another action defined within the method's logic.
      *
      * @param e The {@code ActionEvent} triggered by interacting with a button.
@@ -257,21 +295,19 @@ public class LevelMenu implements ActionListener {
                 break;
             case "Return to Main Menu":
                 frame.dispose();
-                //MainMenu mainMenu = new MainMenu(accounts);
+                // MainMenu mainMenu = new MainMenu(accounts);
                 return; // Exit the method to prevent further execution
         }
 
         // Assuming GameControl's constructor takes an int for selected
         GameControl game = new GameControl(accounts);
-        game.playLevel(6);
+        game.playLevel(selected);
     }
 
-    private int unlockedUpTo(){
+    private int unlockedUpTo() {
         LevelProgress progress = new LevelProgress(accounts.getProgress(accounts.getCurrentAccount()));
         return progress.getCurrentLevel();
     }
-    //public static void main(String[] args) {
-        //new LevelMenu(accounts);
-    //}
 
 }
+
