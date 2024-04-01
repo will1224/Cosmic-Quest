@@ -174,9 +174,4 @@ public class Level {
         return null;
     }
 
-    /* TESTER */
-    public static void main(String[] args) {
-        Level testLvl = new Level(0);
-
-    }
 }

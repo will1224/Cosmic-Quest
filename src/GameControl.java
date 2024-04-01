@@ -82,12 +82,5 @@ public class GameControl {
      * 
      * @param args Command line arguments (not used).
      */
-   public static void main(String[] args) {
-       //Accounts object must be created for login/signup to occur.
-       Accounts accounts = new Accounts();
-       //Account must be logged in (or new registration must be successful) for the getCurrentUser() method in Accounts.java to work properly.
-       accounts.login("testing", "abc123");
-       GameControl t = new GameControl(accounts);
-       t.startGame();
-   }
+   
 }
