@@ -542,7 +542,21 @@ public class GameDisplay extends JFrame {
                 nextAction();
             }
         });
+
+        // Bind ESCAPE key to exit action
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "exitGame");
+        actionMap.put("exitGame", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exitGame(); // Call the exitGame method
+            }
+        });
     }
+
+    public void exitGame() {
+        dispose(); 
+    }
+    
     
     
 }
