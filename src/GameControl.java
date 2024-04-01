@@ -13,8 +13,8 @@ import org.json.simple.JSONObject;
  */
 public class GameControl {
         private Accounts accounts;
-        //Progress is stored as a JSONArray within a user JSONObject.
-        //It must be extracted, and then placed into the LevelProgress(JSONArray progress) constructor for the getter/setter methods to be utilized.
+        /**Progress is stored as a JSONArray within a user JSONObject.*/
+        /**It must be extracted, and then placed into the LevelProgress(JSONArray progress) constructor for the getter/setter methods to be utilized.*/
         private LevelProgress progress;
         private Level currLevel;
         private GameDisplay d;
@@ -41,9 +41,9 @@ public class GameControl {
      */
     public GameControl(Accounts account) {
         accounts = account;
-        //Progress is extracted from the user JSONObject by grabbing the "progress" key (typecast is done to avoid errors).
+        /**Progress is extracted from the user JSONObject by grabbing the "progress" key (typecast is done to avoid errors).*/
         progress = new LevelProgress((JSONArray) accounts.getCurrentAccount().get("progress"));
-        //With the progress loaded into the LevelProgress object, class methods such as obtaining the current level can be done properly.
+        /**With the progress loaded into the LevelProgress object, class methods such as obtaining the current level can be done properly.*/
         this.currLevel = new Level(progress.getCurrentLevel());
     }
 
@@ -62,9 +62,8 @@ public class GameControl {
      * It sets up the questions for the current level and displays it using the GameDisplay.
      */
     public void startGame() {
-        // set up questions
+        /**set up questions*/
         List<Question> questionSet = currLevel.getQuestions();
-//        System.out.println(currLevel.getName()); // TEMP TESTER
         d = new GameDisplay(accounts);
         d.displayLevel(currLevel, questionSet, false);
     }
@@ -75,12 +74,5 @@ public class GameControl {
         d = new GameDisplay(accounts);
         d.displayLevel(level, questionSet, true);
     }
-
-     /**
-     * The main method to start the game.
-     * Creates an Accounts object, logs in, and starts the game.
-     * 
-     * @param args Command line arguments (not used).
-     */
    
 }

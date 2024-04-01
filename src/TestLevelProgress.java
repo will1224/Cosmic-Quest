@@ -23,10 +23,10 @@ public class TestLevelProgress {
      * @see src.LevelProgress#LevelProgress()
      */
     public void testConstructorNoArgs() {
-        //Tests the creation of a new LevelProgress object.
+        /**Tests the creation of a new LevelProgress object.*/
         progress = new LevelProgress();
         List<String> levelNames = Arrays.asList("The Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Other Celestial Bodies");
-        //Tests that the default values for user progress are loaded correctly.
+        /**Tests that the default values for user progress are loaded correctly.*/
         for (int i = 0; i < 10; i++) {
             JSONObject level = (JSONObject) progress.getProgress().get(i);
             assertEquals(level.get("levelName"), levelNames.get(i));

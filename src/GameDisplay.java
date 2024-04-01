@@ -93,6 +93,7 @@ public class GameDisplay extends JFrame {
                 // Not used here
             }
 
+
             @Override
             public void keyPressed(KeyEvent e) {
 
@@ -147,6 +148,8 @@ public class GameDisplay extends JFrame {
 
         // Add the bottom panel to the main frame
         add(bottomPanel, BorderLayout.SOUTH);
+
+        setUpKeyBindings();
 
         setVisible(true);
     }
@@ -490,4 +493,57 @@ public class GameDisplay extends JFrame {
         //Update the progress for the user's account.
         accounts.updateUserProgress((String) currentAccount.get("username"), progress.getProgress());
     }
+
+    private void setUpKeyBindings() {
+        int condition = JComponent.WHEN_IN_FOCUSED_WINDOW;
+        InputMap inputMap = panel.getInputMap(condition);
+        ActionMap actionMap = panel.getActionMap();
+    
+        // Bind number keys 1-4
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_1, 0), "selectOption1");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0), "selectOption2");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0), "selectOption3");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0), "selectOption4");
+    
+        // Bind ENTER key
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "pressEnter");
+    
+        actionMap.put("selectOption1", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedAnswerIndex = 0;
+                updateSelected();
+            }
+        });
+        actionMap.put("selectOption2", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedAnswerIndex = 1;
+                updateSelected();
+            }
+        });
+        actionMap.put("selectOption3", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedAnswerIndex = 2;
+                updateSelected();
+            }
+        });
+        actionMap.put("selectOption4", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedAnswerIndex = 3;
+                updateSelected();
+            }
+        });
+    
+        actionMap.put("pressEnter", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nextAction();
+            }
+        });
+    }
+    
+    
 }
