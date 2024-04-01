@@ -51,18 +51,18 @@ public class MainMenu implements ActionListener {
         } else {
             System.err.println("Unable to load background image.");
         }
-        // Container Panel with BoxLayout for vertical stacking
+        /** Container Panel with BoxLayout for vertical stacking */
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setOpaque(false); // Make panel transparent
+        buttonPanel.setOpaque(false); /** Make panel transparent */
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 
         title = new JTextField("");
         title.setForeground(Color.WHITE);
         title.setFont(new Font(null, Font.BOLD, 24));
-        title.setHorizontalAlignment(JTextField.CENTER); // Ensure title is centered
-        title.setEditable(false); // Make it non-editable
-        title.setBorder(null); // Remove border
-        title.setOpaque(false); // Make background transparent
+        title.setHorizontalAlignment(JTextField.CENTER); /** Ensure title is centered */
+        title.setEditable(false); /** Make it non-editable */
+        title.setBorder(null); /** Remove border */
+        title.setOpaque(false); /** Make background transparent */
 
         newGame = createImageButton("images/newgameBTN.png");
         continueGame = createImageButton("images/continueBTN.png");
@@ -71,25 +71,25 @@ public class MainMenu implements ActionListener {
         options = createImageButton("images/optionBTN.png");
         exitGame = createImageButton("images/exitBTN.png");
 
-        // Add components to the button panel
-        buttonPanel.add(Box.createVerticalGlue()); // Add space at the top
+        /** Add components to the button panel */
+        buttonPanel.add(Box.createVerticalGlue()); /** Add space at the top */
         buttonPanel.add(title);
-        buttonPanel.add(Box.createRigidArea(new Dimension(0, 20))); // Add space between title and buttons
-        buttonPanel.add(Box.createVerticalStrut(30)); // Space underneath Button
+        buttonPanel.add(Box.createRigidArea(new Dimension(0, 20))); /** Add space between title and buttons */
+        buttonPanel.add(Box.createVerticalStrut(30)); /** Space underneath Button */
         buttonPanel.add(newGame);
-        buttonPanel.add(Box.createVerticalStrut(20)); // Space underneath
+        buttonPanel.add(Box.createVerticalStrut(20)); /** Space underneath */
         buttonPanel.add(continueGame);
-        buttonPanel.add(Box.createVerticalStrut(20)); // Space underneath
+        buttonPanel.add(Box.createVerticalStrut(20)); /** Space underneath */
         buttonPanel.add(selectLevel);
-        buttonPanel.add(Box.createVerticalStrut(20)); // Space underneath
+        buttonPanel.add(Box.createVerticalStrut(20)); /** Space underneath */
         buttonPanel.add(scores);
-        buttonPanel.add(Box.createVerticalStrut(20)); // Space underneath
+        buttonPanel.add(Box.createVerticalStrut(20)); /** Space underneath */
         buttonPanel.add(options);
-        buttonPanel.add(Box.createVerticalStrut(20)); // Space underneath
+        buttonPanel.add(Box.createVerticalStrut(20)); /** Space underneath */
         buttonPanel.add(exitGame);
-        buttonPanel.add(Box.createVerticalGlue()); // Add space at the bottom
+        buttonPanel.add(Box.createVerticalGlue()); /** Add space at the bottom */
 
-        // Add button panel to the frame
+        /** Add button panel to the frame */
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -139,7 +139,7 @@ public class MainMenu implements ActionListener {
             return;
         }
         if (e.getSource() == selectLevel) {
-            new LevelMenu(accounts); // Open the level menu
+            new LevelMenu(accounts); /** Open the level menu */
         } else if (e.getSource() == exitGame) {
             menu.dispose();
             new LoginForm(accounts);

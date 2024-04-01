@@ -43,7 +43,7 @@ public class LevelMenuSpecial implements ActionListener {
         };
         frame.setContentPane(backgroundPanel);
 
-        // Manually create each button with its own image
+        /** Manually create each button with its own image */
         JButton sunButton = createButtonWithImage("images/sun.png", "The Sun");
         JButton mercuryButton = createButtonWithImage("images/mercury.png", "Mercury");
         JButton venusButton = createButtonWithImage("images/venus.png", "Venus");
@@ -210,10 +210,10 @@ public class LevelMenuSpecial implements ActionListener {
         String command = e.getActionCommand();
         System.out.println(command + " button pressed");
 
-        // default
+        /** default */
         int selected = 0;
 
-        // Assign selected based on the command
+        /** Assign selected based on the command */
         switch (command) {
             case "The Sun":
                 selected = 0;
@@ -247,11 +247,11 @@ public class LevelMenuSpecial implements ActionListener {
                 break;
             case "Return to Main Menu":
                 frame.dispose();
-                //MainMenu mainMenu = new MainMenu(accounts);
-                return; // Exit the method to prevent further execution
+                /** MainMenu mainMenu = new MainMenu(accounts); */
+                return; /** Exit the method to prevent further execution */
         }
 
-        // Assuming GameControl's constructor takes an int for selected
+        /** Assuming GameControl's constructor takes an int for selected */
         GameControl game = new GameControl(accounts);
         game.playLevel(selected);
     }

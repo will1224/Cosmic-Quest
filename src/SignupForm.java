@@ -147,7 +147,7 @@ public class SignupForm implements ActionListener {
                 Accounts accounts = this.accountDatabase;
                 MainMenu mainMenu = new MainMenu(accounts);
             } else {
-                // If account creation fails, display error message
+                /** If account creation fails, display error message */
                 msg.setForeground(Color.red);
                 msg.setText("An account with this username already exists. Please try to login instead.");
                 signUpPage.add(msg);

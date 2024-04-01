@@ -23,11 +23,11 @@ public class TestAccounts {
      * Runs code that should be run before all tests begin. Backs up all current accounts in the database, and clears all data in the database.
      */
     public static void setUpClass() {
-        //Backup current list of accounts.
+        /** Backup current list of accounts. */
         accounts = new Accounts();
         restore = accounts.getAccounts();
         try {
-            //Overwrite data file to run tests.
+            /**Overwrite data file to run tests.*/
             FileWriter fw = new FileWriter("accountsdata.json");
             fw.write(new JSONArray().toJSONString());
             fw.close();
@@ -35,7 +35,7 @@ public class TestAccounts {
         catch (IOException e) {
             e.printStackTrace();
         }
-        //Keep a copy of the blank data file on record within the testing class.
+        /**Keep a copy of the blank data file on record within the testing class.*/
         accounts = new Accounts();
     }
 
@@ -44,7 +44,7 @@ public class TestAccounts {
      * Runs code that should be run after all tests have concluded. Restores the backup of all current accounts to the database.
      */
     public static void tearDownClass() {
-        //Restore the previously stored data in the testing file.
+        /** Restore the previously stored data in the testing file. */
         try {
             FileWriter fw = new FileWriter("accountsdata.json");
             fw.write(restore.toJSONString());
@@ -62,9 +62,9 @@ public class TestAccounts {
      * @see src.Accounts#registerAccount(String, String)
      */
     public void testRegisterAccount() {
-        //Case 1: Registering an account that doesn't exist in the account file.
+        /** Case 1: Registering an account that doesn't exist in the account file. */
         assertEquals(true, accounts.registerAccount("testing99", "abc123"));
-        //Case 2: Attempting to register an account that already exists.
+        /** Case 2: Attempting to register an account that already exists. */
         assertEquals(false, accounts.registerAccount("testing99", "def456"));
     }
 
@@ -75,9 +75,9 @@ public class TestAccounts {
      * @see src.Accounts#accountExists(String)
      */
     public void testAccountExists() {
-        //Case 1: Account exists
+        /** Case 1: Account exists */
         assertEquals(true, accounts.accountExists("testing99"));
-        //Case 2: Account does not exist
+        /** Case 2: Account does not exist */
         assertEquals(false, accounts.accountExists("test-ing"));
     }
 
@@ -89,9 +89,9 @@ public class TestAccounts {
      * @see src.Accounts#correctPassword(String, String)
      */
     public void testCorrectPassword() {
-        //Case 1: Password is correct
+        /**Case 1: Password is correct */
         assertEquals(true, accounts.correctPassword("testing99", "abc123"));
-        //Case 2: Password is incorrect
+        /**Case 2: Password is incorrect */
         assertEquals(false, accounts.correctPassword("testing99", "def456"));
     }
 
@@ -102,13 +102,13 @@ public class TestAccounts {
      * @see src.Accounts#login()
      */
     public void testLogin() {
-        //Case 1: Test logging into an account that exists.
+        /** Case 1: Test logging into an account that exists. */
         assertEquals(true, accounts.login("testing99", "abc123"));
-        //Case 2: Test logging into an account that does not exist.
+        /** Case 2: Test logging into an account that does not exist. */
         assertEquals(false, accounts.login("random", "password"));
-        //Case 3: Test logging into an account with the wrong username.
+        /** Case 3: Test logging into an account with the wrong username. */
         assertEquals(false, accounts.login("test-ing", "abc123"));
-        //Case 4: Test logging into an account with the wrong password.
+        /** Case 4: Test logging into an account with the wrong password. */
         assertEquals(false, accounts.login("testing99", "abc456"));
     }
 
