@@ -139,10 +139,10 @@ public class MainMenuSoftware implements ActionListener {
             return;
         }
         if (e.getSource() == selectLevel) {
-            new LevelMenuSpecial(accounts); // Open the level menu
+            new LevelMenuSpecial(accounts); /** Open the level menu */
         } else if (e.getSource() == exitGame) {
             menu.dispose();
-            new LoginForm(accounts); // Close the application
+            new LoginForm(accounts); /** Close the application */
         } else if (e.getSource() == newGame) {
             GameControl game = new GameControl(accounts, true);
             game.startGame();

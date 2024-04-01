@@ -127,23 +127,23 @@ public class OptionsMenu extends JFrame {
      */
     private JPanel createLabeledSlider(JSlider slider, String label) {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setOpaque(false); // Make the panel transparent
+        panel.setOpaque(false); /** Make the panel transparent */
         JLabel labelComponent = new JLabel(label);
-        labelComponent.setForeground(Color.WHITE); // Set text color to white
+        labelComponent.setForeground(Color.WHITE); /** Set text color to white */
 
-        // Set slider properties to make it appear white
-        slider.setForeground(Color.WHITE); // Changes the color of the ticks and numbers
+        /** Set slider properties to make it appear white */
+        slider.setForeground(Color.WHITE); /** Changes the color of the ticks and numbers */
         slider.setUI(new BasicSliderUI(slider));
-        slider.setOpaque(false); // Makes the slider background transparent
+        slider.setOpaque(false); /** Makes the slider background transparent */
 
-        UIManager.put("Slider.thumbWidth", 10); // Example of changing thumb width, might not take effect here
+        UIManager.put("Slider.thumbWidth", 10); /** Example of changing thumb width, might not take effect here */
 
         panel.add(labelComponent, BorderLayout.WEST);
         panel.add(slider, BorderLayout.CENTER);
         return panel;
     }
 
-      /**
+    /**
      * Inner class to create a custom JPanel with a background image.
      * It overrides the paintComponent method to draw the image as the panel's background.
      */
