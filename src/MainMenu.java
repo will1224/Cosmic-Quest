@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
  * the corresponding actions.
  * 
  * @author Sophia Tong
+ * @version 1.0
  */
 public class MainMenu implements ActionListener {
     private JFrame menu;

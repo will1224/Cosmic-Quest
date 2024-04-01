@@ -17,6 +17,7 @@ import java.net.URI;
  * button interactions.
  * 
  * @author Sophia Tong
+ * @version 1.0
  */
 public class MainMenuSoftware implements ActionListener {
     private JFrame menu;

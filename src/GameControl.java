@@ -3,6 +3,14 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ * The GameControl class is responsible for managing the game's state,
+ * including player accounts, level progression, and the game display.
+ * It handles game initialization, progress management, and starting the game session.
+ * 
+ * @author Jennifer Cao
+ * @version 1.0
+ */
 public class GameControl {
         private Accounts accounts;
         //Progress is stored as a JSONArray within a user JSONObject.
@@ -11,6 +19,13 @@ public class GameControl {
         private Level currLevel;
         private GameDisplay d;
 
+     /**
+     * Constructs a new GameControl instance for a new or existing game.
+     * Initializes the game with the given account and clears any existing progress if it's a new game.
+     * 
+     * @param acc The player's account.
+     * @param newgame A boolean indicating if it's a new game (true) or not (false).
+     */    
     public GameControl(Accounts acc, boolean newgame) {
         accounts = acc;
         clearProgress(acc);
@@ -18,7 +33,12 @@ public class GameControl {
         this.currLevel = new Level(0);
     }
 
-
+    /**
+     * Constructs a new GameControl instance for an existing game.
+     * Initializes the game with the given account and loads the player's current progress.
+     * 
+     * @param account The player's account.
+     */
     public GameControl(Accounts account) {
         accounts = account;
         //Progress is extracted from the user JSONObject by grabbing the "progress" key (typecast is done to avoid errors).
@@ -27,13 +47,20 @@ public class GameControl {
         this.currLevel = new Level(progress.getCurrentLevel());
     }
 
-
+    /**
+     * Clears the progress of the given account.
+     * 
+     * @param account The account whose progress is to be cleared.
+     */
     private void clearProgress(Accounts account){
         LevelProgress progress = new LevelProgress();
         accounts.updateUserProgress(accounts.getCurrentAccount().get("username").toString(), progress.getProgress());
     }
 
-    // Starts the game
+    /**
+     * Starts the game session.
+     * It sets up the questions for the current level and displays it using the GameDisplay.
+     */
     public void startGame() {
         // set up questions
         List<Question> questionSet = currLevel.getQuestions();
@@ -49,6 +76,12 @@ public class GameControl {
         d.displayLevel(level, questionSet, true);
     }
 
+     /**
+     * The main method to start the game.
+     * Creates an Accounts object, logs in, and starts the game.
+     * 
+     * @param args Command line arguments (not used).
+     */
    public static void main(String[] args) {
        //Accounts object must be created for login/signup to occur.
        Accounts accounts = new Accounts();
