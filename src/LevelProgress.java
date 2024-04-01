@@ -103,14 +103,20 @@ public class LevelProgress {
      * @return the highscore of the specified level
      */
     public int getLevelScore(int levelNumber) {
-        return (Integer) ((JSONObject) progress.get(levelNumber)).get("highscore");
+        for(Object i: progress){
+            JSONObject arr = (JSONObject) i;
+            if (arr.get("levelNumber").toString().equals(String.valueOf(levelNumber))){
+                return Integer.parseInt(arr.get("highscore").toString());
+            }
+        }
+        return -1;
     }
 
     /**
      * Method sets the unlocked status for a specified level.
      * 
      * @param levelNumber the number of the level to get the unlocked status for
-     * @param lockStatus the unlocked status to set the level to
+     * @param unlockStatus the unlocked status to set the level to
      */
     public void setUnlockedStatus(int levelNumber, boolean unlockStatus) {
         ((JSONObject) progress.get(levelNumber)).put("unlocked", unlockStatus);
@@ -130,7 +136,7 @@ public class LevelProgress {
      * Method sets the current level status for a specified level.
      * 
      * @param levelNumber the number of the level to get the current level status for
-     * @param lockStatus the current level status to set the level to
+     * @param currentLevelStatus the current level status to set the level to
      */
     //Setter method to change the current level status of a level.
     public void setCurrentLevelStatus(int levelNumber, boolean currentLevelStatus) {
