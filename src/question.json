@@ -286,13 +286,13 @@
 
     {
         "questionID": 30,
-        "questionStr": "How many moons does Mars have?",
+        "questionStr": "What is Mars' atmosphere primarily composed of??",
         "answer": 0,
         "answerList": 
-        ["Two, Phobos and Deimos", 
-        "Two, Bob and Joe", 
-        "One, Titan", 
-        "None"]
+        ["Oxygen", 
+        "Nitrogen", 
+        "Carbon dioxide", 
+        "Methane"]
     },
 
     {
