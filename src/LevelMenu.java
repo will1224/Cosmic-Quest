@@ -132,7 +132,7 @@ public class LevelMenu implements ActionListener {
             button.addActionListener(this);
 
             // Optionally disable the button if the level is locked
-            button.setEnabled(level <= unlockedUpTo());
+            //button.setEnabled(level <= unlockedUpTo());
 
             return button;
         } catch (IOException e) {
