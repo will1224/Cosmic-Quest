@@ -131,7 +131,7 @@ public class Level {
 
         /**Check if the list contains at least 5 questions*/
         if (questionList.size() < 5) {
-            // If not, handle accordingly. For now, we're just printing a message and returning the shuffled list as is.
+            /** If not, handle accordingly. For now, we're just printing a message and returning the shuffled list as is. */
             System.out.println("Warning: Less than 5 questions available. Returning all available questions.");
             return questionList;
         }
