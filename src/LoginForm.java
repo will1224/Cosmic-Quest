@@ -27,6 +27,7 @@ public class LoginForm implements ActionListener {
     private JLabel passwordLabel = new JLabel("Password: ");
     private JLabel msg = new JLabel("", SwingConstants.CENTER);
     private Color PINK = new Color(255, 104, 176);
+    private Accounts accounts;
 
     Accounts accountDatabase;
 
@@ -36,8 +37,8 @@ public class LoginForm implements ActionListener {
      *
      * @param acc the {@code Accounts} database to be used for login verification.
      */
-    public LoginForm(Accounts acc) {
-        accountDatabase = acc;
+    public LoginForm(Accounts accounts) {
+        accountDatabase = accounts;
 
         loginPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
