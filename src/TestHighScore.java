@@ -8,16 +8,28 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.ParseException;
 
 
+/**
+ * Class tests the key logical components in {@link src.HighScore.java}.
+ * 
+ * @version 1.0.0
+ * @author Ho Lun (Geoffrey) Kong
+ */
 public class TestHighScore {
+    /**A representation of the information within <b>accountsdata.json</b>.*/
     private static Accounts accounts;
+    /**A backup of all the current information within <b>accountsdata.json</b>.*/
     private static JSONArray restore;
 
     @Test
+    /**
+     * Tests if {@link src.HighScore#getScoresFromDatabase()} works as intended.
+     * 
+     * @see src.HighScore#getScoresFromDatabase()
+     */
     public void testGetScoresFromDatabase() {
         //Backup current list of accounts.
         accounts = new Accounts();
         restore = accounts.getAccounts();
-        System.out.println(restore);
         try {
             //Overwrite data file to run tests.
             FileWriter fw = new FileWriter("accountsdata.json");
