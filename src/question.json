@@ -48,7 +48,7 @@
         "questionID": 6,
         "questionStr": "What is the approximate surface temperature of the Sun?",
         "answer": 0,
-        "answerList": ["10,000°C (18,032°F)", "5,000°C (9,032°F)", "15,000°C (27,032°F)", "20,000°C (36,032°F)"]
+        "answerList": ["10,000 degrees C (18,032 degrees F)", "5,000 degrees C (9,032 degrees F)", "15,000 degrees C (27,032 degrees F)", "20,000 degrees C (36,032 degrees F)"]
     },
 
 
@@ -77,14 +77,14 @@
         "questionID": 10,
         "questionStr": "How hot can it get on Mercury during the day?",
         "answer": 2,
-        "answerList": ["212°F (100°C)", "500°F (260°C)", "800°F (430°C)", "32°F (0°C)"]
+        "answerList": ["212 degrees F (100 degrees C)", "500 degrees F (260 degrees C)", "800 degrees F (430 degrees C)", "32 degrees F (0 degrees C)"]
     },
 
     {
         "questionID": 11,
         "questionStr": "How cold can it get on Mercury at night?",
         "answer": 3,
-        "answerList": ["-20°F (-29°C)", "-100°F (-73°C)", "-50°F (-45°C)", "-290°F (-180°C)"]
+        "answerList": ["-20 degrees F (-29 degrees C)", "-100 degrees F (-73 degrees C)", "-50 degrees F (-45 degrees C)", "-290 degrees F (-180 degrees C)"]
     },
 
     {
@@ -598,10 +598,10 @@
         "questionStr": "What is the average temperature on Neptune's surface?",
         "answer": 2,
         "answerList": 
-        ["-100°C", 
-        "-200°C", 
-        "-300°C", 
-        "-400°C"]
+        ["-100 degrees C", 
+        "-200 degrees C", 
+        "-300 degrees C", 
+        "-400 degrees C"]
     },
 
     {
