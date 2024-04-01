@@ -26,7 +26,7 @@ public class LoginForm implements ActionListener {
     private JLabel usernameLabel = new JLabel("Username: ");
     private JLabel passwordLabel = new JLabel("Password: ");
     private JLabel msg = new JLabel("", SwingConstants.CENTER);
-    private JLabel titleLabel = new JLabel("Welcome to Cosmic Quest: Stellar Treasures!", SwingConstants.CENTER);
+    private Color PINK = new Color(255, 104, 176);
 
     Accounts accountDatabase;
 
@@ -61,8 +61,6 @@ public class LoginForm implements ActionListener {
         Font labelFont = new Font("Arial", Font.BOLD, 18);
         usernameLabel.setFont(labelFont);
         passwordLabel.setFont(labelFont);
-
-        formPanel.add(titleLabel, gbc);
         gbc.insets = new Insets(10, 50, 15, 50);
 
         /** Font settings for text fields */
@@ -73,7 +71,6 @@ public class LoginForm implements ActionListener {
         usernameField.setPreferredSize(new Dimension(usernameField.getPreferredSize().width, 60));
         passwordField.setPreferredSize(new Dimension(passwordField.getPreferredSize().width, 60));
 
-        titleLabel.setForeground(Color.WHITE);
         usernameLabel.setForeground(Color.WHITE);
         passwordLabel.setForeground(Color.WHITE);
         usernameField.setForeground(Color.black);
@@ -96,8 +93,6 @@ public class LoginForm implements ActionListener {
         buttonPanel.add(loginButton);
         buttonPanel.add(signUpButton);
         formPanel.add(buttonPanel, gbc);
-
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
         msg.setFont(new Font("Arial", Font.PLAIN, 16));
 
         centerPanel.add(formPanel);
