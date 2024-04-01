@@ -1,6 +1,9 @@
 package src;
 
 import javax.swing.*;
+
+import org.json.simple.parser.ParseException;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -149,7 +152,16 @@ public class MainMenuSoftware implements ActionListener {
         } else if (e.getSource() == options) {
             new OptionsMenu();
         } else if (e.getSource() == scores) {
-            new ScoreBoard(menu, "developer", 0).setVisible(true);
+            SwingUtilities.invokeLater(() -> {
+                HighScore frame = null;
+                try {
+                    frame = new HighScore();
+                } catch (ParseException x) {
+                    throw new RuntimeException(x);
+                }
+                frame.setVisible(true);
+
+            });
         } else if (e.getSource() == software) {
             try {
                 Desktop desktop = Desktop.getDesktop();
