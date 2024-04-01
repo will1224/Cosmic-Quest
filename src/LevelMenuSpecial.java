@@ -64,9 +64,8 @@ public class LevelMenuSpecial implements ActionListener {
         JButton returnButton = createButtonWithImageBack("images/backbtn.png", "Return to Main Menu");
         JButton neptuneButton = createButtonWithImage("images/neptune.png", "Neptune");
         JButton blackHolesButton = createButtonWithImage("images/blackhole.png", "Black Holes");
-        JButton logo = createButtonWithImageLogo("images/logo.png", "logo");
+        JLabel logo = new JLabel(new ImageIcon("images/logo.png"));
 
-        // Add buttons to the background panel
         backgroundPanel.add(sunButton);
         backgroundPanel.add(mercuryButton);
         backgroundPanel.add(venusButton);
