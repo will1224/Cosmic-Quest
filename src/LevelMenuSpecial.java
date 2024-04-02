@@ -35,9 +35,14 @@ public class LevelMenuSpecial implements ActionListener {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 try {
-                    BufferedImage backgroundImage = ImageIO.read(new File("images/space.png"));
-                    Image scaledImage = backgroundImage.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
-                    g.drawImage(scaledImage, 0, 0, this);
+                    URL backgroundImageURL = getClass().getResource("/images/space.png");
+                    if (backgroundImageURL != null) {
+                        BufferedImage backgroundImage = ImageIO.read(backgroundImageURL);
+                        Image scaledImage = backgroundImage.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
+                        g.drawImage(scaledImage, 0, 0, this);
+                    } else {
+                        System.err.println("Unable to load background image.");
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
