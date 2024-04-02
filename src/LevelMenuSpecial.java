@@ -57,7 +57,22 @@ public class LevelMenuSpecial implements ActionListener {
         JButton returnButton = createButtonWithImageBack("/images/backbtn.png", "Return to Main Menu");
         JButton neptuneButton = createButtonWithImage("/images/neptune.png", "Neptune");
         JButton blackHolesButton = createButtonWithImage("/images/blackhole.png", "Black Holes");
-        JLabel logo = new JLabel(new ImageIcon("images/logo.png"));
+        JLabel logo = new JLabel();
+        try {
+            URL logoURL = getClass().getResource("/images/logo.png");
+            if (logoURL != null) {
+                ImageIcon logoIcon = new ImageIcon(ImageIO.read(logoURL));
+                logo.setIcon(logoIcon);
+            } else {
+                System.err.println("Unable to load logo image.");
+                // Optionally set a placeholder or error text
+                logo.setText("Logo not available");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Optionally handle the error, such as setting a placeholder or error text
+            logo.setText("Error loading logo");
+        }
 
         backgroundPanel.add(sunButton);
         backgroundPanel.add(mercuryButton);
@@ -157,6 +172,13 @@ public class LevelMenuSpecial implements ActionListener {
         }
     }
 
+     /**
+     * Similar to {@code createButtonWithImage} but specifically made to size Saturn due to it's rings
+     * 
+     * @param imagePath The path to the image file for the button's icon.
+     * @param actionCommand The action command associated with the button.
+     * @return A {@code JButton} with the specified image and action command.
+     */
     private JButton createButtonWithImageSaturn(String imagePath, String actionCommand) {
         try {
             // Change starts here: Load the image using getClass().getResource()

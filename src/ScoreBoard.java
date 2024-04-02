@@ -1,6 +1,10 @@
 package src;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * The ScoreBoard class represents a dialog displaying player's score.
@@ -21,29 +25,46 @@ public class ScoreBoard extends JDialog {
      * @param playerScore The score of the player.
      */    
     public ScoreBoard(Frame parent, String playerName, int playerScore) {
-        super(parent, "Player Score", true); 
-        getContentPane().setLayout(new BorderLayout()); /** Use BorderLayout at the top level */
+        super(parent, "Player Score", true);
+        getContentPane().setLayout(new BorderLayout());
 
-        /** Background panel with GridBagLayout for components */
         JPanel backgroundPanel = new JPanel(new GridBagLayout()) {
-            /** Overriding paintComponent to draw the background image */
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon backgroundIcon = new ImageIcon("images/gradient.png"); /** Replace with background image */
-                Image backgroundImage = backgroundIcon.getImage();
-                g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+                try {
+                    // Using getClass().getResource() to fetch the background image
+                    URL backgroundURL = getClass().getResource("/images/gradient.png");
+                    if (backgroundURL != null) {
+                        BufferedImage backgroundImage = ImageIO.read(backgroundURL);
+                        g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+                    } else {
+                        System.err.println("Unable to load background image.");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         };
-        add(backgroundPanel); /** Add backgroundPanel to the dialog's content pane */
+        add(backgroundPanel);
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 15, 5, 5); // Adding some margin
 
-        /** Load and resize the profile picture */
-        ImageIcon originalIcon = new ImageIcon("images/profile.jpg");
-        Image resizedImage = originalIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        JLabel picLabel = new JLabel(new ImageIcon(resizedImage));
+        /**  Load and resize the profile picture */
+        JLabel picLabel = new JLabel();
+        try {
+            URL profileURL = getClass().getResource("/images/profile.jpg");
+            if (profileURL != null) {
+                BufferedImage profileImage = ImageIO.read(profileURL);
+                Image resizedImage = profileImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                picLabel.setIcon(new ImageIcon(resizedImage));
+            } else {
+                System.err.println("Unable to load profile image.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         /** Player name and score labels */
         JPanel textPanel = new JPanel(new GridBagLayout()); /** Panel for text to keep it together */

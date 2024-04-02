@@ -54,7 +54,22 @@ public class LevelMenu implements ActionListener {
         JButton returnButton = createButtonWithImageBack("/images/backbtn.png", "Return to Main Menu");
         JButton neptuneButton = createButtonWithImage("/images/neptune.png", "Neptune", 8);
         JButton blackHolesButton = createButtonWithImage("/images/blackhole.png", "Black Holes", 9);
-        JLabel logo = new JLabel(new ImageIcon("images/logo.png"));
+        JLabel logo = new JLabel();
+        try {
+            URL logoURL = getClass().getResource("/images/logo.png");
+            if (logoURL != null) {
+                ImageIcon logoIcon = new ImageIcon(ImageIO.read(logoURL));
+                logo.setIcon(logoIcon);
+            } else {
+                System.err.println("Unable to load logo image.");
+                // Optionally set a placeholder or error text
+                logo.setText("Logo not available");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Optionally handle the error, such as setting a placeholder or error text
+            logo.setText("Error loading logo");
+        }
 
         /** Add buttons to the background panel */
         backgroundPanel.add(sunButton);
