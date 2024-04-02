@@ -37,8 +37,10 @@ Download and install the appropriate JDK for your operating system from the offi
 **Step 2:** Extract the folder containing the game<br>
 Open File Explorer and extract the contents of the game folder.
 
-**Step 3:** Run the executable file<br>
-Open the executable file named "Insert file name here" to run the game.
+INSERT STEPS TO BUILD THE JAR FILE HERE
+
+**Step ?:** Run the executable file<br>
+Open the executable file named "INSERTEXECUTABLENAMEHERE.jar" to run the game.
 
 ---
 

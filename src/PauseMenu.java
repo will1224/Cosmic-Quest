@@ -1,9 +1,13 @@
 package src;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * Constructs the pause menu for our game facilitating navigation through
@@ -74,15 +78,34 @@ public class PauseMenu extends JFrame implements ActionListener {
      * @return A visually customized JButton ready for user interaction.
      */
     private JButton createImageButton(String imagePath) {
-        ImageIcon icon = new ImageIcon(imagePath);
-        JButton button = new JButton(icon);
-        button.setBorderPainted(false);
-        button.setContentAreaFilled(false);
-        button.setFocusPainted(false);
-        button.setMaximumSize(new Dimension(icon.getIconWidth() + 20, icon.getIconHeight() + 20));
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.addActionListener(this);
-        return button;
+        BufferedImage img = null;
+        try {
+            // assume imagePath is a path within the JAR
+            URL imageUrl = getClass().getResource("/" + imagePath);
+            if (imageUrl != null) {
+                img = ImageIO.read(imageUrl);
+            } else {
+                throw new IOException("Resource not found: " + imagePath);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // if the image was successfully loaded
+        if (img != null) {
+            ImageIcon icon = new ImageIcon(img);
+            JButton button = new JButton(icon);
+            button.setBorderPainted(false);
+            button.setContentAreaFilled(false);
+            button.setFocusPainted(false);
+            button.setMaximumSize(new Dimension(icon.getIconWidth() + 20, icon.getIconHeight() + 20));
+            button.setAlignmentX(Component.CENTER_ALIGNMENT);
+            button.addActionListener(this);
+            return button;
+        } else {
+            // Return a button without an icon if image loading failed
+            return new JButton();
+        }
     }
 
     /**
