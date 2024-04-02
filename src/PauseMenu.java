@@ -35,7 +35,7 @@ public class PauseMenu extends JFrame implements ActionListener {
         setSize(1000, 1000);
         setLocationRelativeTo(null);
 
-        // Use the custom background panel that loads image using getResource()
+        /** Adjusted the path for the background image */ 
         BackgroundPanel backgroundPanel = new BackgroundPanel("/images/pause.png");
         backgroundPanel.setLayout(new BorderLayout());
         setContentPane(backgroundPanel);
@@ -129,10 +129,11 @@ public class PauseMenu extends JFrame implements ActionListener {
      */
     class BackgroundPanel extends JPanel {
         private Image backgroundImage;
-
+    
         public BackgroundPanel(String imagePath) {
             super(new BorderLayout());
             try {
+                // Adjusted to correctly load the image using getResource
                 URL imageUrl = getClass().getResource(imagePath);
                 if (imageUrl != null) {
                     backgroundImage = ImageIO.read(imageUrl);
@@ -143,7 +144,7 @@ public class PauseMenu extends JFrame implements ActionListener {
                 e.printStackTrace();
             }
         }
-
+    
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
