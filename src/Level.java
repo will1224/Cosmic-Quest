@@ -2,6 +2,8 @@ package src;
 import java.util.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
+
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.io.*;
@@ -154,23 +156,27 @@ public class Level {
     }
 
     public String getLesson() {
-        String file = "src/lessons.json";
-        try {
-            Object obj = new JSONParser().parse(new FileReader(file));
-            JSONObject jsonObj = (JSONObject) obj;
-            JSONArray lessons = (JSONArray) jsonObj.get("lessons");
-
-            for (Object element : lessons) {
-                JSONObject lesson = (JSONObject) element;
-                String levelNum = Integer.toString(levelID);
-                if (lesson.get("levelId").toString().equals(levelNum)) {
-                    return (String) lesson.get("info");
-                }
-            }
-        } catch(IOException | ParseException e){
-            throw new RuntimeException(e);
+        String file = "/lessons.json";
+        try (InputStream inputStream = getClass().getResourceAsStream(file)) {
+        if (inputStream == null) {
+            throw new FileNotFoundException("Resource not found: " + file);
         }
-        return null;
+        JSONParser jsonParser = new JSONParser();
+        Object obj = jsonParser.parse(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+        JSONObject jsonObj = (JSONObject) obj;
+        JSONArray lessons = (JSONArray) jsonObj.get("lessons");
+
+        for (Object element : lessons) {
+            JSONObject lesson = (JSONObject) element;
+            String levelNum = Integer.toString(levelID);
+            if (lesson.get("levelId").toString().equals(levelNum)) {
+                return (String) lesson.get("info");
+            }
+        }
+    } catch(IOException | ParseException e) {
+        e.printStackTrace();
+    }
+    return null;
     }
 
 }

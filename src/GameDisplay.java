@@ -66,10 +66,16 @@ public class GameDisplay extends JFrame {
 
         /** load the background image */
         try {
-            BufferedImage backgroundImage = ImageIO.read(getClass().getResourceAsStream("/images/gradient.png"));
-            BackgroundPanel bg = new BackgroundPanel(backgroundImage);
-            setContentPane(bg);
-            setLayout(new BorderLayout()); /** use BorderLayout */
+            // Load the background image using getClass().getResource()
+            URL backgroundImageURL = getClass().getResource("/images/gradient.png");
+            if (backgroundImageURL != null) {
+                BufferedImage backgroundImage = ImageIO.read(backgroundImageURL);
+                BackgroundPanel bg = new BackgroundPanel(backgroundImage);
+                setContentPane(bg);
+                setLayout(new BorderLayout()); // use BorderLayout
+            } else {
+                System.err.println("Background image file not found");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -275,7 +281,6 @@ public class GameDisplay extends JFrame {
         box.add(Box.createHorizontalGlue()); // add left spacing
         box.add(scrollPane);
         box.add(Box.createHorizontalGlue()); // add right spacing
-
         panel.add(box, BorderLayout.CENTER); // Add the box to the main panel
 
         // Next button
