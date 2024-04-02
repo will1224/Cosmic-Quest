@@ -1,8 +1,0 @@
-{
-  "java.project.referencedLibraries": {
-    "include": [
-      "lib/**/*.jar",
-      "/Users/sophiatong/Downloads/json-simple-1.1.1.jar"
-    ],
-  }
-}
