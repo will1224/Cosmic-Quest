@@ -25,13 +25,14 @@ Cosmic Quest: Stellar Treasures is designed to be an interactive, educational to
 - **Java.IO** (Input/output classes) 
     - Java package for input/output operations
 - **IntelliJ IDEA Community Edition** (Building and running the code)
-  - Required to build and run the code.
+  - Used to build and run the code locally in the case that there is no working executable file.
 
 Ensure that you have these libraries and tools properly installed and configured to build and run Cosmic Quest: Stellar Treasures.
 
 ---
 
 ## Building the Software
+First-time setup instructions must be followed to build the executable for the first time after installing IntelliJ. If first-time setup has already been completed, then skip to <b>Step 5</b>.
 
 **Step 1:** Install Java Development Kit (JDK)<br>
 Download and install the appropriate JDK for your operating system from the official Oracle website or any other trusted source. Follow the installation instructions provided.
@@ -39,15 +40,37 @@ Download and install the appropriate JDK for your operating system from the offi
 **Step 2:** Extract the folder containing the game<br>
 Open File Explorer and extract the contents of the game folder.
 
+**Step 3:** Open IntelliJ and open the newly extracted group7 folder<br>
+Navigate to the located of the newly extracted group7 folder and open it in IntelliJ.
+
+**Step 4:** Setup the JAR build<br>
+1. In IntelliJ, click <i>File > Project Structure</i>.
+2. Click <i>Artifacts</i> under Project Settings.
+3. Click the Add (+) button.
+4. Click <i>JAR</i> > <i>From modules with dependencies</i>.
+5. In the menu that pops up, set the main class by clicking on the file explorer icon. Switch to the project tab on the window that appears, and expand the project directory to locate the Main.java file in `/group7/src/Main.java`.
+
+**Step 5:** Build the code
+1. Click <i>Build</i> > <i>Build Artifacts</i> in IntelliJ.
+2. Click <i>Rebuild</i>.
+
+The executable .jar file will then be generated and is located within the `/group7/out/production/artifacts/group7_jar` folder.
+
+Double-click on the .jar file to run it. Alternatively, you can open a terminal or command prompt, navigate to the game directory using the cd command, and then execute the .jar file using the `java -jar group7.jar` command.
+
+## Run Game Locally Using IntelliJ
+
+**Step 1 and Step 2 are the same as above**
+
 **Step 3:** Open the folder in IntelliJ IDEA
 Open IntelliJ and open the group7 folder as a new project.
 
 **Step 4:** Build and run the game
-Open a new terminal window in IntelliJ and type in the following commands to build and run the code.<br>Windows:<br>`javac -cp .;json-simple-1.1.1.jar src/Main.java`<br>`java -cp .;json-simple-1.1.1.jar src.Main`<br>Mac/Linux<br>`javac -cp .:json-simple-1.1.1.jar src/Main.java`<br>`java -cp .:json-simple-1.1.1.jar src.Main`
+Open a new terminal window in IntelliJ and type in the following commands to build and run the code.<br>Windows:<br>`javac -cp .;json-simple-1.1.1.jar src/Main.java`<br>`java -cp .;json-simple-1.1.1.jar src.Main`<br>Mac/Linux:<br>`javac -cp .:json-simple-1.1.1.jar src/Main.java`<br>`java -cp .:json-simple-1.1.1.jar src.Main`
 
 ---
 
-## User Guide
+## User Guide 
 
 1. **Login Page**<br>
 Upon launching the game, you'll be directed to the login page. If you already have an account, enter your account details (username and password) and click the "Login" button. If you don't have an account yet, click the "Create Account" button to register.
@@ -89,7 +112,7 @@ When you return to play again, simply launch the game and enter your account det
 ---
 ## Accessing Documentation
 
-To access the documentation for the project, open the <b>package-summary.html</b> file located in the following file path: `group7/documentation/src/package-summary.html`
+To access the documentation for the project, extract the <b>javadoc.zip</b> file located in /group7/documentation. In the newly extracted folder, open the <b>package-summary.html</b> file located in the following file path: `/group7/documentation/javadoc/src/package-summary.html`.
 
 ---
 
@@ -108,7 +131,7 @@ Teacher Mode allows educators to customize trivia questions and track student pr
 
 To access Developer Mode, enter the designated username and password provided below:
 
-Username: *admin* <br>
+Username: *developer* <br>
 Password: *cosmic456*
 
 Developer Mode allows the user to access backend code and commit changes.
