@@ -170,7 +170,6 @@ public class GameDisplay extends JFrame {
         add(bottomPanel, BorderLayout.SOUTH);
 
         setUpKeyBindings();
-
         setVisible(true);
     }
 
@@ -220,12 +219,13 @@ public class GameDisplay extends JFrame {
         buttonPanel.setOpaque(false);
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
-        panel.setOpaque(true);
+        panel.setOpaque(false);
         panel.setBackground(Color.RED);
 
         panel.revalidate();
         panel.repaint();
         setVisible(true);
+        panel.requestFocusInWindow();
 
 //        backButton = new JButton("Back");
 //        backButton.setFont(new Font("Space Mono", Font.PLAIN, 20));
