@@ -66,16 +66,10 @@ public class GameDisplay extends JFrame {
 
         /** load the background image */
         try {
-            // Load the background image using getClass().getResource()
-            URL backgroundImageURL = getClass().getResource("/images/gradient.png");
-            if (backgroundImageURL != null) {
-                BufferedImage backgroundImage = ImageIO.read(backgroundImageURL);
-                BackgroundPanel bg = new BackgroundPanel(backgroundImage);
-                setContentPane(bg);
-                setLayout(new BorderLayout()); // use BorderLayout
-            } else {
-                System.err.println("Background image file not found");
-            }
+            BufferedImage backgroundImage = ImageIO.read(getClass().getResourceAsStream("/images/gradient.png"));
+            BackgroundPanel bg = new BackgroundPanel(backgroundImage);
+            setContentPane(bg);
+            setLayout(new BorderLayout()); /** use BorderLayout */
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -92,7 +86,9 @@ public class GameDisplay extends JFrame {
         tempScore = 0;
         accounts = a;
 
-        pauseButton = new JButton(new ImageIcon("images/pauseicon.png"));
+
+        java.net.URL imageUrl = getClass().getResource("/images/pauseicon.png");
+        pauseButton = new JButton(new ImageIcon(imageUrl));
         pauseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,8 +108,6 @@ public class GameDisplay extends JFrame {
             public void keyTyped(KeyEvent e) {
                 /** Not used here*/
             }
-
-
             @Override
             public void keyPressed(KeyEvent e) {
 
@@ -220,8 +214,33 @@ public class GameDisplay extends JFrame {
         buttonPanel.setOpaque(false);
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
+        panel.setOpaque(true);
+        panel.setBackground(Color.RED);
+
         panel.revalidate();
         panel.repaint();
+        setVisible(true);
+
+//        backButton = new JButton("Back");
+//        backButton.setFont(new Font("Space Mono", Font.PLAIN, 20));
+//        backButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                dispose();
+//            }
+//        });
+//
+//        // Create a panel at the bottom for the Back button */
+//        JPanel bottomPanel = new JPanel(new BorderLayout());
+//        bottomPanel.add(backButton, BorderLayout.WEST); // Place the Back button on the west
+//        bottomPanel.setOpaque(false); // Optional: make the panel transparent
+//
+//        // Add the bottom panel to the main frame
+//        add(bottomPanel, BorderLayout.SOUTH);
+//
+//        setUpKeyBindings();
+//
+//        setVisible(true);
     }
 
     /**
@@ -289,7 +308,7 @@ public class GameDisplay extends JFrame {
 
     public void displayLevel(Level currLevel, List<Question> questionSet, boolean fromLevelSelect) {
 
-        if (questionSet.isEmpty()) return;
+//        if (questionSet.isEmpty()) return;
         this.isSingleLevel = fromLevelSelect;
         this.currentLevel = currLevel;
         this.questions = questionSet; // store the list of questions

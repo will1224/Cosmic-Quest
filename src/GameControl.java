@@ -3,6 +3,8 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import javax.swing.*;
+
 /**
  * The GameControl class is responsible for managing the game's state,
  * including player accounts, level progression, and the game display.
@@ -64,6 +66,9 @@ public class GameControl {
     public void startGame() {
         /**set up questions*/
         List<Question> questionSet = currLevel.getQuestions();
+        if (questionSet == null){
+            System.out.println("sssssss");
+        }
         d = new GameDisplay(accounts);
         d.displayLevel(currLevel, questionSet, false);
     }
