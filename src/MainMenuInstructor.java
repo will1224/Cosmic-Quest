@@ -106,17 +106,20 @@ public class MainMenuInstructor implements ActionListener {
      * @return A configured JButton with the specified image icon.
      */
     private JButton createImageButton(String imagePath) {
-        ImageIcon icon = new ImageIcon(imagePath);
-        JButton button = new JButton(icon);
-        button.setBorderPainted(false);
-        button.setContentAreaFilled(false);
-        button.setFocusPainted(false);
-        button.setMaximumSize(new Dimension(icon.getIconWidth() + 20, icon.getIconHeight() + 20));
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.addActionListener(this);
-        return button;
+        java.net.URL imageUrl = getClass().getResource("/"+ imagePath);
+        if(imageUrl !=null) {
+            ImageIcon icon = new ImageIcon(imageUrl);
+            JButton button = new JButton(icon);
+            button.setBorderPainted(false);
+            button.setContentAreaFilled(false);
+            button.setFocusPainted(false);
+            button.setMaximumSize(new Dimension(icon.getIconWidth() + 20, icon.getIconHeight() + 20));
+            button.setAlignmentX(Component.CENTER_ALIGNMENT);
+            button.addActionListener(this);
+            return button;
+        }
+        return null;
     }
-
     /**
      * Handles action events triggered by button clicks in the main menu.
      * Depending on which button is clicked, it performs the corresponding action, such as 

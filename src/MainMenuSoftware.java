@@ -115,15 +115,19 @@ public class MainMenuSoftware implements ActionListener {
      * @return A visually customized JButton ready for user interaction.
      */
     private JButton createImageButton(String imagePath) {
-        ImageIcon icon = new ImageIcon(imagePath);
-        JButton button = new JButton(icon);
-        button.setBorderPainted(false);
-        button.setContentAreaFilled(false);
-        button.setFocusPainted(false);
-        button.setMaximumSize(new Dimension(icon.getIconWidth() + 20, icon.getIconHeight() + 20));
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.addActionListener(this);
-        return button;
+        java.net.URL imageUrl = getClass().getResource("/"+ imagePath);
+        if(imageUrl !=null) {
+            ImageIcon icon = new ImageIcon(imageUrl);
+            JButton button = new JButton(icon);
+            button.setBorderPainted(false);
+            button.setContentAreaFilled(false);
+            button.setFocusPainted(false);
+            button.setMaximumSize(new Dimension(icon.getIconWidth() + 20, icon.getIconHeight() + 20));
+            button.setAlignmentX(Component.CENTER_ALIGNMENT);
+            button.addActionListener(this);
+            return button;
+        }
+        return null;
     }
 
     /**
