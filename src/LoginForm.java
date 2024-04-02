@@ -35,7 +35,7 @@ public class LoginForm implements ActionListener {
      * Constructs a new LoginForm that is associated with the specified account database.
      * It initializes the GUI components and sets up the action listeners.
      *
-     * @param acc the {@code Accounts} database to be used for login verification.
+     * @param accounts the {@code Accounts} database to be used for login verification.
      */
     public LoginForm(Accounts accounts) {
         accountDatabase = accounts;
