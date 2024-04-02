@@ -43,17 +43,17 @@ public class LevelMenu implements ActionListener {
         frame.setContentPane(backgroundPanel);
 
         /** Manually create each button with its own image */
-        JButton sunButton = createButtonWithImage("images/sun.png", "The Sun", 0);
-        JButton mercuryButton = createButtonWithImage("images/mercury.png", "Mercury", 1);
-        JButton venusButton = createButtonWithImage("images/venus.png", "Venus", 2);
-        JButton earthButton = createButtonWithImage("images/earth.png", "Earth", 3);
-        JButton marsButton = createButtonWithImage("images/mars.png", "Mars", 4);
-        JButton jupiterButton = createButtonWithImage("images/jupiter.png", "Jupiter", 5);
-        JButton saturnButton = createButtonWithImageSaturn("images/saturn.png", "Saturn", 6);
-        JButton uranusButton = createButtonWithImageWidth("images/uranus.png", "Uranus", 7);
-        JButton returnButton = createButtonWithImageBack("images/backbtn.png", "Return to Main Menu");
-        JButton neptuneButton = createButtonWithImage("images/neptune.png", "Neptune", 8);
-        JButton blackHolesButton = createButtonWithImage("images/blackhole.png", "Black Holes", 9);
+        JButton sunButton = createButtonWithImage("/images/sun.png", "The Sun", 0);
+        JButton mercuryButton = createButtonWithImage("/images/mercury.png", "Mercury", 1);
+        JButton venusButton = createButtonWithImage("/images/venus.png", "Venus", 2);
+        JButton earthButton = createButtonWithImage("/images/earth.png", "Earth", 3);
+        JButton marsButton = createButtonWithImage("/images/mars.png", "Mars", 4);
+        JButton jupiterButton = createButtonWithImage("/images/jupiter.png", "Jupiter", 5);
+        JButton saturnButton = createButtonWithImageSaturn("/images/saturn.png", "Saturn", 6);
+        JButton uranusButton = createButtonWithImageWidth("/images/uranus.png", "Uranus", 7);
+        JButton returnButton = createButtonWithImageBack("/images/backbtn.png", "Return to Main Menu");
+        JButton neptuneButton = createButtonWithImage("/images/neptune.png", "Neptune", 8);
+        JButton blackHolesButton = createButtonWithImage("/images/blackhole.png", "Black Holes", 9);
         JLabel logo = new JLabel(new ImageIcon("images/logo.png"));
 
         /** Add buttons to the background panel */
