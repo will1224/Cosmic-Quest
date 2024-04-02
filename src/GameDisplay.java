@@ -15,55 +15,68 @@ import java.io.IOException;
 import java.util.List;
 
 
+/**
+ * The GameDisplay class represents the main frame for displaying the game interface.
+ * It includes methods to display lessons, questions, handle user inputs, and update scores.
+ * 
+ * 
+ * @author Jennifer Cao
+ * @version 1.0
+ */
+
 public class GameDisplay extends JFrame {
-    //for questions
+    /** for questions */
     private JButton[] optionButtons = new JButton[4];
-    private int selectedAnswerIndex; // Track the selected answer
-    private List<Question> questions; // List of questions for the current level
-    private int currentQuestionIndex; // Index of the current question in the list
+    private int selectedAnswerIndex; /** Track the selected answer */
+    private List<Question> questions; /** List of questions for the current level */
+    private int currentQuestionIndex; /** Index of the current question in the list */
     private Level currentLevel;
     private JPanel panel;
-    private int gameState; // 0 = question mode
+    private int gameState; /** 0 = question mode */
     private int tempScore;
     private Accounts accounts;
     private int levelID;
 
-    //for lesson
+    /** for lesson */
     private JLabel levelName;
     private JTextArea lesson;
     private JButton next;
     private boolean nextPressed;
     
-    //for navigations
+    /** for navigations */
     private JButton backButton;
     private JButton pauseButton;
 
-    // colour constants
+    /** colour constants */
     private Color PINK = new Color(255, 104, 176);
     private Color GREEN = new Color(0, 180, 119);
     private boolean isSingleLevel;
 
 
-    // constructor
+    /**
+     * Constructs a GameDisplay object.
+     *
+     * @param a The Accounts object representing user accounts.
+     */
     public GameDisplay(Accounts a) {
         setTitle("Cosmic Quest: Stellar Treasures");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920, 1080);
 
-        // load the background image
+        /** load the background image */
         try {
             BufferedImage backgroundImage = ImageIO.read(new File("images/gradient.png"));
             BackgroundPanel bg = new BackgroundPanel(backgroundImage);
             setContentPane(bg);
-            setLayout(new BorderLayout()); // use BorderLayout
+            setLayout(new BorderLayout()); /** use BorderLayout */
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // ensure panel is transparent to show the background image
+        /** ensure panel is transparent to show the background image */
         this.panel = new JPanel();
-        panel.setOpaque(false); // make panel transparent
-        add(panel, BorderLayout.CENTER); // add the panel to the center
+        panel.setOpaque(false); /** make panel transparent */
+        add(panel, BorderLayout.CENTER); /** add the panel to the center */
 
         panel.setVisible(true);
         panel.setFocusable(true);
@@ -90,7 +103,7 @@ public class GameDisplay extends JFrame {
         panel.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                // Not used here
+                /** Not used here*/
             }
 
 
@@ -121,14 +134,14 @@ public class GameDisplay extends JFrame {
                         updateSelected();
                         break;
                     case KeyEvent.VK_ENTER:
-                        nextAction(); // Assumes this method advances to the next question or action
+                        nextAction(); /** Assumes this method advances to the next question or action */
                         break;
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                // Not used here
+                /**Not used here*/
             }
         });
 
@@ -141,7 +154,7 @@ public class GameDisplay extends JFrame {
             }
         });
 
-        // Create a panel at the bottom for the Back button
+        // Create a panel at the bottom for the Back button */
         JPanel bottomPanel = new JPanel(new BorderLayout());
         bottomPanel.add(backButton, BorderLayout.WEST); // Place the Back button on the west
         bottomPanel.setOpaque(false); // Optional: make the panel transparent
@@ -154,6 +167,9 @@ public class GameDisplay extends JFrame {
         setVisible(true);
     }
 
+     /**
+     * Displays the lesson for a level.
+     */
     public void displayLesson() {
         panel.removeAll();
         panel.setLayout(new BorderLayout(10, 10));
@@ -201,6 +217,9 @@ public class GameDisplay extends JFrame {
         panel.repaint();
     }
 
+    /**
+     * Displays the lesson for a single level.
+     */
     public void displayLessonSingle() {
         panel.removeAll();
         panel.setLayout(new BorderLayout(10, 10));
@@ -277,6 +296,11 @@ public class GameDisplay extends JFrame {
         }
     }
 
+    /**
+     * Displays a question for a single level.
+     *
+     * @param currLevel The current level.
+     */
     private void displayQuestionSingle(Level currLevel) {
         gameState = 0;
 
@@ -305,6 +329,11 @@ public class GameDisplay extends JFrame {
         }
     }
 
+    /**
+     * Displays a question for a level.
+     *
+     * @param currLevel The current level.
+     */
     private void displayQuestion(Level currLevel) {
         gameState = 0;
 
@@ -344,6 +373,9 @@ public class GameDisplay extends JFrame {
         }
     }
 
+    /**
+     * Displays the next question or finishes the level.
+     */
     private void displayNext() {
         if (selectedAnswerIndex == -1) {
             JOptionPane.showMessageDialog(this, "Please select an answer before proceeding.", "No Selection", JOptionPane.WARNING_MESSAGE);
@@ -357,6 +389,11 @@ public class GameDisplay extends JFrame {
         }
     }
 
+    /**
+     * Adds components to the panel for displaying a question.
+     *
+     * @param currLevel The current level.
+     */
     private void addComponentsToPanel(Level currLevel) {
         Question currentQuestion = questions.get(currentQuestionIndex);
 
@@ -372,6 +409,11 @@ public class GameDisplay extends JFrame {
         addNextButtonToPanel();
     }
 
+    /**
+    * Adds the title of the level to the panel.
+    *
+    * @param titleText The text to be displayed as the title.
+    */
     private void addTitleToPanel(String titleText) {
         JLabel title = new JLabel(titleText, JLabel.CENTER);
         title.setFont(new Font("Space Mono", Font.BOLD, 30));
@@ -379,6 +421,11 @@ public class GameDisplay extends JFrame {
         panel.add(title);
     }
 
+    /**
+     * Adds the question text to the panel.
+     *
+     * @param questionText The text of the question to be displayed.
+     */
     private void addQuestionToPanel(String questionText) {
         JLabel questionLabel = new JLabel(questionText, JLabel.CENTER);
         questionLabel.setFont(new Font("Space Mono", Font.PLAIN, 20));
@@ -386,6 +433,13 @@ public class GameDisplay extends JFrame {
         panel.add(questionLabel);
     }
 
+    /**
+     * Adds an option button with the specified text to the panel.
+     *
+     * @param buttonText The text to be displayed on the button.
+     * @param index      The index of the button in the array.
+     * @throws IllegalArgumentException if the index is out of bounds.
+     */
     private void addOptionToPanel(String buttonText, int index) {
         if (index < 0 || index >= optionButtons.length) {
             throw new IllegalArgumentException("Index out of bounds for option buttons array.");
@@ -408,6 +462,10 @@ public class GameDisplay extends JFrame {
         panel.add(button);
     }
 
+
+    /**
+     * Adds a "Next" button to the panel.
+     */
     private void addNextButtonToPanel() {
         JButton nextBtn = new JButton("Next");
         nextBtn.setFont(new Font("Space Mono", Font.PLAIN, 20));
@@ -418,10 +476,19 @@ public class GameDisplay extends JFrame {
         panel.add(btnContainer);
     }
 
+    /**
+     * Handles the action when the "Next" button is clicked.
+     *
+     * @param e The ActionEvent associated with the button click.
+     */
     private void nextButtonAction(ActionEvent e) {
         nextAction();
     }
 
+    /**
+     * Handles the action when the "Next" button is pressed.
+     * This method advances to the next question or action.
+     */
     private void nextAction() {
         Question currentQuestion = questions.get(currentQuestionIndex);
         System.out.println(selectedAnswerIndex);
@@ -437,6 +504,9 @@ public class GameDisplay extends JFrame {
         }
     }
 
+    /**
+     * Updates the visual representation of the selected answer.
+     */
     private void updateSelected() {
         // select option if keys are pressed
 
@@ -452,7 +522,12 @@ public class GameDisplay extends JFrame {
         }
     }
 
-    // go through each button and check if correct answer
+    /**
+     * Verifies the selected answer against the correct answer for the question.
+     *
+     * @param question    The Question object representing the current question.
+     * @param answerIndex The index of the selected answer.
+     */
     private void verifyAns(Question question, int answerIndex) {
 
         gameState = 1;
@@ -482,7 +557,11 @@ public class GameDisplay extends JFrame {
         }
     }
 
-    
+    /**
+     * Updates the score in the user's account progress.
+     *
+     * @param score The score to be updated.
+     */
     private void updateScore(int score) {
         JSONObject currentAccount = accounts.getCurrentAccount();
 
@@ -497,6 +576,9 @@ public class GameDisplay extends JFrame {
         accounts.updateUserProgress((String) currentAccount.get("username"), progress.getProgress());
     }
 
+    /**
+     * Sets up key bindings for user inputs.
+     */
     private void setUpKeyBindings() {
         int condition = JComponent.WHEN_IN_FOCUSED_WINDOW;
         InputMap inputMap = panel.getInputMap(condition);
@@ -557,6 +639,9 @@ public class GameDisplay extends JFrame {
         });
     }
 
+    /**
+     * Exits the game by disposing the frame.
+     */
     public void exitGame() {
         dispose(); 
     }

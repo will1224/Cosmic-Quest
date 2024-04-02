@@ -5,6 +5,9 @@ import java.awt.*;
 
 /**
  * A helper class for creating panels with a background image.
+ * 
+ * @author Sophia Tong
+ * @version 1.0
  */
 class BackgroundPanel extends JPanel {
     private Image backgroundImage;

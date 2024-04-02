@@ -9,7 +9,7 @@ import org.junit.*;
 /**
  * Class tests the key logical components in {@link Accounts}.
  * 
- * @version 1.0.0
+ * @version 1.0
  * @author Ho Lun (Geoffrey) Kong
  */
 public class TestAccounts {

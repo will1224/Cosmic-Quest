@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
  * instructor and developer.
  *
  * @author Sophia Tong
+ * @version 1.0
  */
 public class LevelMenuSpecial implements ActionListener {
     private JFrame frame;

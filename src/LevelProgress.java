@@ -8,7 +8,7 @@ import java.util.Arrays;
 /**
  * Class tracks level progress and implements methods to modify and obtain level information.
  * 
- * @version 1.0.0
+ * @version 1.0
  * @author Ho Lun (Geoffrey) Kong
  */
 @SuppressWarnings("unchecked")

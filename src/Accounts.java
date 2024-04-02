@@ -14,7 +14,7 @@ import java.util.*;
  * Account registration and login are handled by the {@link registerAccount} and {@link login} methods respectively.<br><br>
  * A variety of getter and setter methods are also provided to obtain and modify account information.
  * 
- * @version 1.0.0
+ * @version 1.0
  * @author Ho Lun (Geoffrey) Kong
  */
 @SuppressWarnings("unchecked")

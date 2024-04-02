@@ -9,7 +9,7 @@ import org.json.simple.JSONObject;
 /**
  * Class tests the key logical components in {@link LevelProgress}.
  * 
- * @version 1.0.0
+ * @version 1.0
  * @author Ho Lun (Geoffrey) Kong
  */
 public class TestLevelProgress {
