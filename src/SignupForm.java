@@ -1,9 +1,12 @@
 package src;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * The SignupForm class represents the signup form for creating a new account in the game.
@@ -23,7 +26,6 @@ public class SignupForm implements ActionListener {
     private JLabel usernameLabel = new JLabel("Enter Username: ");
     private JLabel passwordLabel = new JLabel("Enter Password: ");
     private JLabel msg = new JLabel("", SwingConstants.CENTER);
-    private JLabel titleLabel = new JLabel("Welcome to Cosmic Quest: Stellar Treasure", SwingConstants.CENTER);
     private Accounts accounts; 
 
     Accounts accountDatabase;
@@ -39,9 +41,9 @@ public class SignupForm implements ActionListener {
         signUpPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         /** Set background image */
-        ImageIcon icon = new ImageIcon("images/login.png");
-        BackgroundPanel backgroundPanel = new BackgroundPanel(icon.getImage());
+        BackgroundPanel backgroundPanel = new BackgroundPanel("/images/login.png");
         backgroundPanel.setLayout(new BorderLayout());
+        signUpPage.setContentPane(backgroundPanel);
 
         signUpPage.setContentPane(backgroundPanel);
 
@@ -55,7 +57,7 @@ public class SignupForm implements ActionListener {
         /** Set layout and appearance for labels and fields */
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(10, 50, 10, 50);
+        gbc.insets = new Insets(0, 50, 10, 50);
 
         /** Set font for labels */
         Font labelFont = new Font("Arial", Font.BOLD, 18);
@@ -71,7 +73,6 @@ public class SignupForm implements ActionListener {
         usernameField.setPreferredSize(new Dimension(usernameField.getPreferredSize().width, 60));
         passwordField.setPreferredSize(new Dimension(passwordField.getPreferredSize().width, 60));
 
-        titleLabel.setForeground(Color.WHITE);
         usernameLabel.setForeground(Color.WHITE);
         passwordLabel.setForeground(Color.WHITE);
         usernameField.setForeground(Color.black);
@@ -81,8 +82,6 @@ public class SignupForm implements ActionListener {
         usernameField.setCaretColor(Color.black);
         passwordField.setCaretColor(Color.black);
 
-        /** Add components to form panel */
-        formPanel.add(titleLabel, gbc);
         /** Add username label and text field to the form panel */
         formPanel.add(usernameLabel, gbc);
         formPanel.add(usernameField, gbc);
@@ -100,8 +99,6 @@ public class SignupForm implements ActionListener {
         /** Add button panel and message label to the form panel */
         formPanel.add(buttonPanel, gbc);
         formPanel.add(msg, gbc); /** Add the message label directly under the buttons */
-
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
         msg.setFont(new Font("Arial", Font.PLAIN, 16));
 
         centerPanel.add(formPanel);
@@ -151,6 +148,32 @@ public class SignupForm implements ActionListener {
                 msg.setForeground(Color.red);
                 msg.setText("An account with this username already exists. Please try to login instead.");
                 signUpPage.add(msg);
+            }
+        }
+    }
+
+    class BackgroundPanel extends JPanel {
+        private Image backgroundImage;
+
+        public BackgroundPanel(String imagePath) {
+            super(new BorderLayout());
+            try {
+                URL imageUrl = getClass().getResource(imagePath);
+                if (imageUrl != null) {
+                    backgroundImage = ImageIO.read(imageUrl);
+                } else {
+                    System.err.println("Unable to load background image: " + imagePath);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (backgroundImage != null) {
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
             }
         }
     }

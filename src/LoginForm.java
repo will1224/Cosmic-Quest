@@ -1,9 +1,12 @@
 package src;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * The {@code LoginForm} class represents the login form for the "Cosmic Quest: Stellar Treasures" application.
@@ -42,10 +45,9 @@ public class LoginForm implements ActionListener {
 
         loginPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        ImageIcon icon = new ImageIcon("images/login.png");
-        BackgroundPanel backgroundPanel = new BackgroundPanel(icon.getImage());
+        // Load the background image using getClass().getResource()
+        BackgroundPanel backgroundPanel = new BackgroundPanel("/images/login.png");
         backgroundPanel.setLayout(new BorderLayout());
-
         loginPage.setContentPane(backgroundPanel);
 
         JPanel centerPanel = new JPanel(new GridBagLayout());
@@ -62,7 +64,7 @@ public class LoginForm implements ActionListener {
         Font labelFont = new Font("Arial", Font.BOLD, 18);
         usernameLabel.setFont(labelFont);
         passwordLabel.setFont(labelFont);
-        gbc.insets = new Insets(10, 50, 15, 50);
+        gbc.insets = new Insets(-5, 50, 15, 50);
 
         /** Font settings for text fields */
         Font textFieldFont = new Font("Arial", Font.PLAIN, 24);
@@ -150,6 +152,32 @@ public class LoginForm implements ActionListener {
         } else if (e.getSource() == signUpButton) {
             loginPage.dispose();
             SignupForm signup = new SignupForm(accountDatabase);
+        }
+    }
+
+    class BackgroundPanel extends JPanel {
+        private Image backgroundImage;
+
+        public BackgroundPanel(String imagePath) {
+            super(new BorderLayout());
+            try {
+                URL imageUrl = getClass().getResource(imagePath);
+                if (imageUrl != null) {
+                    backgroundImage = ImageIO.read(imageUrl);
+                } else {
+                    System.err.println("Unable to load background image: " + imagePath);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (backgroundImage != null) {
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            }
         }
     }
 

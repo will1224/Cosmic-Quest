@@ -9,8 +9,12 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.imageio.ImageIO;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -42,15 +46,12 @@ public class HighScore extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        /** Load the default background image directly from file path */
-        BackgroundPanel backgroundPanel = new BackgroundPanel(new ImageIcon("images/gradient.png").getImage());
+        // Load the background image using getClass().getResource()
+        BackgroundPanel backgroundPanel = new BackgroundPanel();
         backgroundPanel.setLayout(new BorderLayout());
         setContentPane(backgroundPanel);
 
-        /** Initialize the scores table */
         initScoresTable();
-
-        /** Get scores from database and populate the table */
         List<PlayerScore> scores = getScoresFromDatabase();
         populateScoresTable(scores);
     }
@@ -178,5 +179,30 @@ public class HighScore extends JFrame {
             userScores.add(new PlayerScore(userData.get("username").toString(), score));
         }
         return userScores;
+    }
+
+    class BackgroundPanel extends JPanel {
+        private BufferedImage backgroundImage;
+
+        public BackgroundPanel() {
+            try {
+                URL backgroundImgURL = getClass().getResource("/images/gradient.png");
+                if (backgroundImgURL != null) {
+                    backgroundImage = ImageIO.read(backgroundImgURL);
+                } else {
+                    System.err.println("Unable to load background image.");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (backgroundImage != null) {
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            }
+        }
     }
 }

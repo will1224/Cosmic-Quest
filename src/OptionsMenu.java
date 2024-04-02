@@ -1,8 +1,11 @@
 package src;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicSliderUI;
 import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * Defines the options menu for "Cosmic Quest: Stellar Treasures", allowing
@@ -37,22 +40,18 @@ public class OptionsMenu extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        /** Set the background image */
+        // Set the custom BackgroundPanel as the content pane
         setContentPane(new BackgroundPanel());
 
         JPanel optionsPanel = new JPanel();
         optionsPanel.setLayout(new GridLayout(5, 1));
-        optionsPanel.setOpaque(false); /** Make the panel transparent */
+        optionsPanel.setOpaque(false); // Make the panel transparent
 
-        /** Sound Section */
         optionsPanel.add(createSoundPanel());
-
-        /** Display Section */
         optionsPanel.add(createDisplayPanel());
 
-        /** Return Button */
         JButton returnButton = new JButton("Return to main menu");
-        returnButton.setForeground(Color.WHITE); // Set text color to white
+        returnButton.setForeground(Color.WHITE);
         returnButton.addActionListener(e -> dispose());
 
         add(optionsPanel, BorderLayout.CENTER);
@@ -146,13 +145,19 @@ public class OptionsMenu extends JFrame {
      * Inner class to create a custom JPanel with a background image.
      * It overrides the paintComponent method to draw the image as the panel's background.
      */
-    class BackgroundPanel extends JPanel {
+   class BackgroundPanel extends JPanel {
         private Image backgroundImage;
 
         public BackgroundPanel() {
+            // Load the background image using getClass().getResource()
             try {
-                backgroundImage = new ImageIcon("images/gradient.png").getImage();
-            } catch (Exception e) {
+                URL backgroundImageURL = getClass().getResource("/images/gradient.png");
+                if (backgroundImageURL != null) {
+                    backgroundImage = ImageIO.read(backgroundImageURL);
+                } else {
+                    System.err.println("Unable to load background image.");
+                }
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -160,7 +165,9 @@ public class OptionsMenu extends JFrame {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+            if (backgroundImage != null) {
+                g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), this);
+            }
         }
     }
 }
