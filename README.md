@@ -24,6 +24,8 @@ Cosmic Quest: Stellar Treasures is designed to be an interactive, educational to
     - Java library for creating user interfaces, deprecated in favor of Swing
 - **Java.IO** (Input/output classes) 
     - Java package for input/output operations
+- **IntelliJ IDEA Community Edition** (Building and running the code)
+  - Required to build and run the code.
 
 Ensure that you have these libraries and tools properly installed and configured to build and run Cosmic Quest: Stellar Treasures.
 
@@ -37,10 +39,11 @@ Download and install the appropriate JDK for your operating system from the offi
 **Step 2:** Extract the folder containing the game<br>
 Open File Explorer and extract the contents of the game folder.
 
-INSERT STEPS TO BUILD THE JAR FILE HERE
+**Step 3:** Open the folder in IntelliJ IDEA
+Open IntelliJ and open the group7 folder as a new project.
 
-**Step ?:** Run the executable file<br>
-Open the executable file named "INSERTEXECUTABLENAMEHERE.jar" to run the game.
+**Step 4:** Build and run the game
+Open a new terminal window in IntelliJ and type in the following commands to build and run the code.<br>Windows:<br>`javac -cp .;json-simple-1.1.1.jar src/Main.java`<br>`java -cp .;json-simple-1.1.1.jar src.Main`<br>Mac/Linux<br>`javac -cp .:json-simple-1.1.1.jar src/Main.java`<br>`java -cp .:json-simple-1.1.1.jar src.Main`
 
 ---
 
