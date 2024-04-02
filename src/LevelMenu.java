@@ -6,33 +6,16 @@ import java.awt.color.ColorSpace;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.imageio.ImageIO;
-import java.io.File;
 import java.io.IOException;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorConvertOp;
+import java.net.URL;
 
-/**
- * Represents the level selection menu in the "Cosmic Quest: Stellar Treasures"
- * game.
- * This class creates a graphical user interface that allows players to select
- * from various
- * levels or sections within the game, such as the different planets and other
- * celestial bodies.
- * 
- * @author Sophia Tong
- */
 public class LevelMenu implements ActionListener {
     private JFrame frame;
     private Accounts accounts;
 
-    /**
-     * Constructs a LevelMenu instance, initializing the user interface with buttons
-     * for each game level and setting up action listeners.
-     * 
-     * @param accounts The accounts information, used for tracking level progress and unlocking levels based on player achievements.
-     */
     public LevelMenu(Accounts accounts) {
-
         this.accounts = accounts;
 
         frame = new JFrame("Cosmic Quest: Stellar Treasures");
@@ -44,9 +27,14 @@ public class LevelMenu implements ActionListener {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 try {
-                    BufferedImage backgroundImage = ImageIO.read(new File("images/space.png"));
-                    Image scaledImage = backgroundImage.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
-                    g.drawImage(scaledImage, 0, 0, this);
+                    URL backgroundImageURL = getClass().getResource("/images/space.png");
+                    if (backgroundImageURL != null) {
+                        BufferedImage backgroundImage = ImageIO.read(backgroundImageURL);
+                        Image scaledImage = backgroundImage.getScaledInstance(getWidth(), getHeight(), Image.SCALE_SMOOTH);
+                        g.drawImage(scaledImage, 0, 0, this);
+                    } else {
+                        System.err.println("Unable to load background image.");
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -104,22 +92,26 @@ public class LevelMenu implements ActionListener {
      */
     private JButton createButtonWithImage(String imagePath, String actionCommand, int level) {
         try {
-            BufferedImage originalImage = ImageIO.read(new File(imagePath));
-            int originalWidth = originalImage.getWidth(null);
-            int originalHeight = originalImage.getHeight(null);
-            double aspectRatio = (double) originalHeight / (double) originalWidth;
-            int newWidth = 200; // Width is constant for all buttons for consistency
+            URL imageUrl = getClass().getResource(imagePath);
+            if (imageUrl == null) {
+                System.err.println("Resource not found: " + imagePath);
+                return new JButton(actionCommand);
+            }
+            BufferedImage originalImage = ImageIO.read(imageUrl);
+            int newWidth = 200; // Default width for consistency
+            double aspectRatio = (double) originalImage.getHeight() / (double) originalImage.getWidth();
             int newHeight = (int) Math.round(newWidth * aspectRatio);
-            BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g2d = resizedImage.createGraphics();
-            g2d.drawImage(originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH), 0, 0, null);
-            g2d.dispose();
+            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
-            /** Check if the level is unlocked */
-            if (level > unlockedUpTo()) {
-                /** Apply a grayscale filter to the image if the level is locked */
+            if (level >= 0 && level > unlockedUpTo()) {
+                BufferedImage convertedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g2d = convertedImage.createGraphics();
+                g2d.drawImage(resizedImage, 0, 0, null);
+                g2d.dispose();
+
                 ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
-                op.filter(resizedImage, resizedImage);
+                op.filter(convertedImage, convertedImage);
+                resizedImage = convertedImage;
             }
 
             JButton button = new JButton(new ImageIcon(resizedImage));
@@ -128,9 +120,7 @@ public class LevelMenu implements ActionListener {
             button.setContentAreaFilled(false);
             button.setActionCommand(actionCommand);
             button.addActionListener(this);
-
-            /** Optionally disable the button if the level is locked */
-            button.setEnabled(level <= unlockedUpTo());
+            button.setEnabled(level < 0 || level <= unlockedUpTo());
 
             return button;
         } catch (IOException e) {
@@ -156,22 +146,26 @@ public class LevelMenu implements ActionListener {
      */
     private JButton createButtonWithImageWidth(String imagePath, String actionCommand, int level) {
         try {
-            BufferedImage originalImage = ImageIO.read(new File(imagePath));
-            int originalWidth = originalImage.getWidth(null);
-            int originalHeight = originalImage.getHeight(null);
-            double aspectRatio = (double) originalHeight / (double) originalWidth;
-            int newWidth = 200; // Width is constant for all buttons for consistency
+            URL imageUrl = getClass().getResource(imagePath);
+            if (imageUrl == null) {
+                System.err.println("Resource not found: " + imagePath);
+                return new JButton(actionCommand);
+            }
+            BufferedImage originalImage = ImageIO.read(imageUrl);
+            int newWidth = 200; // Default width for consistency
+            double aspectRatio = (double) originalImage.getHeight() / (double) originalImage.getWidth();
             int newHeight = (int) Math.round(newWidth * aspectRatio);
-            BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g2d = resizedImage.createGraphics();
-            g2d.drawImage(originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH), 0, 0, null);
-            g2d.dispose();
+            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
-            /** Check if the level is unlocked */
-            if (level > unlockedUpTo()) {
-                /** Apply a grayscale filter to the image if the level is locked */
+            if (level >= 0 && level > unlockedUpTo()) {
+                BufferedImage convertedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g2d = convertedImage.createGraphics();
+                g2d.drawImage(resizedImage, 0, 0, null);
+                g2d.dispose();
+
                 ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
-                op.filter(resizedImage, resizedImage);
+                op.filter(convertedImage, convertedImage);
+                resizedImage = convertedImage;
             }
 
             JButton button = new JButton(new ImageIcon(resizedImage));
@@ -180,9 +174,7 @@ public class LevelMenu implements ActionListener {
             button.setContentAreaFilled(false);
             button.setActionCommand(actionCommand);
             button.addActionListener(this);
-
-            /** Optionally disable the button if the level is locked */
-            button.setEnabled(level <= unlockedUpTo());
+            button.setEnabled(level < 0 || level <= unlockedUpTo());
 
             return button;
         } catch (IOException e) {
@@ -205,22 +197,26 @@ public class LevelMenu implements ActionListener {
      */
     private JButton createButtonWithImageSaturn(String imagePath, String actionCommand, int level) {
         try {
-            BufferedImage originalImage = ImageIO.read(new File(imagePath));
-            int originalWidth = originalImage.getWidth(null);
-            int originalHeight = originalImage.getHeight(null);
-            double aspectRatio = (double) originalHeight / (double) originalWidth;
-            int newWidth = 352; // Width is constant for all buttons for consistency
+            URL imageUrl = getClass().getResource(imagePath);
+            if (imageUrl == null) {
+                System.err.println("Resource not found: " + imagePath);
+                return new JButton(actionCommand);
+            }
+            BufferedImage originalImage = ImageIO.read(imageUrl);
+            int newWidth = 352; // Default width for consistency
+            double aspectRatio = (double) originalImage.getHeight() / (double) originalImage.getWidth();
             int newHeight = (int) Math.round(newWidth * aspectRatio);
-            BufferedImage resizedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g2d = resizedImage.createGraphics();
-            g2d.drawImage(originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH), 0, 0, null);
-            g2d.dispose();
+            Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
 
-            /** Check if the level is unlocked */
-            if (level > unlockedUpTo()) {
-                /** Apply a grayscale filter to the image if the level is locked */
+            if (level >= 0 && level > unlockedUpTo()) {
+                BufferedImage convertedImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+                Graphics2D g2d = convertedImage.createGraphics();
+                g2d.drawImage(resizedImage, 0, 0, null);
+                g2d.dispose();
+
                 ColorConvertOp op = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
-                op.filter(resizedImage, resizedImage);
+                op.filter(convertedImage, convertedImage);
+                resizedImage = convertedImage;
             }
 
             JButton button = new JButton(new ImageIcon(resizedImage));
@@ -229,9 +225,7 @@ public class LevelMenu implements ActionListener {
             button.setContentAreaFilled(false);
             button.setActionCommand(actionCommand);
             button.addActionListener(this);
-
-            /** Optionally disable the button if the level is locked */
-            button.setEnabled(level <= unlockedUpTo());
+            button.setEnabled(level < 0 || level <= unlockedUpTo());
 
             return button;
         } catch (IOException e) {
@@ -251,14 +245,24 @@ public class LevelMenu implements ActionListener {
      */
     private JButton createButtonWithImageBack(String imagePath, String actionCommand) {
         try {
-            BufferedImage originalImage = ImageIO.read(new File(imagePath));
-            int originalWidth = originalImage.getWidth(null);
-            int originalHeight = originalImage.getHeight(null);
-            int newWidth = 280;
+            // Change starts here: Load the image using getClass().getResource()
+            URL imageUrl = getClass().getResource(imagePath);
+            if (imageUrl == null) {
+                System.err.println("Resource not found: " + imagePath);
+                return new JButton(actionCommand);
+            }
+            BufferedImage originalImage = ImageIO.read(imageUrl);
+    
+            int originalWidth = originalImage.getWidth();
+            int originalHeight = originalImage.getHeight();
+            int newWidth = 280; // Fixed width for button images
             double aspectRatio = (double) originalHeight / (double) originalWidth;
             int newHeight = (int) Math.round(newWidth * aspectRatio);
+    
+            // Scale the image to fit the button
             Image resizedImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-
+    
+            // Create the button with the resized image
             JButton button = new JButton(new ImageIcon(resizedImage));
             button.setBorderPainted(false);
             button.setFocusPainted(false);
@@ -268,10 +272,9 @@ public class LevelMenu implements ActionListener {
             return button;
         } catch (IOException e) {
             e.printStackTrace();
-            return new JButton(actionCommand);
+            return new JButton(actionCommand); // Return a basic button if image load fails
         }
     }
-
      /**
      * Responds to action events triggered by button presses within the {@code LevelMenu}.
      * This method navigates to a specific game level, returns to the main menu, or performs other predefined actions
